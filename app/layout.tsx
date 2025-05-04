@@ -74,6 +74,7 @@ export default function RootLayout({
           href="/feed.json"
           title="JSON Feed"
         />
+        <meta name="google-site-verification" content="t1PASftHKLAyYzTyc5iydqLh9Mqb_TjJRWTx_sTtFv8" />
       </head>
       <body className="antialiased flex flex-col items-center justify-center mx-auto mt-2 lg:mt-8 mb-20 lg:mb-40">
         <ThemeProvider
