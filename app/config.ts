@@ -1,10 +1,10 @@
 export const metaData = {
   baseUrl: "https://stack-dhruv.vercel.app/",
   title: "Dhruvkumar Patel",
-  name: "stack-dhruv",
+  name: "Dhruvkumar Patel",
   ogImage: "/opengraph-image.png",
   description:
-    "A clean, fast, and lightweight portfolio template built with Next.js, Vercel, and Tailwind CSS for optimal performance.",
+    "The personal portfolio of Dhruvkumar Patel — a passionate software developer with experience in machine learning, full-stack development, and computer vision. Showcasing hands-on projects, deep tech writeups, and real-world problem solving using Next.js, Tailwind CSS, and modern development tools. Built for performance, learning, and storytelling.",
 };
 
 export const socialLinks = {
