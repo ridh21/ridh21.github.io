@@ -33,6 +33,14 @@ const nextConfig: NextConfig = {
         source: "/json",
         destination: "/feed/feed.json",
       },
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap.xml',
+      },
+      {
+        source: '/robots.txt',
+        destination: '/robots.txt',
+      },
     ];
   },
 };
