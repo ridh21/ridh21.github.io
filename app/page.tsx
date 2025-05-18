@@ -16,48 +16,17 @@ export default function Page() {
         />
       </a>
       <h1 className="mb-8 text-2xl font-medium">
-        Portfolio template!
+        Hi, I'm Dhruvkumar Patel!
       </h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          A clean, fast, and lightweight portfolio template built with Next.js,
-          Vercel, and Tailwind CSS.
+          A passionate M.Tech CSE student at IIIT-Delhi, engineer by training, innovator by mindset.
         </p>
         <p>
-          Nextfolio has everything you need for a portfolio: MDX blog, SEO, RSS,
-          Atom & JSON feeds, analytics, Tweet & YouTube embeds, KaTeX and {""}
-          <a
-            target="_blank"
-            href="https://github.com/1msirius/Nextfolio?tab=readme-ov-file#features"
-          >
-            more
-          </a>
-          .
+          I work at the intersection of machine learning, computer vision, and software engineering to build intelligent, scalable solutions. From leading national hackathon teams to publishing IEEE conference paper, I love translating ideas into impact.
         </p>
         <p>
-          Nextfolio is{" "}
-          <a href={socialLinks.github} target="_blank">
-            open-source
-          </a>{" "}
-          and fully customizable, making it easy to add more features.
-        </p>
-        <p>
-          <a
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio"
-            target="_blank"
-          >
-            Deploy
-          </a>{" "}
-          your Nextfolio site with Vercel in minutes and follow the set up
-          instructions in the{" "}
-          <a href="/blog/getting-started">Getting Started</a> post.
-        </p>
-        <p>
-          Built and maintained by{" "}
-          <a href="https://imsirius.xyz/" target="_blank">
-            Sirius
-          </a>
-          .
+          I believe in continuous learning, meaningful collaboration, and turning complexity into simplicity. Let’s connect — whether you're looking for a teammate, a developer, or just a good tech conversation.
         </p>
       </div>
     </section>

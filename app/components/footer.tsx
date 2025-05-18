@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaRss,
   FaLinkedinIn,
+  FaOrcid
 } from "react-icons/fa6";
 import { TbMailFilled } from "react-icons/tb";
 import { metaData, socialLinks } from "app/config";
@@ -29,6 +30,7 @@ function SocialLinks() {
       <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
       <SocialLink href={socialLinks.instagram} icon={FaInstagram} />
       <SocialLink href={socialLinks.email} icon={TbMailFilled} />
+      <SocialLink href={socialLinks.orcid} icon={FaOrcid} />
       <a href="/rss.xml" target="_self">
         <FaRss />
       </a>
@@ -41,11 +43,11 @@ export default function Footer() {
     <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
       <a
         className="no-underline"
-        href={socialLinks.github}
+        href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Have a great day
+        View Resume
       </a>
       <style jsx>{`
         @media screen and (max-width: 480px) {
