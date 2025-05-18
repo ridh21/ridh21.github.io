@@ -13,7 +13,7 @@ export interface EducationEntry {
       institute: "IIIT-Delhi",
       location: "New Delhi",
       degree: "M. Tech. CSE",
-      cgpa: "7.75",
+      cgpa: "8.00",
       duration: "Aug 2024 - Present",
     },
     {
@@ -26,15 +26,15 @@ export interface EducationEntry {
     {
       institute: "Parth School of Competition and Science",
       location: "Vadodara", // Corrected typo based on common city name
-      degree: "H.S.C. (GHSEB)",
+      degree: "HSC",
       cgpa: "64%",
       duration: "Apr 2019 - Apr 2020",
     },
     {
       institute: "Shree S.K. High School",
       location: "Lunawada",
-      degree: "S.S.C. (GSEB)",
-      cgpa: "92 % (overall)",
+      degree: "SSC",
+      cgpa: "92%",
       duration: "Apr 2017 - Apr 2018",
     },
   ];
