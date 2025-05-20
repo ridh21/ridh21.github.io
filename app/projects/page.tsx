@@ -34,7 +34,7 @@ export default function Projects() {
                 {project.title}
               </div>
               {/* Description */}
-              <div className="text-neutral-600 dark:text-neutral-400 italic text-sm md:text-base">
+              <div className="text-neutral-600 dark:text-neutral-400 italic text-base md:text-base">
                 {project.description}
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function Projects() {
             <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
               {/* Render markdown details using ReactMarkdown */}
               {/* Use the 'prose' class for basic markdown styling (requires @tailwindcss/typography plugin) */}
-              <div className="prose prose-neutral dark:prose-invert text-sm leading-relaxed">
+              <div className="prose prose-neutral dark:prose-invert text-base leading-relaxed">
               <ReactMarkdown>
                 {project.details}
               </ReactMarkdown>

@@ -15,9 +15,6 @@ export default function Page() {
           priority
         />
       </a>
-      <h1 className="mb-8 text-2xl font-medium">
-        Hi, I'm Dhruvkumar Patel!
-      </h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           A passionate M.Tech CSE student at IIIT-Delhi, engineer by training, innovator by mindset.
