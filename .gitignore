@@ -33,3 +33,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# boilerplate
+content/mdx-boilerplate.mdx
+content/custom-mdx-example.mdx
+content/getting-started-blog.mdx
