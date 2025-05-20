@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Inter, Atkinson_Hyperlegible } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -8,7 +8,7 @@ import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 
-const atkinson_hyperlegible = Atkinson_Hyperlegible({subsets: ["latin"], weight:"400"})
+const poppings = Poppins({subsets: ["latin"], weight:"400"})
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${atkinson_hyperlegible.className}`}>
+    <html lang="en" className={`${poppings.className}`}>
       <head>
         <link
           rel="alternate"
