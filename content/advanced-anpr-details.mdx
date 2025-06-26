@@ -1,0 +1,71 @@
+---
+title: "Build Process: Advanced ANPR & Face Recognition for KAVACH-23"
+publishedAt: "2025-05-21"
+summary: "A behind-the-scenes look at our national finalist project for the KAVACH-23 Cybersecurity Hackathon, covering data collection with local police, developing a high-accuracy YOLOv8 model, and building a cross-platform mobile app."
+tags: "Computer Vision, PyTorch, YOLO, React Native, Hackathon, ANPR"
+---
+
+In 2023, I had the incredible opportunity to lead a team of six in the **National Cyber Security Hackathon (Kavach-2023)**. Our challenge was to design and build a sophisticated security solution using Automatic Number Plate Recognition (ANPR) and Face Recognition (FR). The journey took us from collaborating with law enforcement to training cutting-edge deep learning models, ultimately earning us a place as national finalists.
+
+Here’s how we built it.
+
+## The Foundation: Real-World Data Collaboration
+
+The biggest challenge in any computer vision project is sourcing high-quality, relevant data. To build a system that works in the real world, we needed real-world footage.
+
+<Callout emoji="🤝">
+  **A Crucial Partnership:** We successfully collaborated with the **Ahmedabad West traffic police**. With the support of the police commissioner and a non-disclosure agreement, we gained access to high-definition video footage from city traffic cameras for research purposes. This was the cornerstone of our project's success.
+</Callout>
+
+This authentic data allowed us to train and test our models on the exact scenarios they would encounter in a live deployment, including variations in lighting, angles, and vehicle types.
+
+## System Architecture: Decoupled for Performance
+
+We designed a decoupled, end-to-end system to ensure scalability and performance. The architecture consisted of a powerful backend API for heavy processing and a lightweight frontend application for user interaction.
+
+The components included:
+- **Backend API:** An API wrapping our object detection, classification, OCR, and face recognition models.
+- **Frontend App:** A cross-platform mobile application built with React Native.
+
+This design allowed the computationally intensive deep learning tasks to be offloaded to a dedicated server (either on a local network or in the cloud), enabling the mobile app to run smoothly on standard edge devices.
+
+```javascript
+// Conceptual overview of our tech stack
+const techStack = {
+  objectDetection: "YOLOv8 (PyTorch)",
+  plateClassifier: "Custom CNN (PyTorch)",
+  ocr: "EasyOCR (pretrained)",
+  faceRecognition: "Siamese Networks & dlib",
+  backendApi: "Python (FastAPI/Flask)",
+  frontendApp: "React Native"
+};
+```
+
+## The AI Core: Detection, Classification, and Recognition
+
+Our system's intelligence was driven by a pipeline of specialized models.
+
+### 1. ANPR: Detection and Classification
+
+We adopted a two-step process for accurate number plate recognition:
+1.  **Detection:** We fine-tuned a **YOLOv8 nano** model on our traffic footage to detect the location of number plates on vehicles. The 'nano' variant provided an excellent balance of speed and accuracy for real-time processing.
+2.  **Classification:** After detection, a separate, custom-trained classifier determined if the plate was a standard or non-standard format.
+
+<Callout emoji="🎯">
+  **High-Accuracy Results:** Our ANPR model achieved **92% Precision** and **91% Recall** in detecting number plates, with the subsequent classifier reaching **89% accuracy** in distinguishing plate types.
+</Callout>
+
+### 2. OCR and Face Recognition
+
+-   **OCR:** For extracting text from the detected number plates, we integrated the powerful, pre-trained **EasyOCR** library, which saved significant development time while providing reliable results.
+-   **Face Recognition:** To explore engineering trade-offs, we implemented two different approaches for face recognition:
+    -   **Deep Learning:** A Siamese Network, which is a powerful few-shot learning method capable of high accuracy with less data per subject than traditional classification models.
+    -   **Classical Method:** We used the popular **dlib** library as a baseline to compare performance and understand the pros and cons of data-hungry deep learning vs. traditional computer vision.
+
+## The Final Result: National Finalists
+
+Our journey through the hackathon was a rigorous test of our technical and collaborative skills. We were selected as one of just five teams from our state to advance to the national level.
+
+Competing against the top 100 teams from across the country, our comprehensive solution, robust architecture, and data-driven approach earned us the title of **National Finalist (Runner-up)** in the KAVACH-23 hackathon.
+
+This project was a phenomenal learning experience in building and deploying an end-to-end AI security system, from sourcing critical data to presenting a polished, functional product under pressure.

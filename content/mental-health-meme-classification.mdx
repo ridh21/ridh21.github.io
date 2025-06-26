@@ -1,0 +1,70 @@
+---
+title: "Classifying Mental Health in Memes: A Multimodal Approach"
+publishedAt: "2025-05-23"
+summary: "A deep dive into our NLP course project where we used Vision-Language Models to classify signs of anxiety and depression in internet memes, blending humor with serious analysis."
+tags: "NLP, Multimodal AI, PyTorch, Hugging Face, Mental Health, Streamlit"
+---
+
+Internet memes are more than just jokes; they are a powerful, modern medium for communication. They can convey complex emotions, shared experiences, and subtle social commentary. As part of my Natural Language Processing coursework, my team and I undertook a challenging and socially impactful project: could we teach an AI to understand the underlying mental health cues hidden within these memes?
+
+Our project, "Mental Health Meme Classification," aimed to detect symptoms of anxiety and depression by analyzing both the visual and textual components of memes.
+
+## The Challenge: A Nuanced, Multimodal Problem
+
+This isn't a simple text or image classification task. The meaning of a meme often arises from the interplay between its image and its text. A picture of a smiling character paired with text about social anxiety creates a layer of irony and nuance that a unimodal model would miss.
+
+Our project, which extended the work of the research paper ["M3H: A Multimodal Mental Health Dataset"](https://arxiv.org/abs/2305.10432), addressed two specific sub-tasks:
+1.  **Single-label Classification:** Predict if a meme exhibits symptoms of anxiety.
+2.  **Multi-label Classification:** Predict one or more depression-related symptoms present in a meme.
+
+## Our Technical Approach: Enriching Data and Enhancing Models
+
+To tackle this complexity, we couldn't just use off-the-shelf models. We had to innovate at both the data and model level.
+
+### 1. Advanced Dataset Augmentation
+
+The explicit text in a meme is only half the story. To capture the implicit meaning, we engineered a sophisticated data augmentation pipeline.
+-   First, we used **OCR (Optical Character Recognition)** to extract the literal text from each meme image.
+-   Next, we went a step further to understand the *unspoken* context.
+
+<Callout emoji="🧠">
+  **Extracting Semantic Triplets:** We used a powerful multimodal Vision-Language Model, **QWEN-2.5-VL-7B**, to analyze the meme and extract high-level semantic triplets. These included concepts like **Cause-Effect**, **Figurative Reasoning**, and **Mental State Inference**, providing our model with a much deeper, more implicit understanding of the content.
+</Callout>
+
+### 2. Fine-Tuning a Specialized Model
+
+Our model architecture was an enhanced version of the one proposed in the M3H paper.
+-   We introduced **visual feature maps** directly into the model pipeline, allowing it to better interpret visual context and nuance.
+-   We fine-tuned **MentalBART**, a BART model pre-trained on mental health-related text from Reddit, to adapt it specifically for our single-label (anxiety) and multi-label (depression) classification tasks.
+
+```python
+# Conceptual overview of our model pipeline
+def process_meme(image_path, text_content):
+    # 1. Extract visual features from the image
+    visual_features = vision_encoder(image_path)
+    
+    # 2. Generate semantic triplets using the VL-Model
+    semantic_triplets = qwen_vl_model.generate_triplets(image_path)
+    
+    # 3. Combine OCR text with semantic triplets
+    enriched_text = text_content + " " + format_triplets(semantic_triplets)
+    
+    # 4. Feed both visual and enriched text features into MentalBART
+    predictions = fine_tuned_mental_bart(visual_features, enriched_text)
+    
+    return predictions
+```
+
+## From Model to Interactive Tool
+
+A model is only useful if it can be tested and used. We developed an end-to-end inference pipeline and built a user-friendly web interface using **Streamlit**. This allowed us to upload a meme and interactively see the model's predictions and classification results in real-time, making our work accessible and easy to demonstrate.
+
+## Performance and Results
+
+Tackling such a nuanced dataset is incredibly challenging. We were pleased that our model achieved competitive performance, validating our approach.
+
+<Callout emoji="📊">
+**Performance Metrics:** Our model achieved a **65% Macro F1 Score** on the anxiety classification task and a **63% Macro F1 Score** on the multi-label depression task, aligning with the performance benchmarks set by the original M3H research.
+</Callout>
+
+This project was a fascinating exploration into the intersection of AI, digital culture, and mental health. It demonstrated that by combining advanced multimodal techniques, we can begin to build systems that understand human communication in its most modern and nuanced forms.
