@@ -40,7 +40,7 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
+    <small className="block lg:mt-12 mt-8 text-[#1C1C1C] dark:text-[#D4D4D4]">
       <a
         className="no-underline"
         href="/resume.pdf"

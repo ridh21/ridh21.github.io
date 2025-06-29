@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+  background-color: #e5ebff;
+  color: #33312C
 }
 
 /* Light theme colors */
 :root {
+  color: #33312C;
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -22,7 +23,8 @@
 
 /* Dark theme colors */
 .dark {
-  background-color: #121212;
+  background-color: #191919;
+  color: #D4D4D4;
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-sign: #8996a3;
@@ -36,10 +38,14 @@
 
 html {
   min-width: 360px;
+  scroll-behavior: smooth;
 }
 
 .prose {
-  @apply text-[#000000] dark:text-[#FFFFFF];
+  /* Use softer, off-black and off-white colors like Notion */
+  @apply text-neutral-800 dark:text-neutral-200;
+  /* Increase line-height for better readability */
+  @apply leading-relaxed;
 }
 
 .prose .anchor {
@@ -56,7 +62,7 @@ html {
 }
 
 .prose a {
-  @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] font-normal text-[#000000] dark:text-[#FFFFFF];
+  @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] font-semibold text-neutral-800 dark:text-neutral-200;
 }
 
 .prose a:hover {
@@ -95,16 +101,19 @@ html {
   @apply m-0;
 }
 
-.prose h2,
+/* .prose h2,
 h3,
 h4,
 h5,
 h6 {
   @apply font-medium !important;
+} */
+.prose h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold text-neutral-900 dark:text-neutral-100 !important;
 }
 
 .prose strong {
-  @apply font-medium;
+  @apply font-semibold text-neutral-900 dark:text-neutral-100;
 }
 
 .prose > :first-child {

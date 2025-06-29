@@ -1,14 +1,18 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Public_Sans } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
+import { JumpToTopButton } from "./components/jump-to-top";
 
-const poppings = Poppins({subsets: ["latin"], weight:"400"})
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -54,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppings.className}`}>
+    <html lang="en" className={`${publicSans.className}`}>
       <head>
         <link
           rel="alternate"
@@ -91,6 +95,7 @@ export default function RootLayout({
             <Analytics />
             <SpeedInsights />
           </main>
+          <JumpToTopButton />
         </ThemeProvider>
       </body>
     </html>

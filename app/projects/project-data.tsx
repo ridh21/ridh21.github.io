@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   details: string; // <--- Added this field for markdown details
   url: string;
+  image: string;
   tags?: string[]; // Optional new field for future enhancements
 }
 
@@ -20,7 +21,8 @@ export const projects: Project[] = [
 *   Achieved competitive performance with a 65% Macro F1 score for anxiety and 63% for depression.
 *   Developed an end-to-end inference pipeline with a Streamlit UI for interactive visualization of results.
     `,
-    url: "https://github.com/dhruvpatel97/mental-health-meme-classification", // Placeholder URL
+    url: "https://github.com/stack-dhruv/mental-health-meme-classification", // Placeholder URL
+    image: "/projects/mental-health-meme-classification/architecture.png",
     tags: ["Python", "PyTorch", "Hugging Face", "Streamlit", "NLP", "Multimodal AI"],
   },
   {
@@ -34,6 +36,7 @@ export const projects: Project[] = [
 *   Analyzed performance trade-offs in latency, resource utilization, and scalability across different deployment strategies.
     `,
     url: "https://github.com/dhruvpatel97/microservices-benchmarking-deathstar", // Placeholder URL
+    image: "/projects/mental-health-meme-classification/architecture.png",
     tags: ["Docker", "Kubernetes", "GKE", "Prometheus", "Pixie", "Microservices", "Observability"],
   },
   {
@@ -47,7 +50,8 @@ export const projects: Project[] = [
 *   Explored multiple face recognition approaches, including deep learning (Siamese networks) and classical methods (dlib).
 *   Finished as a national finalist (runner-up) in the KAVACH-2023 hackathon among the top 100 teams.
     `,
-    url: "https://github.com/dhruvpatel97/anpr-face-kavach",
+    url: "https://github.com/coding-brigade/advanced-anpr-fr-kavach",
+    image: "/projects/mental-health-meme-classification/architecture.png",
     tags: ["Python", "PyTorch", "React Native", "YOLOv8", "Computer Vision", "ANPR"],
   },
   {
@@ -60,9 +64,10 @@ export const projects: Project[] = [
 *   Implemented regression models (Linear, Polynomial) achieving a high R² value of 0.9976 on the custom EduDropX dataset.
 *   Extended the project into a research paper published in the IEEE I2CT 2024 conference.
     `,
-    url: "https://ieeexplore.ieee.org/document/10543438",
+    url: "https://github.com/ssip-hack/student-dropout-analysis",
+    image: "/projects/mental-health-meme-classification/architecture.png",
     tags: ["Python", "Pandas", "Machine Learning", "Data Visualization", "Scikit-learn"],
-  },
+  }, 
   {
     title: "Drive Material LDRP",
     year: 2022,
@@ -73,7 +78,8 @@ export const projects: Project[] = [
 *   Achieved significant user engagement with 1,000+ unique visitors within the first week of launch.
 *   The platform has since become a go-to resource, enhancing the student learning experience.
     `,
-    url: "https://drivematerial.in/",
+    url: "https://drive-material-ldrp.weebly.com/",
+    image: "/projects/mental-health-meme-classification/architecture.png",
     tags: ["Web Development", "SEO", "Content Management", "Weebly"],
   }
 ];

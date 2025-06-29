@@ -16,15 +16,28 @@ export default function Page() {
         />
       </a>
       <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          A passionate M.Tech CSE student at IIIT-Delhi, engineer by training, innovator by mindset.
-        </p>
-        <p>
-          I work at the intersection of machine learning, computer vision, and software engineering to build intelligent, scalable solutions. From leading national hackathon teams to publishing IEEE conference paper, I love translating ideas into impact.
-        </p>
-        <p>
-          I believe in continuous learning, meaningful collaboration, and turning complexity into simplicity. Let’s connect — whether you're looking for a teammate, a developer, or just a good tech conversation.
-        </p>
+          <p>
+            I'm an M.Tech CSE student at IIIT-Delhi and a Researcher at MIDAS Lab,
+            where I build scalable systems for AI. My work involves fine-tuning{" "}
+            <strong className="font-semibold">multi-modal LLMs</strong> and
+            engineering high-performance inference APIs with{" "}
+            <strong className="font-semibold">Python, FastAPI, and Celery</strong>.
+          </p>
+          <p>
+            My passion is turning complex research into tangible impact. I've improved
+            production model accuracy by 4% with a custom{" "}
+            <strong className="font-semibold">C++/OpenCV</strong> data generator,
+            led teams to a national hackathon final (KAVACH-23), and won a
+            state-level competition that resulted in a published{" "}
+            <strong className="font-semibold"><a href="https://ieeexplore.ieee.org/document/10543438">IEEE conference paper</a></strong>.
+          </p>
+          <p>
+            I'm actively seeking roles where I can apply my expertise in{" "}
+            <strong className="font-semibold">
+              Computer Vision, AI/ML, and distributed systems
+            </strong>{" "}
+            to solve challenging problems.
+          </p>
       </div>
     </section>
   );
