@@ -47,7 +47,7 @@ function Section({ title, children }) {
 export default function CVPage() {
   return (
     <div>
-      <h1 className="font-serif font-bold text-4xl mb-8 text-neutral-900 dark:text-neutral-100">
+      <h1 className="font-serif font-bold text-3xl mb-8 text-neutral-900 dark:text-neutral-100">
         Curriculum Vitae
       </h1>
 
