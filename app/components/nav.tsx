@@ -1,22 +1,20 @@
 import Link from "next/link";
 import { ThemeSwitch } from "./theme-switch";
-import { metaData } from "../config";
+import { Logo } from "./logo"; // Import the new logo
 
 const navItems = {
   "/blog": { name: "Blog" },
   "/projects": { name: "Projects" },
   "/education": { name: "Education" },
-  // "/photos": { name: "Photos" },
 };
 
 export function Navbar() {
   return (
-    <nav className="py-4">
-      <div className="flex flex-col md:flex-row md:items-center justify-between">
+    <nav className="lg:mb-8 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between py-5 border-b border-neutral-200 dark:border-neutral-700">
         <div className="flex items-center">
-          <Link href="/" className="text-3xl font-semibold">
-            {metaData.title}
-          </Link>
+          {/* Replace the text link with the Logo component */}
+          <Logo />
         </div>
         <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
           {Object.entries(navItems).map(([path, { name }]) => (

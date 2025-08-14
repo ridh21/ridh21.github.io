@@ -13,8 +13,13 @@
   }
 }
 
+body {
+  @apply bg-[#f9f9f7] dark:bg-[#1c1c1c];
+}
+
+
 ::selection {
-  background-color: #e5ebff;
+  background-color: #cfdcc7;
   color: #33312C
 }
 
