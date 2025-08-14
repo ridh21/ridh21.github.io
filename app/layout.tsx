@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Gloock, Epilogue } from "next/font/google";
+import { Gloock, Epilogue, Funnel_Display, Oranienbaum } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,12 +9,13 @@ import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 import { JumpToTopButton } from "./components/jump-to-top";
 
-const headingFont = Gloock({
+const headingFont = Funnel_Display({
   subsets: ["latin"],
   weight: "400", // Gloock only has a regular weight
   variable: "--font-playfair", // We can keep the variable name for simplicity
   display: "swap",
 });
+
 
 const epilogue = Epilogue({
   subsets: ["latin"],

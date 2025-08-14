@@ -11,8 +11,8 @@ export default function BlogPosts() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
-        My Blog
+      <h1 className="mb-4 text-4xl font-semibold text-neutral-900 dark:text-neutral-100">
+        Blog
       </h1>
 
       {/* This div will contain our list of blog posts */}

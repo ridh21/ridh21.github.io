@@ -25,10 +25,10 @@ export default function Projects() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold">Projects</h1>
+      <h1 className="mb-8 text-4xl font-semibold">Projects</h1>
 
       {/* --- TABLE OF CONTENTS SECTION --- */}
-      <div className="mb-12 p-6 border border-neutral-200 dark:border-neutral-800 rounded-lg bg-neutral-50 dark:bg-neutral-900/50">
+      <div className="mb-4 p-6 border border-neutral-200 dark:border-neutral-800 rounded-lg bg-neutral-50 dark:bg-neutral-900/50">
         <h2 className="text-lg font-bold mb-4">Table of Contents</h2>
 
         {/* --- MOBILE TOC (Single Column) --- */}
