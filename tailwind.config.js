@@ -13,6 +13,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-epilogue)"],
+        serif: ["var(--font-playfair)"],
+      },
       typography: {
         quoteless: {
           css: {
