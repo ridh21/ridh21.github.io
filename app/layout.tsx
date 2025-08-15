@@ -54,7 +54,6 @@ export const metadata: Metadata = {
     description: metaData.description,
     images: [`${metaData.baseUrl}/opengraph-image.png`],
   },
-  
   robots: {
     index: true,
     follow: true,
@@ -74,6 +73,9 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
+  other: {
+    'og:logo': `${metaData.baseUrl}/logo.png`
+  }
 };
 
 export default function RootLayout({

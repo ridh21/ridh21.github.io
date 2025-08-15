@@ -14,7 +14,7 @@ export function Logo() {
                    bg-gradient-to-br from-teal-500 via-green-600 to-emerald-700
                    bg-[length:200%_200%] animate-gradient-move
                    transition-transform duration-300 ease-in-out 
-                   hover:scale-110 hover:-rotate-12">
+                   md:hover:scale-110 md:hover:-rotate-12">
         <span className="text-white font-serif font-bold text-lg">
           D
         </span>
