@@ -51,7 +51,7 @@ export const projects: Project[] = [
 *   Finished as a national finalist (runner-up) in the KAVACH-2023 hackathon among the top 100 teams.
     `,
     url: "https://github.com/coding-brigade/advanced-anpr-fr-kavach",
-    image: "/projects/mental-health-meme-classification/architecture.png",
+    image: "/projects/anpr-fr-architecture/anpr fr architecture.png",
     tags: ["Python", "PyTorch", "React Native", "YOLOv8", "Computer Vision", "ANPR"],
   },
   {
