@@ -22,7 +22,7 @@ export const projects: Project[] = [
 *   Developed an end-to-end inference pipeline with a Streamlit UI for interactive visualization of results.
     `,
     url: "https://github.com/stack-dhruv/mental-health-meme-classification", // Placeholder URL
-    image: "/projects/mental-health-meme-classification/architecture.png",
+    image: "/projects/mental-health-meme-classification/og.png",
     tags: ["Python", "PyTorch", "Hugging Face", "Streamlit", "NLP", "Multimodal AI"],
   },
   {
@@ -35,8 +35,8 @@ export const projects: Project[] = [
 *   Integrated a two-tier observability stack using Pixie for real-time visualization and Prometheus for fine-grained metrics collection.
 *   Analyzed performance trade-offs in latency, resource utilization, and scalability across different deployment strategies.
     `,
-    url: "https://github.com/dhruvpatel97/microservices-benchmarking-deathstar", // Placeholder URL
-    image: "/projects/deathstar-benchmark/GKE_Cluster_Multi_Node.png",
+    url: "https://github.com/stack-dhruv/DeathStarBench", // Placeholder URL
+    image: "/projects/deathstar-benchmark/og.png",
     tags: ["Docker", "Kubernetes", "GKE", "Prometheus", "Pixie", "Microservices", "Observability"],
   },
   {
@@ -50,8 +50,8 @@ export const projects: Project[] = [
 *   Explored multiple face recognition approaches, including deep learning (Siamese networks) and classical methods (dlib).
 *   Finished as a national finalist (runner-up) in the KAVACH-2023 hackathon among the top 100 teams.
     `,
-    url: "https://github.com/coding-brigade/advanced-anpr-fr-kavach",
-    image: "/projects/anpr-fr-architecture/anpr fr architecture.png",
+    url: "https://github.com/coding-brigade/advanced-anpr-fr",
+    image: "/projects/anpr-fr-architecture/og.png",
     tags: ["Python", "PyTorch", "React Native", "YOLOv8", "Computer Vision", "ANPR"],
   },
   {
@@ -65,7 +65,7 @@ export const projects: Project[] = [
 *   Extended the project into a research paper published in the IEEE I2CT 2024 conference.
     `,
     url: "https://github.com/ssip-hack/student-dropout-analysis",
-    image: "/projects/student-dropout-analysis/dropout architecture.png",
+    image: "/projects/student-dropout-analysis/og.png",
     tags: ["Python", "Pandas", "Machine Learning", "Data Visualization", "Scikit-learn"],
   }, 
   {

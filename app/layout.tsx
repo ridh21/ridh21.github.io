@@ -11,8 +11,8 @@ import { JumpToTopButton } from "./components/jump-to-top";
 
 const headingFont = Funnel_Display({
   subsets: ["latin"],
-  weight: "400", // Gloock only has a regular weight
-  variable: "--font-playfair", // We can keep the variable name for simplicity
+  weight: "400",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -30,17 +30,31 @@ export const metadata: Metadata = {
     template: `%s | ${metaData.title}`,
   },
   description: metaData.description,
-  // Link to the web manifest for PWA-like features
   manifest: "/site.webmanifest",
+  
+  // --- OPEN GRAPH (FACEBOOK) & TWITTER META TAGS ---
   openGraph: {
-    images: metaData.ogImage,
     title: metaData.title,
     description: metaData.description,
     url: metaData.baseUrl,
     siteName: metaData.name,
+    images: [
+      {
+        url: `${metaData.baseUrl}/opengraph-image.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: metaData.title,
+    description: metaData.description,
+    images: [`${metaData.baseUrl}/opengraph-image.png`],
+  },
+  
   robots: {
     index: true,
     follow: true,
@@ -52,11 +66,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  twitter: {
-    title: metaData.name,
-    card: "summary_large_image",
-  },
-  // Comprehensive icons setup
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -75,7 +84,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${headingFont.variable} ${epilogue.variable}`}>
       <head>
-        {/* These links are still good practice for RSS readers */}
+        {/* RSS Feed links remain here */}
         <link
           rel="alternate"
           type="application/rss+xml"

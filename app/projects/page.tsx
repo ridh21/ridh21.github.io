@@ -21,13 +21,15 @@ export default function ProjectsPage() {
       <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
         {projects.map((project) => (
           <article key={project.title} className="py-8">
-            {/* Project Image */}
-            <div className="relative aspect-video overflow-hidden rounded-lg mb-4 border border-neutral-200 dark:border-neutral-800">
+            {/* Project Image Container */}
+            {/* Added a background color for the letterboxing effect */}
+            <div className="relative aspect-video overflow-hidden rounded-lg mb-4 border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50">
               <Image
                 src={project.image}
                 alt={`Screenshot of the ${project.title} project`}
                 fill
-                className="object-cover"
+                // Changed from object-cover to object-contain
+                className="object-contain" 
               />
             </div>
 
