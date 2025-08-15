@@ -30,6 +30,8 @@ export const metadata: Metadata = {
     template: `%s | ${metaData.title}`,
   },
   description: metaData.description,
+  // Link to the web manifest for PWA-like features
+  manifest: "/site.webmanifest",
   openGraph: {
     images: metaData.ogImage,
     title: metaData.title,
@@ -54,8 +56,14 @@ export const metadata: Metadata = {
     title: metaData.name,
     card: "summary_large_image",
   },
+  // Comprehensive icons setup
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 };
 
@@ -65,21 +73,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // +++ APPLY FONT VARIABLES TO HTML ELEMENT +++
     <html lang="en" className={`${headingFont.variable} ${epilogue.variable}`}>
       <head>
-        {/* ... (head content remains the same) */}
+        {/* These links are still good practice for RSS readers */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href="/rss.xml"
+          title="RSS Feed"
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          href="/atom.xml"
+          title="Atom Feed"
+        />
+        <link
+          rel="alternate"
+          type="application/feed+json"
+          href="/feed.json"
+          title="JSON Feed"
+        />
+        <meta name="google-site-verification" content="t1PASftHKLAyYzTyc5iydqLh9Mqb_TjJRWTx_sTtFv8" />
+        <meta name="apple-mobile-web-app-title" content="Dhruv's Portfolio" />
       </head>
-      {/* --- MODIFY BODY CLASSNAME --- */}
-      <body className="antialiased flex flex-col items-center justify-center mx-auto mb-20 lg:mb-40 font-sans">
+      <body className="antialiased flex flex-col items-center min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {/* --- MODIFY MAIN CLASSNAME --- */}
-          <main className="flex-auto min-w-0 flex flex-col px-6 sm:px-4 md:px-0 max-w-[624px] w-full">
+          <main className="flex-auto min-w-0 flex flex-col px-6 sm:px-4 md:px-0 max-w-[624px] w-full mb-20">
             <Navbar />
             {children}
             <Footer />

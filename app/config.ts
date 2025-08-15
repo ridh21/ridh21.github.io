@@ -13,5 +13,6 @@ export const socialLinks = {
   instagram: "https://www.instagram.com/dhruv_1563_",
   linkedin: "https://www.linkedin.com/in/stack-dhruv",
   email: "mailto:iamdhruv1563@gmail.com",
-  orcid: "https://orcid.org/0009-0005-6466-7650"
+  orcid: "https://orcid.org/0009-0005-6466-7650",
+  scholar: "https://scholar.google.com/citations?user=RZULQawAAAAJ&hl=en",
 };

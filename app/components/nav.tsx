@@ -3,6 +3,7 @@ import { ThemeSwitch } from "./theme-switch";
 import { Logo } from "./logo";
 
 const navItems = {
+  "/proemio": {name: "Proemio"},
   "/blog": { name: "Blog" },
   "/projects": { name: "Projects" },
   "/cv": { name: "CV" }, // Changed from /education to /cv
