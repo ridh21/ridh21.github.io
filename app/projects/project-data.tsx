@@ -36,7 +36,7 @@ export const projects: Project[] = [
 *   Analyzed performance trade-offs in latency, resource utilization, and scalability across different deployment strategies.
     `,
     url: "https://github.com/dhruvpatel97/microservices-benchmarking-deathstar", // Placeholder URL
-    image: "/projects/mental-health-meme-classification/architecture.png",
+    image: "/projects/deathstar-benchmark/GKE_Cluster_Multi_Node.png",
     tags: ["Docker", "Kubernetes", "GKE", "Prometheus", "Pixie", "Microservices", "Observability"],
   },
   {
@@ -65,7 +65,7 @@ export const projects: Project[] = [
 *   Extended the project into a research paper published in the IEEE I2CT 2024 conference.
     `,
     url: "https://github.com/ssip-hack/student-dropout-analysis",
-    image: "/projects/mental-health-meme-classification/architecture.png",
+    image: "/projects/student-dropout-analysis/dropout architecture.png",
     tags: ["Python", "Pandas", "Machine Learning", "Data Visualization", "Scikit-learn"],
   }, 
   {
@@ -79,7 +79,7 @@ export const projects: Project[] = [
 *   The platform has since become a go-to resource, enhancing the student learning experience.
     `,
     url: "https://drive-material-ldrp.weebly.com/",
-    image: "/projects/mental-health-meme-classification/architecture.png",
+    image: "/projects/drive-material-ldrp/drive material ldrp.png",
     tags: ["Web Development", "SEO", "Content Management", "Weebly"],
   }
 ];
