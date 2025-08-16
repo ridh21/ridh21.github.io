@@ -1,7 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { ArrowUp, Sparkles } from "lucide-react"; // Import Sparkles icon
+import { ArrowUp, Sparkles } from "lucide-react";
 import { DefaultChatTransport } from 'ai';
 import React, { useState, useEffect, useRef } from "react"; 
 import ReactMarkdown from "react-markdown";
@@ -54,27 +54,27 @@ export default function AiPage() {
     <section>
       {/* Header */}
       <div className="flex items-center justify-between gap-4 mb-2">
-        <h1 className="font-serif text-4xl font-bold text-teal-700 dark:text-teal-400">
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-teal-700 dark:text-teal-400">
           ध्रुव://ai
         </h1>
-        <span className="flex items-center gap-2 px-3 py-1 text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 rounded-full">
+        <span className="flex items-center gap-2 px-3 py-1 text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 rounded-full flex-shrink-0">
           <Sparkles className="w-3 h-3" />
           just for fun!
         </span>
       </div>
-      <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+      <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400">
         Have a chat with my AI persona to know more about me!
       </p>
 
       {/* Chat Window */}
       <div 
         ref={chatContainerRef}
-        className="mt-6 h-[50vh] overflow-y-auto space-y-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#111]"
+        className="mt-6 h-[60vh] sm:h-[55vh] overflow-y-auto space-y-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#111]"
       >
         {/* Initial Message */}
         <div className="flex justify-start">
-          <div className="px-4 py-2 text-sm rounded-lg bg-teal-100/50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200">
-            <p>
+          <div className="px-2 py-2 rounded-lg bg-teal-100/50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200">
+            <p className="text-sm">
               Hi! I'm Dhruv's AI persona. Ask me anything about him or his
               work. I'll be happy to assist you.
             </p>
@@ -90,14 +90,14 @@ export default function AiPage() {
             <div
               className={`px-2 rounded-lg max-w-[80%] whitespace-pre-wrap ${
                 m.role === "user"
-                  ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
+                  ? "bg-neutral-200/50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
                   : "bg-teal-100/50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200"
               }`}
             >
               {m.parts.map(part => {
                 if (part.type === 'text') {
                   return (
-                    <div key={`${m.id}-text`} className="prose prose-sm prose-neutral dark:prose-invert max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-0">
+                    <div key={`${m.id}-text`} className="prose prose-sm prose-neutral dark:prose-invert max-w-none prose-p:my-0 prose-ul:my-0 prose-li:my-0">
                       <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                         {part.text}
                       </ReactMarkdown>
