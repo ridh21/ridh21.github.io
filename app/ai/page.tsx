@@ -69,11 +69,11 @@ export default function AiPage() {
       {/* Chat Window */}
       <div 
         ref={chatContainerRef}
-        className="mt-6 h-[55vh] overflow-y-auto space-y-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#111]"
+        className="mt-6 h-[50vh] overflow-y-auto space-y-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#111]"
       >
         {/* Initial Message */}
         <div className="flex justify-start">
-          <div className="px-4 py-2 rounded-lg bg-teal-50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200">
+          <div className="px-4 py-2 text-sm rounded-lg bg-teal-100/50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200">
             <p>
               Hi! I'm Dhruv's AI persona. Ask me anything about him or his
               work. I'll be happy to assist you.
@@ -88,10 +88,10 @@ export default function AiPage() {
             className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`px-4 py-2 rounded-lg max-w-[80%] whitespace-pre-wrap ${
+              className={`px-2 rounded-lg max-w-[80%] whitespace-pre-wrap ${
                 m.role === "user"
                   ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
-                  : "bg-teal-50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200"
+                  : "bg-teal-100/50 dark:bg-teal-900/50 text-neutral-800 dark:text-neutral-200"
               }`}
             >
               {m.parts.map(part => {
