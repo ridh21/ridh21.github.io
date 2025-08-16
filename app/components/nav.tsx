@@ -6,7 +6,7 @@ const navItems = {
   "/proemio": {name: "Proemio"},
   "/blog": { name: "Blog" },
   "/projects": { name: "Projects" },
-  "/cv": { name: "CV" }, // Changed from /education to /cv
+  "/ai": {name: "ध्रुव://ai"}
 };
 
 export function Navbar() {
