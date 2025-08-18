@@ -53,6 +53,24 @@ export async function GET(
       ? post.metadata.tags.split(",").map((tag) => tag.trim())
       : [];
 
+    // Validate and parse the date
+    let publishedDate: Date;
+    try {
+      // Attempt to create a Date object from publishedAt
+      const parsedDate = new Date(post.metadata.publishedAt);
+      // Check if the parsed date is valid
+      if (isNaN(parsedDate.getTime())) {
+        console.warn(`Invalid date for post "${post.metadata.title}" (${post.slug}). Using current date.`);
+        publishedDate = new Date(); // Fallback to current date if invalid
+      } else {
+        publishedDate = parsedDate;
+      }
+    } catch (e) {
+      // Catch any errors during date parsing (though new Date() usually handles this by returning an "Invalid Date")
+      console.error(`Error parsing date for post "${post.metadata.title}" (${post.slug}):`, e);
+      publishedDate = new Date(); // Fallback to current date on error
+    }
+
     feed.addItem({
       title: post.metadata.title,
       id: postUrl,
@@ -62,7 +80,7 @@ export async function GET(
         name: tag,
         term: tag,
       })),
-      date: new Date(post.metadata.publishedAt),
+      date: publishedDate, // Use the validated date
     });
   });
 
