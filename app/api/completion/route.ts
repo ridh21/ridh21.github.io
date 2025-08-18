@@ -11,6 +11,7 @@ const model = google("gemini-2.5-flash-lite");
 
 // MongoDB connection details
 const uri = process.env.MONGODB_URI;
+console.log("Vercel MONGODB_URI (runtime):", uri);
 
 // Throw an error if URI is not defined, this will provide a clearer build error
 // if the environment variable is missing on Vercel.
