@@ -114,10 +114,10 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I build scalable systems for AI. As a researcher at IIIT-Delhi's
-          MIDAS Lab, I turn complex challenges in multi-modal AI and computer
-          vision into production-ready solutions. My work has been recognized
-          at national hackathons and published by the IEEE.
+          I build scalable ML systems. Currently a Data Scientist Intern at Myntra
+          working on Ads Ranking, and a researcher at IIIT-Delhi's MIDAS Lab
+          exploring multi-modal AI. My work has been recognized at national
+          hackathons and published by the IEEE.
         </p>
       </div>
 
@@ -138,6 +138,51 @@ export default function Page() {
         <SocialLink href={socialLinks.email} icon={Mail}>
           Email
         </SocialLink>
+      </div>
+
+      {/* --- EXPERIENCE SECTION --- */}
+      <div className="mt-6">
+        <h2 className="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-100">
+          Experience
+        </h2>
+        <div className="mt-4 space-y-4">
+          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+                  Data Scientist Intern
+                </h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  Myntra · Bengaluru, Karnataka
+                </p>
+              </div>
+              <span className="text-sm text-neutral-500 dark:text-neutral-500">
+                Jan 2026 — Present
+              </span>
+            </div>
+            <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
+              Contributing to the Ads Rank team, building modular ML training pipelines and data preparation systems for ad CTR optimization. Improved production ranking model by 6% F1 score and reduced training time by 50%.
+            </p>
+          </div>
+          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+                  Graduate Student Researcher
+                </h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  MIDAS Lab, IIIT Delhi · New Delhi
+                </p>
+              </div>
+              <span className="text-sm text-neutral-500 dark:text-neutral-500">
+                Jan 2025 — Present
+              </span>
+            </div>
+            <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
+              Working on improving small LLM generation using Mixture of Refinement Agents. Developed end-to-end inference APIs with FastAPI and Celery for multimodal LLM-based annotation anomaly detection.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* --- PROJECTS SECTION --- */}

@@ -4,7 +4,7 @@ export const metaData = {
   name: "Dhruvkumar Patel",
   ogImage: "/opengraph-image.png",
   description:
-    "The personal portfolio of Dhruvkumar Patel — Software developer with experience in machine learning, full-stack development, and computer vision.",
+    "The personal portfolio of Dhruvkumar Patel — Data Scientist Intern at Myntra, Graduate Researcher at IIIT Delhi's MIDAS Lab, with expertise in machine learning, multimodal AI, and full-stack development.",
 };
 
 export const socialLinks = {
