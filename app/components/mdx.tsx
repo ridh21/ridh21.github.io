@@ -62,7 +62,7 @@ function Strikethrough(props) {
 
 function Callout(props) {
   return (
-    <div className="px-4 py-3 bg-neutral-200/35 dark:bg-[#181818] rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8">
+    <div className="px-4 py-3 bg-[var(--color-background-subtle)] rounded p-1 text-sm flex items-center text-[var(--color-contrast-high)] mb-8">
       <div className="flex items-center w-4 mr-4">{props.emoji}</div>
       <div className="w-full callout leading-relaxed">{props.children}</div>
     </div>

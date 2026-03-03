@@ -2,14 +2,14 @@
 
 import React from "react";
 import {
-  FaXTwitter,
-  FaGithub,
-  FaInstagram,
-  FaRss,
-  FaLinkedinIn,
-  FaOrcid
-} from "react-icons/fa6";
-import { TbMailFilled } from "react-icons/tb";
+  IconTwitterX,
+  IconGitHub,
+  IconInstagram,
+  IconRss,
+  IconLinkedIn,
+  IconOrcid,
+  IconMail,
+} from "./icons";
 import { metaData, socialLinks } from "app/config";
 
 const YEAR = new Date().getFullYear();
@@ -17,22 +17,22 @@ const YEAR = new Date().getFullYear();
 function SocialLink({ href, icon: Icon }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer">
-      <Icon />
+      <Icon size={16} />
     </a>
   );
 }
 
 function SocialLinks() {
   return (
-    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
-      <SocialLink href={socialLinks.github} icon={FaGithub} />
-      <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} />
-      <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
-      <SocialLink href={socialLinks.instagram} icon={FaInstagram} />
-      <SocialLink href={socialLinks.email} icon={TbMailFilled} />
-      <SocialLink href={socialLinks.orcid} icon={FaOrcid} />
+    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90 text-[var(--color-contrast-low)]">
+      <SocialLink href={socialLinks.github} icon={IconGitHub} />
+      <SocialLink href={socialLinks.linkedin} icon={IconLinkedIn} />
+      <SocialLink href={socialLinks.twitter} icon={IconTwitterX} />
+      <SocialLink href={socialLinks.instagram} icon={IconInstagram} />
+      <SocialLink href={socialLinks.email} icon={IconMail} />
+      <SocialLink href={socialLinks.orcid} icon={IconOrcid} />
       <a href="/rss.xml" target="_self">
-        <FaRss />
+        <IconRss size={16} />
       </a>
     </div>
   );
@@ -40,9 +40,9 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <small className="block lg:mt-12 mt-8 text-[#1C1C1C] dark:text-[#D4D4D4]">
+    <small className="block lg:mt-12 mt-8 text-[var(--color-contrast-medium)]">
       <a
-        className="no-underline"
+        className="btn btn-ghost text-xs gap-1.5 no-underline px-0"
         href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"

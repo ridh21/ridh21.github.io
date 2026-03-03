@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Gloock, Epilogue, Funnel_Display, Oranienbaum } from "next/font/google";
+import localFont from "next/font/local";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,17 +9,37 @@ import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 import { JumpToTopButton } from "./components/jump-to-top";
 
-const headingFont = Funnel_Display({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-playfair",
+const matterFont = localFont({
+  src: [
+    {
+      path: "../fonts/MatterRegular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/MatterMedium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/MatterSemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-matter",
   display: "swap",
 });
 
-
-const epilogue = Epilogue({
-  subsets: ["latin"],
-  variable: "--font-epilogue",
+const seasonMixFont = localFont({
+  src: [
+    {
+      path: "../fonts/SeasonMix-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-seasonmix",
   display: "swap",
 });
 
@@ -84,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${headingFont.variable} ${epilogue.variable}`}>
+    <html lang="en" className={`${seasonMixFont.variable} ${matterFont.variable}`}>
       <head>
         {/* RSS Feed links remain here */}
         <link
@@ -108,7 +128,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="t1PASftHKLAyYzTyc5iydqLh9Mqb_TjJRWTx_sTtFv8" />
         <meta name="apple-mobile-web-app-title" content="Dhruv's Portfolio" />
       </head>
-      <body className="antialiased flex flex-col items-center min-h-screen">
+      <body className="antialiased font-sans flex flex-col items-center min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)]">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

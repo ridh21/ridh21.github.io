@@ -4,18 +4,58 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}", 
     "./public/**/*.svg",
-    // "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // Include other paths, potentially including your CSS files if using @apply
-    // "./styles/**/*.css", // Example: Add this if global.css is in a 'styles' directory
-    // Or specifically:
-    "./app/global.css", // If it's in the root
+    "./app/global.css",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-epilogue)"],
-        serif: ["var(--font-playfair)"],
+        sans: ["var(--font-matter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-seasonmix)", "serif"],
+      },
+      colors: {
+        black: "var(--color-black)",
+        white: "var(--color-white)",
+        background: {
+          DEFAULT: "var(--color-background)",
+          light: "var(--color-background-light)",
+          subtle: "var(--color-background-subtle)",
+          elevated: "var(--color-background-elevated)",
+        },
+        "background-light": "var(--color-background-light)",
+        "background-subtle": "var(--color-background-subtle)",
+        "background-elevated": "var(--color-background-elevated)",
+        foreground: "var(--color-foreground)",
+        "contrast-high": "var(--color-contrast-high)",
+        "contrast-medium": "var(--color-contrast-medium)",
+        "contrast-low": "var(--color-contrast-low)",
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          hover: "var(--color-accent-hover)",
+          light: "var(--color-accent-light)",
+          subtle: "var(--color-accent-subtle)",
+          fg: "var(--color-accent-fg)",
+        },
+        primary: {
+          DEFAULT: "var(--color-accent)",
+          dark: "var(--color-accent-hover)",
+        },
+        border: "var(--color-border)",
+        "border-strong": "var(--color-border-strong)",
+      },
+      borderRadius: {
+        "2xs": "var(--radius-2xs)",
+        xs: "var(--radius-xs)",
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+      },
+      boxShadow: {
+        xs: "var(--shadow-xs)",
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
       },
       typography: {
         quoteless: {

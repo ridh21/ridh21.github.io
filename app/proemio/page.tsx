@@ -15,8 +15,8 @@ const personalStack = [
 function StackListItem({ name, description }: { name: string; description: string }) {
   return (
     <li>
-      <span className="font-semibold text-neutral-800 dark:text-neutral-200">{name}</span>
-      <span className="text-neutral-600 dark:text-neutral-400"> — {description}</span>
+      <span className="font-semibold text-[var(--color-contrast-high)]">{name}</span>
+      <span className="text-[var(--color-contrast-medium)]"> — {description}</span>
     </li>
   );
 }
@@ -24,10 +24,10 @@ function StackListItem({ name, description }: { name: string; description: strin
 export default function ProemioPage() {
   return (
     <section>
-      <h1 className="font-serif text-4xl font-bold text-teal-700 dark:text-teal-400">
+      <h1 className="font-serif text-4xl font-normal text-[var(--color-accent)]">
         Proemio
       </h1>
-      <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">
+      <p className="mt-2 text-lg text-[var(--color-contrast-medium)]">
         /proˈɛ.mi.o/ — an introduction or preface, especially to a speech or literary work.
       </p>
 
@@ -39,7 +39,7 @@ export default function ProemioPage() {
           Every element, from the typography to the page transitions, was deliberately chosen to create an experience that is fast, accessible, and hopefully, a pleasure to explore. This site is a living document—a snapshot of my ongoing journey in the world of technology.
         </p>
 
-        <p className="font-serif text-lg font-semibold">Personal Stack
+        <p className="font-serif text-lg font-normal">Personal Stack
         </p>
         <ul>
           {personalStack.map((item) => (

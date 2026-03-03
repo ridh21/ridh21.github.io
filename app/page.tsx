@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, FileText, Mail } from "lucide-react";
-import { FaLinkedinIn, FaXTwitter, FaGoogleScholar } from "react-icons/fa6";
+import {
+  IconArrowUpRight,
+  IconGitHub,
+  IconFileText,
+  IconMail,
+  IconLinkedIn,
+  IconGoogleScholar,
+} from "./components/icons";
 import { socialLinks } from "./config";
 import { projects } from "../app/projects/project-data";
 
@@ -31,18 +37,19 @@ function ListEntry({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-4 rounded-lg transition-all duration-300 hover:bg-teal-50 dark:hover:bg-teal-900/50"
+      className="group block p-4 rounded-lg transition-all duration-200 hover:bg-[var(--color-accent-subtle)]"
     >
       <div className="flex justify-between items-center">
-        <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+        <h3 className="font-semibold text-[var(--color-contrast-high)]">
           {title}
         </h3>
-        <ArrowUpRight
-          className="w-5 h-5 text-teal-600 dark:text-teal-400 opacity-0 group-hover:opacity-100 transform transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+        <IconArrowUpRight
+          size={20}
+          className="text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transform transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
           aria-hidden="true"
         />
       </div>
-      <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
+      <p className="text-[var(--color-contrast-medium)] text-sm mt-1">
         {description}
       </p>
     </Link>
@@ -63,18 +70,19 @@ function ProjectEntry({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-4 rounded-lg transition-all duration-300 hover:bg-teal-50 dark:hover:bg-teal-900/50"
+      className="group block p-4 rounded-lg transition-all duration-200 hover:bg-[var(--color-accent-subtle)]"
     >
       <div className="flex justify-between items-center">
-        <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+        <h3 className="font-semibold text-[var(--color-contrast-high)]">
           {title}
         </h3>
-        <ArrowUpRight
-          className="w-5 h-5 text-teal-600 dark:text-teal-400 opacity-0 group-hover:opacity-100 transform transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+        <IconArrowUpRight
+          size={20}
+          className="text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transform transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
           aria-hidden="true"
         />
       </div>
-      <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
+      <p className="text-[var(--color-contrast-medium)] text-sm mt-1">
         {description}
       </p>
     </Link>
@@ -87,9 +95,9 @@ function SocialLink({ href, icon: Icon, children }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-teal-700 dark:hover:text-teal-400"
+      className="btn btn-ghost text-sm gap-2 px-2 h-8 text-[var(--color-contrast-low)] hover:text-[var(--color-accent)]"
     >
-      <Icon className="w-4 h-4" />
+      <Icon size={16} />
       {children}
     </a>
   );
@@ -103,10 +111,10 @@ export default function Page() {
       {/* --- INTRO SECTION --- */}
       <div className="flex justify-between items-start gap-8">
         <div>
-          <h1 className="font-serif font-bold text-3xl md:text-4xl mb-2 text-teal-700 dark:text-teal-400">
+          <h1 className="font-serif font-normal text-3xl md:text-4xl mb-2 text-[var(--color-accent)]">
             Dhruvkumar Patel
           </h1>
-          <h2 className="text-neutral-700 dark:text-neutral-300 mb-4">
+          <h2 className="text-[var(--color-contrast-medium)] mb-4">
             Software Developer · Researcher · AI/ML Engineer
           </h2>
         </div>
@@ -122,63 +130,63 @@ export default function Page() {
       </div>
 
       {/* --- SOCIAL & RESUME LINKS --- */}
-      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <SocialLink href="/resume.pdf" icon={FileText}>
+      <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <SocialLink href="/resume.pdf" icon={IconFileText}>
           Resume
         </SocialLink>
-        <SocialLink href={socialLinks.scholar} icon={FaGoogleScholar}>
+        <SocialLink href={socialLinks.scholar} icon={IconGoogleScholar}>
           Scholar
         </SocialLink>
-        <SocialLink href={socialLinks.github} icon={Github}>
+        <SocialLink href={socialLinks.github} icon={IconGitHub}>
           GitHub
         </SocialLink>
-        <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn}>
+        <SocialLink href={socialLinks.linkedin} icon={IconLinkedIn}>
           LinkedIn
         </SocialLink>
-        <SocialLink href={socialLinks.email} icon={Mail}>
+        <SocialLink href={socialLinks.email} icon={IconMail}>
           Email
         </SocialLink>
       </div>
 
       {/* --- EXPERIENCE SECTION --- */}
       <div className="mt-6">
-        <h2 className="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="section-heading font-serif text-xl">
           Experience
         </h2>
         <div className="mt-4 space-y-4">
-          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+          <div className="card p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+                <h3 className="font-semibold text-[var(--color-contrast-high)]">
                   Data Scientist Intern
                 </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <p className="text-sm text-[var(--color-contrast-medium)]">
                   Myntra · Bengaluru, Karnataka
                 </p>
               </div>
-              <span className="text-sm text-neutral-500 dark:text-neutral-500">
+              <span className="tag text-xs">
                 Jan 2026 — Present
               </span>
             </div>
-            <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
+            <p className="mt-2 text-sm text-[var(--color-foreground)]">
               Contributing to the Ads Rank team, building modular ML training pipelines and data preparation systems for ad CTR optimization. Improved production ranking model by 6% F1 score and reduced training time by 50%.
             </p>
           </div>
-          <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800">
+          <div className="card p-4">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-semibold text-neutral-800 dark:text-neutral-200">
+                <h3 className="font-semibold text-[var(--color-contrast-high)]">
                   Graduate Student Researcher
                 </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <p className="text-sm text-[var(--color-contrast-medium)]">
                   MIDAS Lab, IIIT Delhi · New Delhi
                 </p>
               </div>
-              <span className="text-sm text-neutral-500 dark:text-neutral-500">
+              <span className="tag text-xs">
                 Jan 2025 — Present
               </span>
             </div>
-            <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
+            <p className="mt-2 text-sm text-[var(--color-foreground)]">
               Working on improving small LLM generation using Mixture of Refinement Agents. Developed end-to-end inference APIs with FastAPI and Celery for multimodal LLM-based annotation anomaly detection.
             </p>
           </div>
@@ -187,7 +195,7 @@ export default function Page() {
 
       {/* --- PROJECTS SECTION --- */}
       <div className="mt-6">
-        <h2 className="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="section-heading font-serif text-xl">
           Projects
         </h2>
         <div className="space-y-0">
@@ -204,7 +212,7 @@ export default function Page() {
 
       {/* --- RESEARCH PUBLICATIONS SECTION --- */}
       <div className="mt-6">
-        <h2 className="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="section-heading font-serif text-xl">
           Research Publications
         </h2>
         <div className="space-y-1">
@@ -219,13 +227,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="mt-3 p-3 bg-neutral-200/35 dark:bg-neutral-900/50 rounded-lg text-sm text-center text-neutral-600 dark:text-neutral-400">
+      <div className="mt-3 surface-subtle p-3 text-sm text-center text-[var(--color-contrast-medium)]">
         <span>Feel free to explore my </span>
         <a
           href={socialLinks.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-teal-700 dark:text-teal-400 hover:underline"
+          className="font-semibold text-[var(--color-accent)] hover:underline"
         >
           GitHub
         </a>

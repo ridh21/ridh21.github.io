@@ -1,7 +1,7 @@
 "use client"; // This is a client component because it uses hooks (useState, useEffect)
 
 import { useEffect, useState } from "react";
-import { ChevronUp } from "lucide-react"; // A nice, clean icon library
+import { IconChevronUp } from "./icons";
 
 export const JumpToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,10 +38,10 @@ export const JumpToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="p-2 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="btn p-2 h-auto rounded-full bg-[var(--color-background-light)] text-[var(--color-contrast-medium)] hover:text-[var(--color-contrast-high)] border border-[var(--color-border)] shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] dark:shadow-[var(--shadow-md),inset_0_1px_0_0_rgba(255,255,255,0.06)]"
           aria-label="Go to top"
         >
-          <ChevronUp className="h-6 w-6" />
+          <IconChevronUp size={20} />
         </button>
       )}
     </div>

@@ -14,17 +14,17 @@ interface CVEntryProps {
 
 function CVEntry({ title, subtitle, date, details }: CVEntryProps) {
   return (
-    <div className="mb-8">
+    <div className="card p-4 mb-4">
       <div className="flex justify-between items-baseline">
-        <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">
+        <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
           {title}
         </h3>
-        <span className="text-sm text-neutral-600 dark:text-neutral-400">
+        <span className="tag text-xs">
           {date}
         </span>
       </div>
-      <p className="text-neutral-700 dark:text-neutral-300">{subtitle}</p>
-      <ul className="mt-2 list-disc list-inside space-y-1 text-neutral-800 dark:text-neutral-200">
+      <p className="text-[var(--color-contrast-medium)]">{subtitle}</p>
+      <ul className="mt-2 list-disc list-inside space-y-1 text-[var(--color-foreground)] text-sm">
         {details.map((detail, index) => (
           <li key={index}>{detail}</li>
         ))}
@@ -36,7 +36,7 @@ function CVEntry({ title, subtitle, date, details }: CVEntryProps) {
 function Section({ title, children }) {
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold font-serif mb-6 text-teal-700 dark:text-teal-400">
+      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-accent)]">
         {title}
       </h2>
       {children}
@@ -47,7 +47,7 @@ function Section({ title, children }) {
 export default function CVPage() {
   return (
     <div>
-      <h1 className="font-serif font-bold text-3xl mb-8 text-neutral-900 dark:text-neutral-100">
+      <h1 className="section-heading font-serif text-3xl mb-8">
         Curriculum Vitae
       </h1>
 
@@ -132,51 +132,51 @@ export default function CVPage() {
       </Section>
 
       <Section title="Certifications">
-        <div className="mb-6">
+        <div className="card p-4 mb-4">
           <div className="flex justify-between items-baseline">
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">
+            <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
               AWS Certified Machine Learning Engineer – Associate
             </h3>
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="tag text-xs">
               Issued: July 2025
             </span>
           </div>
-          <p className="text-neutral-700 dark:text-neutral-300">
+          <p className="text-[var(--color-contrast-medium)]">
             Credential ID: 5e46b311411640059b6fd0c09d906369
           </p>
         </div>
-        <div className="mb-6">
+        <div className="card p-4 mb-4">
           <div className="flex justify-between items-baseline">
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">
+            <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
               Microsoft Certified: Azure Data Scientist Associate
             </h3>
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="tag text-xs">
               Expiry: June 2025
             </span>
           </div>
-          <p className="text-neutral-700 dark:text-neutral-300">
+          <p className="text-[var(--color-contrast-medium)]">
             Credential ID: E569DA1CD528CDA5
           </p>
         </div>
       </Section>
 
       <Section title="Technical Skills">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-          <div>
-            <h4 className="font-semibold text-md text-neutral-800 dark:text-neutral-200">Languages</h4>
-            <p className="text-neutral-700 dark:text-neutral-300">Python, C/C++, SQL (Postgres), JavaScript, TypeScript, HTML/CSS</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="card p-4">
+            <h4 className="font-semibold text-md text-[var(--color-contrast-high)]">Languages</h4>
+            <p className="text-sm text-[var(--color-contrast-medium)] mt-1">Python, C/C++, SQL (Postgres), JavaScript, TypeScript, HTML/CSS</p>
           </div>
-          <div>
-            <h4 className="font-semibold text-md text-neutral-800 dark:text-neutral-200">Frameworks</h4>
-            <p className="text-neutral-700 dark:text-neutral-300">React, Next.js, Node.js, Flask, FastAPI, Tailwind CSS, Material-UI</p>
+          <div className="card p-4">
+            <h4 className="font-semibold text-md text-[var(--color-contrast-high)]">Frameworks</h4>
+            <p className="text-sm text-[var(--color-contrast-medium)] mt-1">React, Next.js, Node.js, Flask, FastAPI, Tailwind CSS, Material-UI</p>
           </div>
-          <div>
-            <h4 className="font-semibold text-md text-neutral-800 dark:text-neutral-200">Developer Tools</h4>
-            <p className="text-neutral-700 dark:text-neutral-300">Git, Docker, Kubernetes, Google Cloud Platform, MLFlow, VS Code, Linux/Bash</p>
+          <div className="card p-4">
+            <h4 className="font-semibold text-md text-[var(--color-contrast-high)]">Developer Tools</h4>
+            <p className="text-sm text-[var(--color-contrast-medium)] mt-1">Git, Docker, Kubernetes, Google Cloud Platform, MLFlow, VS Code, Linux/Bash</p>
           </div>
-          <div>
-            <h4 className="font-semibold text-md text-neutral-800 dark:text-neutral-200">Libraries</h4>
-            <p className="text-neutral-700 dark:text-neutral-300">pandas, NumPy, Matplotlib, PyTorch, TensorFlow, OpenCV, scikit-learn, Hugging Face Transformers</p>
+          <div className="card p-4">
+            <h4 className="font-semibold text-md text-[var(--color-contrast-high)]">Libraries</h4>
+            <p className="text-sm text-[var(--color-contrast-medium)] mt-1">pandas, NumPy, Matplotlib, PyTorch, TensorFlow, OpenCV, scikit-learn, Hugging Face Transformers</p>
           </div>
         </div>
       </Section>

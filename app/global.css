@@ -2,30 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-serif;
-  }
-}
+/* ============================================================
+   DESIGN SYSTEM — Replicated from Nucleo App (reference.css)
+   
+   Exact color values, radius, shadows, and component patterns
+   from nucleoapp.com/app/ compiled Tailwind v4 CSS.
+   Adapted for Tailwind v3 with .dark class-based dark mode.
+   ============================================================ */
 
-body {
-  @apply bg-[#f9f9f7] dark:bg-[#1c1c1c];
-}
-
-
-::selection {
-  background-color: #cfdcc7;
-  color: #33312C
-}
-
-/* Light theme colors */
+/* ---------- Design Tokens ---------- */
 :root {
-  color: #33312C;
+  /* Core palette */
+  --color-black: #0a0a0b;
+  --color-white: #fff;
+
+  /* Radius — exact from reference */
+  --radius-2xs: 4px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Shadow intensity multiplier */
+  --shadow-intensity: 1;
+
+  /* Surfaces — light mode (exact reference values) */
+  --color-background: #fff;
+  --color-background-light: #fff;
+  --color-background-subtle: #fafafa;
+  --color-background-elevated: #eff0f0;
+
+  /* Foreground / Text — exact reference contrast scale */
+  --color-foreground: #1c1f21;
+  --color-contrast-high: #1c1f21;
+  --color-contrast-medium: #505355;
+  --color-contrast-low: #8a8d8f;
+
+  /* Primary / Accent — exact reference purple */
+  --color-accent: #7553fd;
+  --color-accent-hover: #5d35fd;
+  --color-accent-light: rgba(117, 83, 253, 0.1);
+  --color-accent-subtle: rgba(117, 83, 253, 0.05);
+  --color-accent-fg: #ffffff;
+
+  /* Borders — derived from contrast-high at 10% */
+  --color-border: rgba(28, 31, 33, 0.10);
+  --color-border-strong: rgba(28, 31, 33, 0.15);
+
+  /* Shadows — approximation of reference oklch-based shadows */
+  --shadow-xs: 0px 0.5px 0px rgba(10, 10, 11, 0.07), 0px 5px 4px -2px rgba(10, 10, 11, 0.01), 0px 3px 3px -1px rgba(10, 10, 11, 0.02), 0px 1px 2px -1px rgba(10, 10, 11, 0.04);
+  --shadow-sm: 0px 0.5px 0px rgba(10, 10, 11, 0.07), 0px 9px 5px -2px rgba(10, 10, 11, 0.01), 0px 5px 4px -1px rgba(10, 10, 11, 0.02), 0px 2px 3px -1px rgba(10, 10, 11, 0.04);
+  --shadow-md: 0px 0.5px 0px rgba(10, 10, 11, 0.03), 0px 16px 7px -3px rgba(10, 10, 11, 0.01), 0px 9px 5px -2px rgba(10, 10, 11, 0.02), 0px 5px 5px -1px rgba(10, 10, 11, 0.04), 0px 1px 2px rgba(10, 10, 11, 0.05);
+  --shadow-lg: 0px 0.5px 0px rgba(10, 10, 11, 0.03), 0px 36px 15px -4px rgba(10, 10, 11, 0.01), 0px 20px 12px -3px rgba(10, 10, 11, 0.03), 0px 9px 9px -2px rgba(10, 10, 11, 0.04), 0px 2px 5px -1px rgba(10, 10, 11, 0.05);
+
+  /* Card treatment — light */
+  --card-border: 0.5px solid rgba(28, 31, 33, 0.10);
+  --card-shadow: var(--shadow-xs);
+  --card-shadow-hover: var(--shadow-sm);
+  --card-inset: none;
+
+  /* Syntax highlighting — light */
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -35,21 +73,109 @@ body {
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+
+  /* Easing — from reference */
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+
+  color: var(--color-foreground);
 }
 
-/* Dark theme colors */
+/* ---------- DARK MODE ---------- */
 .dark {
-  background-color: #191919;
-  color: #D4D4D4;
+  --shadow-intensity: 2;
+
+  /* Surfaces — deep blue-black */
+  --color-background: #111116;
+  --color-background-light: #1a1a22;
+  --color-background-subtle: #22222e;
+  --color-background-elevated: #1e1e28;
+
+  /* Text hierarchy */
+  --color-foreground: #d1d1db;
+  --color-contrast-high: #ededf0;
+  --color-contrast-medium: #8e8ea0;
+  --color-contrast-low: #5a5a72;
+
+  /* Accent — lighter purple for dark bg */
+  --color-accent: #9b7dff;
+  --color-accent-hover: #b49bff;
+  --color-accent-light: rgba(155, 125, 255, 0.12);
+  --color-accent-subtle: rgba(155, 125, 255, 0.06);
+  --color-accent-fg: #ffffff;
+
+  /* Borders — translucent white */
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(255, 255, 255, 0.13);
+
+  /* Shadows — deeper for dark */
+  --shadow-xs: 0px 0.5px 0px rgba(0, 0, 0, 0.14), 0px 5px 4px -2px rgba(0, 0, 0, 0.02), 0px 3px 3px -1px rgba(0, 0, 0, 0.04), 0px 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0px 0.5px 0px rgba(0, 0, 0, 0.14), 0px 9px 5px -2px rgba(0, 0, 0, 0.02), 0px 5px 4px -1px rgba(0, 0, 0, 0.04), 0px 2px 3px -1px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0px 0.5px 0px rgba(0, 0, 0, 0.06), 0px 16px 7px -3px rgba(0, 0, 0, 0.02), 0px 9px 5px -2px rgba(0, 0, 0, 0.04), 0px 5px 5px -1px rgba(0, 0, 0, 0.08), 0px 1px 2px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0px 0.5px 0px rgba(0, 0, 0, 0.06), 0px 36px 15px -4px rgba(0, 0, 0, 0.02), 0px 20px 12px -3px rgba(0, 0, 0, 0.06), 0px 9px 9px -2px rgba(0, 0, 0, 0.08), 0px 2px 5px -1px rgba(0, 0, 0, 0.10);
+
+  /* Card treatment — Nucleo signature: inset glow + inset ring */
+  --card-border: none;
+  --card-shadow: var(--shadow-xs);
+  --card-shadow-hover: var(--shadow-sm);
+  --card-inset: inset 0 0.5px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10);
+
+  /* Syntax highlighting — dark */
   --sh-class: #4c97f8;
-  --sh-identifier: white;
+  --sh-identifier: #e0e0e0;
   --sh-sign: #8996a3;
   --sh-string: #0fa295;
   --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
+  --sh-comment: #6a6a80;
+  --sh-jsxliterals: #9b7dff;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+
+  color: var(--color-foreground);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Superellipse corners — progressive enhancement from reference */
+  *,
+  ::after,
+  ::before {
+    corner-shape: superellipse(1.33);
+  }
+
+  .rounded-full,
+  .after\:rounded-full::after,
+  .before\:rounded-full::before {
+    corner-shape: round;
+  }
+
+  /* Default border color — from reference (contrast-high @ 10%) */
+  * {
+    border-color: rgba(28, 31, 33, 0.10);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    * {
+      border-color: color-mix(in oklab, var(--color-contrast-high) 10%, transparent);
+    }
+  }
+
+  .dark * {
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  /* Placeholder & input colors from reference */
+  ::placeholder {
+    color: var(--color-contrast-low);
+  }
+
+  input {
+    color: var(--color-contrast-high);
+  }
 }
 
 html {
@@ -57,11 +183,322 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: var(--color-background);
+  transition: background-color 0.2s ease;
+  font-family: var(--font-matter), system-ui, sans-serif;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ============================================================
+   Component Classes — Exact Nucleo Reference Patterns
+   ============================================================ */
+@layer components {
+
+  /* ---- CARD ----
+     Light: bg-light, 0.5px border, shadow-xs
+     Dark: no border, inset-shadow (white/25 top glow), inset-ring (0.5px white/10)
+     Selected variant: gradient bg + shadow
+  */
+  .card {
+    position: relative;
+    border-radius: var(--radius-md);
+    background: var(--color-background-light);
+    border: var(--card-border);
+    box-shadow: var(--card-shadow), var(--card-inset);
+    transition: box-shadow 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+  }
+
+  .dark .card {
+    border: none;
+  }
+
+  .card:hover {
+    box-shadow: var(--card-shadow-hover), var(--card-inset);
+  }
+
+  /* Card selected state — gradient bg from reference */
+  .card-selected {
+    background: linear-gradient(0deg, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0.075) 100%), var(--color-background-light);
+    box-shadow: var(--shadow-xs), var(--card-inset);
+  }
+
+  /* ---- BUTTON (base) ----
+     Exact reference: ::before pseudo-element for gradient background
+     height 2rem, padding-inline 0.75rem, radius-md
+  */
+  .btn {
+    --btn-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    height: 2rem;
+    padding-inline: 0.75rem;
+    border-radius: var(--btn-radius);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    user-select: none;
+    cursor: default;
+    position: relative;
+    transition: all 0.15s var(--ease-in-out);
+  }
+
+  .btn:focus-visible {
+    outline: 1.5px solid var(--color-contrast-high);
+    outline-offset: 1.5px;
+  }
+
+  .btn::before {
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+  }
+
+  /* ---- BTN-SUBTLE (default button style from reference) ----
+     Light: gradient bg + bg-light, inset-bottom shadow, shadow-sm, ring
+     Dark: gradient bg + bg-dark/50, inset-top white glow, inset-ring white/10
+  */
+  .btn-subtle {
+    color: var(--color-contrast-high);
+    text-shadow: 0 0.5px 0 rgba(10, 10, 11, 0.15);
+  }
+
+  .btn-subtle::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-background-light);
+  }
+
+  .btn-subtle {
+    box-shadow: inset 0 -1px 0 rgba(10, 10, 11, 0.03), var(--shadow-sm), 0 0 0 0.5px rgba(10, 10, 11, 0.1);
+  }
+
+  .dark .btn-subtle {
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), var(--shadow-sm);
+  }
+
+  .dark .btn-subtle::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), rgba(34, 34, 46, 0.5);
+  }
+
+  .btn-subtle:hover::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-background-subtle);
+  }
+
+  /* ---- PRIMARY BUTTON ----
+     Reference: gradient over primary color, white text, text-shadow
+     Complex box-shadow with inset glow + primary-dark color glow + ring
+  */
+  .btn-primary {
+    color: var(--color-white);
+    text-shadow: 0 0.5px 0 rgba(10, 10, 11, 0.15);
+  }
+
+  .btn-primary::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-accent);
+  }
+
+  .btn-primary {
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(93, 53, 253, 0.35), var(--shadow-sm), 0 0 0 0.5px var(--color-accent-hover);
+  }
+
+  .dark .btn-primary {
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(93, 53, 253, 0.35), var(--shadow-sm);
+  }
+
+  .btn-primary:hover::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), #7d5bfe;
+  }
+
+  /* ---- CONTRAST BUTTON ----
+     Reference: dark bg (contrast-high), white text
+  */
+  .btn-contrast {
+    color: var(--color-background);
+  }
+
+  .btn-contrast::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), var(--color-contrast-high);
+  }
+
+  .btn-contrast {
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.2), var(--shadow-sm), 0 0 0 0.5px var(--color-contrast-high);
+  }
+
+  .dark .btn-contrast {
+    box-shadow: inset 0 0.5px 0 #fff, var(--shadow-sm);
+  }
+
+  .btn-contrast:hover::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff26 100%), var(--color-contrast-high);
+  }
+
+  .dark .btn-contrast:hover::before {
+    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), rgba(28, 31, 33, 0.9);
+  }
+
+  /* ---- GHOST BUTTON ---- */
+  .btn-ghost {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--color-contrast-low);
+  }
+
+  .btn-ghost::before {
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    color: var(--color-contrast-high);
+    background: var(--color-background-subtle);
+    box-shadow: none;
+  }
+
+  .dark .btn-ghost:hover {
+    background: var(--color-background-subtle);
+  }
+
+  /* ---- FORM CONTROL (input) ----
+     From reference: bg-background, border contrast-high/15, radius-md
+  */
+  .form-control {
+    background: var(--color-background);
+    border: 1px solid rgba(28, 31, 33, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--color-contrast-high);
+    font-size: 0.75rem;
+    font-variant-numeric: slashed-zero;
+    height: 2rem;
+    padding-inline: 0.625rem;
+  }
+
+  .form-control:focus {
+    border-color: rgba(28, 31, 33, 0.25);
+    outline: none;
+  }
+
+  .dark .form-control {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--color-background-light);
+  }
+
+  .dark .form-control:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .form-control::selection {
+    background-color: rgba(117, 83, 253, 0.2);
+  }
+
+  /* ---- SIDEBAR / FILTER BUTTON ----
+     Reference selected state:
+     • gradient from transparent to white/7.5%
+     • shadow-xs
+     • dark: inset-shadow (white/25), inset-ring (0.5px white/10)
+  */
+  .sidebar-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0.875rem;
+    border-radius: calc(var(--radius-md) - 0.125rem);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-contrast-low);
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.15s var(--ease-in-out);
+    position: relative;
+    border: 0.5px solid transparent;
+  }
+
+  .sidebar-btn:hover {
+    color: var(--color-contrast-high);
+  }
+
+  .sidebar-btn[data-selected="true"],
+  .sidebar-btn.active {
+    color: var(--color-contrast-high);
+    background: linear-gradient(
+      0deg,
+      hsla(0, 0%, 100%, 0) 0%,
+      hsla(0, 0%, 100%, 0.075) 100%
+    ), var(--color-background-light);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .dark .sidebar-btn[data-selected="true"],
+  .dark .sidebar-btn.active {
+    box-shadow: var(--shadow-xs),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ---- TAG / BADGE ---- */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-xs);
+    font-size: 0.625rem;
+    font-weight: 500;
+    background: var(--color-background-subtle);
+    color: var(--color-contrast-medium);
+    border: 1px solid var(--color-border);
+  }
+
+  .dark .tag {
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  /* ---- SECTION HEADING ---- */
+  .section-heading {
+    font-weight: 400;
+    color: var(--color-contrast-high);
+  }
+
+  /* ---- ACCENT TEXT ---- */
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  /* ---- SUBTLE SURFACE ---- */
+  .surface-subtle {
+    background: var(--color-background-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .dark .surface-subtle {
+    box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* ---- NAV LINK ---- */
+  .nav-link {
+    color: var(--color-contrast-low);
+    transition: color 0.15s var(--ease-in-out);
+  }
+  .nav-link:hover {
+    color: var(--color-contrast-high);
+  }
+}
+
+/* ---------- Prose Overrides ---------- */
 .prose {
-  /* Use softer, off-black and off-white colors like Notion */
-  @apply text-neutral-800 dark:text-neutral-200;
-  /* Increase line-height for better readability */
   @apply leading-relaxed;
+  color: var(--color-foreground);
 }
 
 .prose .anchor {
@@ -78,15 +515,17 @@ html {
 }
 
 .prose a {
-  @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] font-semibold text-neutral-800 dark:text-neutral-200;
+  @apply transition-all underline-offset-2 decoration-[0.1em] font-semibold;
+  color: var(--color-accent);
+  text-decoration-color: rgba(117, 83, 253, 0.3);
 }
 
 .prose a:hover {
-  @apply dark:decoration-neutral-400 decoration-neutral-600;
+  text-decoration-color: var(--color-accent);
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  color: var(--color-contrast-low);
   content: "#";
 }
 
@@ -95,11 +534,15 @@ html {
 }
 
 .prose pre {
-  @apply bg-[#F7F7F7] dark:bg-[#181818] rounded-lg overflow-x-auto;
+  @apply overflow-x-auto;
+  background: var(--color-background-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  @apply px-1 py-0.5;
+  border-radius: var(--radius-2xs);
 }
 
 .prose pre code {
@@ -113,27 +556,20 @@ html {
 }
 
 .prose img {
-  /* Don't apply styles to next/image */
   @apply m-0;
 }
 
-/* .prose h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-medium !important;
-} */
 .prose h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold text-neutral-900 dark:text-neutral-100 !important;
+  font-weight: 400 !important;
+  color: var(--color-contrast-high) !important;
 }
 
 .prose strong {
-  @apply font-semibold text-neutral-900 dark:text-neutral-100;
+  font-weight: 600;
+  color: var(--color-contrast-high);
 }
 
 .prose > :first-child {
-  /* Override removing top margin, causing layout shift */
   margin-top: 1.125em !important;
   margin-bottom: 1.125em !important;
 }
@@ -143,11 +579,10 @@ pre::-webkit-scrollbar {
 }
 
 pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Remove Safari input shadow on mobile */
 input[type="text"],
 input[type="email"] {
   -webkit-appearance: none;
@@ -173,4 +608,26 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+/* ---------- Focus ring ---------- */
+:focus-visible {
+  outline: 1.5px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-contrast-low);
 }

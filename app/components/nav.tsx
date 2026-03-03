@@ -12,7 +12,7 @@ const navItems = {
 export function Navbar() {
   return (
     <nav className="lg:mb-8 mb-6">
-      <div className="flex flex-row items-center justify-between py-5 border-b border-neutral-200 dark:border-neutral-700">
+      <div className="flex flex-row items-center justify-between py-5 border-b border-[var(--color-border)]">
         <div className="flex items-center">
           <Logo />
         </div>
@@ -21,7 +21,7 @@ export function Navbar() {
             <Link
               key={path}
               href={path}
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative text-sm sm:text-base"
+              className="transition-all text-[var(--color-contrast-low)] hover:text-[var(--color-contrast-high)] flex align-middle relative text-sm sm:text-base"
             >
               {name}
             </Link>
