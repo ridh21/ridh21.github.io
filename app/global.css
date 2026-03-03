@@ -16,7 +16,7 @@
   --color-black: #0a0a0b;
   --color-white: #fff;
 
-  /* Radius — exact from reference */
+  /* Radius — exact from Nucleo */
   --radius-2xs: 4px;
   --radius-xs: 6px;
   --radius-sm: 8px;
@@ -28,30 +28,30 @@
   /* Shadow intensity multiplier */
   --shadow-intensity: 1;
 
-  /* Surfaces — light mode (exact reference values) */
-  --color-background: #fff;
+  /* Surfaces — light mode (exact Nucleo values) */
+  --color-background: #fafafa;
   --color-background-light: #fff;
-  --color-background-subtle: #fafafa;
+  --color-background-subtle: #f5f5f5;
   --color-background-elevated: #eff0f0;
 
-  /* Foreground / Text — exact reference contrast scale */
+  /* Foreground / Text — exact Nucleo contrast scale */
   --color-foreground: #1c1f21;
   --color-contrast-high: #1c1f21;
   --color-contrast-medium: #505355;
-  --color-contrast-low: #8a8d8f;
+  --color-contrast-low: #8c9497;
 
-  /* Primary / Accent — exact reference purple */
-  --color-accent: #7553fd;
-  --color-accent-hover: #5d35fd;
-  --color-accent-light: rgba(117, 83, 253, 0.1);
-  --color-accent-subtle: rgba(117, 83, 253, 0.05);
+  /* Primary / Accent — exact Nucleo purple */
+  --color-accent: #896cfe;
+  --color-accent-hover: #7553fd;
+  --color-accent-light: rgba(137, 108, 254, 0.1);
+  --color-accent-subtle: rgba(137, 108, 254, 0.05);
   --color-accent-fg: #ffffff;
 
   /* Borders — derived from contrast-high at 10% */
   --color-border: rgba(28, 31, 33, 0.10);
   --color-border-strong: rgba(28, 31, 33, 0.15);
 
-  /* Shadows — approximation of reference oklch-based shadows */
+  /* Shadows — approximation of Nucleo oklch-based shadows */
   --shadow-xs: 0px 0.5px 0px rgba(10, 10, 11, 0.07), 0px 5px 4px -2px rgba(10, 10, 11, 0.01), 0px 3px 3px -1px rgba(10, 10, 11, 0.02), 0px 1px 2px -1px rgba(10, 10, 11, 0.04);
   --shadow-sm: 0px 0.5px 0px rgba(10, 10, 11, 0.07), 0px 9px 5px -2px rgba(10, 10, 11, 0.01), 0px 5px 4px -1px rgba(10, 10, 11, 0.02), 0px 2px 3px -1px rgba(10, 10, 11, 0.04);
   --shadow-md: 0px 0.5px 0px rgba(10, 10, 11, 0.03), 0px 16px 7px -3px rgba(10, 10, 11, 0.01), 0px 9px 5px -2px rgba(10, 10, 11, 0.02), 0px 5px 5px -1px rgba(10, 10, 11, 0.04), 0px 1px 2px rgba(10, 10, 11, 0.05);
@@ -74,7 +74,7 @@
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
 
-  /* Easing — from reference */
+  /* Easing — from Nucleo */
   --ease-out: cubic-bezier(0, 0, .2, 1);
   --ease-in-out: cubic-bezier(.4, 0, .2, 1);
 
@@ -85,28 +85,28 @@
 .dark {
   --shadow-intensity: 2;
 
-  /* Surfaces — deep blue-black */
-  --color-background: #111116;
-  --color-background-light: #1a1a22;
-  --color-background-subtle: #22222e;
-  --color-background-elevated: #1e1e28;
+  /* Surfaces — exact Nucleo neutral charcoal */
+  --color-background: #1b1d1d;
+  --color-background-light: #2a2c2d;
+  --color-background-subtle: #33383a;
+  --color-background-elevated: #1e2021;
 
-  /* Text hierarchy */
-  --color-foreground: #d1d1db;
-  --color-contrast-high: #ededf0;
-  --color-contrast-medium: #8e8ea0;
-  --color-contrast-low: #5a5a72;
+  /* Text hierarchy — exact Nucleo values */
+  --color-foreground: #c0c5c6;
+  --color-contrast-high: #f7f8f8;
+  --color-contrast-medium: #8c9497;
+  --color-contrast-low: #626b6e;
 
-  /* Accent — lighter purple for dark bg */
-  --color-accent: #9b7dff;
-  --color-accent-hover: #b49bff;
-  --color-accent-light: rgba(155, 125, 255, 0.12);
-  --color-accent-subtle: rgba(155, 125, 255, 0.06);
+  /* Accent — exact Nucleo purple */
+  --color-accent: #896cfe;
+  --color-accent-hover: #7553fd;
+  --color-accent-light: rgba(137, 108, 254, 0.12);
+  --color-accent-subtle: rgba(137, 108, 254, 0.06);
   --color-accent-fg: #ffffff;
 
-  /* Borders — translucent white */
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-strong: rgba(255, 255, 255, 0.13);
+  /* Borders — translucent white (exact Nucleo 10%) */
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
 
   /* Shadows — deeper for dark */
   --shadow-xs: 0px 0.5px 0px rgba(0, 0, 0, 0.14), 0px 5px 4px -2px rgba(0, 0, 0, 0.02), 0px 3px 3px -1px rgba(0, 0, 0, 0.04), 0px 1px 2px -1px rgba(0, 0, 0, 0.08);
@@ -126,8 +126,8 @@
   --sh-sign: #8996a3;
   --sh-string: #0fa295;
   --sh-keyword: #f47067;
-  --sh-comment: #6a6a80;
-  --sh-jsxliterals: #9b7dff;
+  --sh-comment: #626b6e;
+  --sh-jsxliterals: #896cfe;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
 
@@ -136,7 +136,13 @@
 
 /* ---------- Base ---------- */
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
 
@@ -165,7 +171,7 @@
   }
 
   .dark * {
-    border-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.10);
   }
 
   /* Placeholder & input colors from reference */
@@ -192,6 +198,7 @@ body {
 ::selection {
   background-color: var(--color-accent);
   color: #fff;
+  text-shadow: none;
 }
 
 /* ============================================================
@@ -275,7 +282,7 @@ body {
   }
 
   .btn-subtle::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-background-light);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.075) 100%), var(--color-background-light);
   }
 
   .btn-subtle {
@@ -287,11 +294,11 @@ body {
   }
 
   .dark .btn-subtle::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), rgba(34, 34, 46, 0.5);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.075) 100%), rgba(42, 44, 45, 0.5);
   }
 
   .btn-subtle:hover::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-background-subtle);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.075) 100%), var(--color-background-subtle);
   }
 
   /* ---- PRIMARY BUTTON ----
@@ -304,19 +311,19 @@ body {
   }
 
   .btn-primary::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff13 100%), var(--color-accent);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.075) 100%), var(--color-accent);
   }
 
   .btn-primary {
-    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(93, 53, 253, 0.35), var(--shadow-sm), 0 0 0 0.5px var(--color-accent-hover);
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(137, 108, 254, 0.35), var(--shadow-sm), 0 0 0 0.5px var(--color-accent-hover);
   }
 
   .dark .btn-primary {
-    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(93, 53, 253, 0.35), var(--shadow-sm);
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(137, 108, 254, 0.35), var(--shadow-sm);
   }
 
   .btn-primary:hover::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), #7d5bfe;
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%), #896cfe;
   }
 
   /* ---- CONTRAST BUTTON ----
@@ -327,7 +334,7 @@ body {
   }
 
   .btn-contrast::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), var(--color-contrast-high);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%), var(--color-contrast-high);
   }
 
   .btn-contrast {
@@ -339,11 +346,11 @@ body {
   }
 
   .btn-contrast:hover::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff26 100%), var(--color-contrast-high);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.15) 100%), var(--color-contrast-high);
   }
 
   .dark .btn-contrast:hover::before {
-    background: linear-gradient(0deg, #fff0 0, #ffffff1a 100%), rgba(28, 31, 33, 0.9);
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%), rgba(42, 44, 45, 0.9);
   }
 
   /* ---- GHOST BUTTON ---- */
@@ -397,7 +404,7 @@ body {
   }
 
   .form-control::selection {
-    background-color: rgba(117, 83, 253, 0.2);
+    background-color: rgba(137, 108, 254, 0.2);
   }
 
   /* ---- SIDEBAR / FILTER BUTTON ----
@@ -430,11 +437,9 @@ body {
   .sidebar-btn[data-selected="true"],
   .sidebar-btn.active {
     color: var(--color-contrast-high);
-    background: linear-gradient(
-      0deg,
-      hsla(0, 0%, 100%, 0) 0%,
-      hsla(0, 0%, 100%, 0.075) 100%
-    ), var(--color-background-light);
+    background: linear-gradient(0deg,
+        hsla(0, 0%, 100%, 0) 0%,
+        hsla(0, 0%, 100%, 0.075) 100%), var(--color-background-light);
     box-shadow: var(--shadow-xs);
   }
 
@@ -490,6 +495,7 @@ body {
     color: var(--color-contrast-low);
     transition: color 0.15s var(--ease-in-out);
   }
+
   .nav-link:hover {
     color: var(--color-contrast-high);
   }
@@ -517,7 +523,7 @@ body {
 .prose a {
   @apply transition-all underline-offset-2 decoration-[0.1em] font-semibold;
   color: var(--color-accent);
-  text-decoration-color: rgba(117, 83, 253, 0.3);
+  text-decoration-color: rgba(137, 108, 254, 0.3);
 }
 
 .prose a:hover {
@@ -529,7 +535,7 @@ body {
   content: "#";
 }
 
-.prose *:hover > .anchor {
+.prose *:hover>.anchor {
   @apply visible;
 }
 
@@ -559,7 +565,12 @@ body {
   @apply m-0;
 }
 
-.prose h1, h2, h3, h4, h5, h6 {
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400 !important;
   color: var(--color-contrast-high) !important;
 }
@@ -569,7 +580,7 @@ body {
   color: var(--color-contrast-high);
 }
 
-.prose > :first-child {
+.prose> :first-child {
   margin-top: 1.125em !important;
   margin-bottom: 1.125em !important;
 }
@@ -602,7 +613,7 @@ table {
   white-space: nowrap;
 }
 
-.prose .callout > p {
+.prose .callout>p {
   margin: 0 !important;
 }
 
@@ -621,13 +632,16 @@ table {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-border-strong);
   border-radius: var(--radius-full);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-contrast-low);
 }

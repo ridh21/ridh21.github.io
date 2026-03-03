@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   description: metaData.description,
   manifest: "/site.webmanifest",
-  
+
   // --- OPEN GRAPH (FACEBOOK) & TWITTER META TAGS ---
   openGraph: {
     title: metaData.title,
@@ -126,7 +126,7 @@ export default function RootLayout({
           title="JSON Feed"
         />
         <meta name="google-site-verification" content="t1PASftHKLAyYzTyc5iydqLh9Mqb_TjJRWTx_sTtFv8" />
-        <meta name="apple-mobile-web-app-title" content="Dhruv's Portfolio" />
+        <meta name="apple-mobile-web-app-title" content="Ridham's Portfolio" />
       </head>
       <body className="antialiased font-sans flex flex-col items-center min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)]">
         <ThemeProvider

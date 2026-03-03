@@ -9,7 +9,7 @@ export function Logo() {
                    md:hover:scale-110 md:hover:-rotate-12
                    dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]">
         <span className="text-[var(--color-accent-fg)] font-serif font-bold text-lg">
-          D
+          R
         </span>
       </div>
     </Link>

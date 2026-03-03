@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   IconArrowUpRight,
@@ -13,12 +12,16 @@ import { projects } from "../app/projects/project-data";
 
 
 // --- Data for Research Publications ---
-const publications = [
+const research = [
   {
-    title: "A Novel Approach to Predict the Student Dropout Rate Using Regression",
-    journal: "IEEE International Conference for Convergence in Technology (I2CT)",
-    year: "2024",
-    url: "https://ieeexplore.ieee.org/document/10543438",
+    title: "FED-DETR: Privacy-Preserving Intelligent Traffic Enforcement",
+    description: "Research Paper – Under Review",
+    url: "#",
+  },
+  {
+    title: "Automated Waste Segregation Smart Dustbin",
+    description: "Patent – Under Review",
+    url: "#",
   },
 ];
 
@@ -112,7 +115,7 @@ export default function Page() {
       <div className="flex justify-between items-start gap-8">
         <div>
           <h1 className="font-serif font-normal text-3xl md:text-4xl mb-2 text-[var(--color-accent)]">
-            Dhruvkumar Patel
+            Ridham Patel
           </h1>
           <h2 className="text-[var(--color-contrast-medium)] mb-4">
             Software Developer · Researcher · AI/ML Engineer
@@ -122,10 +125,10 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I build scalable ML systems. Currently a Data Scientist Intern at Myntra
-          working on Ads Ranking, and a researcher at IIIT-Delhi's MIDAS Lab
-          exploring multi-modal AI. My work has been recognized at national
-          hackathons and published by the IEEE.
+          I design and deploy production-grade AI systems. Currently working as
+          an Associate Software Engineer building secure, high-availability LLM
+          systems. My work spans MLOps, scalable backend architectures,
+          multimodal AI, and real-time ML inference.
         </p>
       </div>
 
@@ -158,36 +161,54 @@ export default function Page() {
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="font-semibold text-[var(--color-contrast-high)]">
-                  Data Scientist Intern
+                  Associate Software Engineer
                 </h3>
                 <p className="text-sm text-[var(--color-contrast-medium)]">
-                  Myntra · Bengaluru, Karnataka
+                  OpenXcell Technolabs · Ahmedabad
                 </p>
               </div>
               <span className="tag text-xs">
-                Jan 2026 — Present
+                Aug 2025 – Present
               </span>
             </div>
             <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Contributing to the Ads Rank team, building modular ML training pipelines and data preparation systems for ad CTR optimization. Improved production ranking model by 6% F1 score and reduced training time by 50%.
+              Engineered and deployed a high-availability LLM security platform using FastAPI. Built end-to-end RAG pipelines using LangChain and Pinecone for prompt injection and data leakage detection.
             </p>
           </div>
           <div className="card p-4">
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="font-semibold text-[var(--color-contrast-high)]">
-                  Graduate Student Researcher
+                  AI/ML Intern
                 </h3>
                 <p className="text-sm text-[var(--color-contrast-medium)]">
-                  MIDAS Lab, IIIT Delhi · New Delhi
+                  IEEE EMBS Pune Chapter · Remote
                 </p>
               </div>
               <span className="tag text-xs">
-                Jan 2025 — Present
+                Jun 2025 – Jul 2025
               </span>
             </div>
             <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Working on improving small LLM generation using Mixture of Refinement Agents. Developed end-to-end inference APIs with FastAPI and Celery for multimodal LLM-based annotation anomaly detection.
+              Built an end-to-end deep learning pipeline for schizophrenia diagnosis using EEG data. Achieved 96% accuracy using ensemble stacking with ResNet50, EfficientNetB2, and DenseNet121.
+            </p>
+          </div>
+          <div className="card p-4">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-[var(--color-contrast-high)]">
+                  Software Development Intern
+                </h3>
+                <p className="text-sm text-[var(--color-contrast-medium)]">
+                  Institute for Plasma Research · Gandhinagar
+                </p>
+              </div>
+              <span className="tag text-xs">
+                Aug 2024 – Nov 2024
+              </span>
+            </div>
+            <p className="mt-2 text-sm text-[var(--color-foreground)]">
+              Developed a full-stack assessment and data collection platform for predictive student analytics. Engineered a resilient Node.js + TypeScript backend with real-time processing capabilities.
             </p>
           </div>
         </div>
@@ -210,22 +231,55 @@ export default function Page() {
         </div>
       </div>
 
-      {/* --- RESEARCH PUBLICATIONS SECTION --- */}
+      {/* --- Research Publications SECTION --- */}
       <div className="mt-6">
         <h2 className="section-heading font-serif text-xl">
           Research Publications
         </h2>
         <div className="space-y-1">
-          {publications.map((pub) => (
+          {research.map((item) => (
             <ListEntry
-              key={pub.title}
-              title={pub.title}
-              description={`${pub.journal}, ${pub.year}`}
-              url={pub.url}
+              key={item.title}
+              title={item.title}
+              description={item.description}
+              url={item.url}
             />
           ))}
         </div>
       </div>
+
+      {/* --- ACHIEVEMENTS --- */}
+      {/* <div className="mt-6">
+        <h2 className="section-heading font-serif text-xl">
+          Achievements
+        </h2>
+        <div className="mt-4 space-y-2">
+          <div className="flex items-start gap-3 p-3 rounded-lg">
+            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
+            <p className="text-sm text-[var(--color-foreground)]">
+              National Level Hackathon Finalist (4×) – SIH 2023, SIH 2024, Odoo Hackathon (March & Nov 2025)
+            </p>
+          </div>
+          <div className="flex items-start gap-3 p-3 rounded-lg">
+            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
+            <p className="text-sm text-[var(--color-foreground)]">
+              State Level Winner – SSIP 2023
+            </p>
+          </div>
+          <div className="flex items-start gap-3 p-3 rounded-lg">
+            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
+            <p className="text-sm text-[var(--color-foreground)]">
+              AWS Certified Cloud Practitioner (CLF-C02)
+            </p>
+          </div>
+          <div className="flex items-start gap-3 p-3 rounded-lg">
+            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
+            <p className="text-sm text-[var(--color-foreground)]">
+              Webmaster, IEEE Student Branch – LDRP-ITR
+            </p>
+          </div>
+        </div>
+      </div> */}
 
       <div className="mt-3 surface-subtle p-3 text-sm text-center text-[var(--color-contrast-medium)]">
         <span>Feel free to explore my </span>

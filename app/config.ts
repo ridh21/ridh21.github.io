@@ -1,18 +1,18 @@
 export const metaData = {
   baseUrl: "https://stack-dhruv.vercel.app",
-  title: "Dhruvkumar Patel",
-  name: "Dhruvkumar Patel",
+  title: "Ridham Patel",
+  name: "Ridham Patel",
   ogImage: "/opengraph-image.png",
   description:
-    "The personal portfolio of Dhruvkumar Patel — Data Scientist Intern at Myntra, Graduate Researcher at IIIT Delhi's MIDAS Lab, with expertise in machine learning, multimodal AI, and full-stack development.",
+    "The personal portfolio of Ridham Patel – Associate Software Engineer at OpenXcell Technolabs, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
 };
 
 export const socialLinks = {
-  twitter: "https://x.com/dhruv1563",
-  github: "https://github.com/stack-dhruv/",
-  instagram: "https://www.instagram.com/dhruv_1563_",
-  linkedin: "https://www.linkedin.com/in/stack-dhruv",
-  email: "mailto:iamdhruv1563@gmail.com",
+  twitter: "https://x.com/ridhampatel2k4",
+  github: "https://github.com/ridh21/",
+  instagram: "https://www.instagram.com/curiousridham",
+  linkedin: "https://www.linkedin.com/in/ridhampatel2k4",
+  email: "mailto:ridhampatel21@gmail.com",
   orcid: "https://orcid.org/0009-0005-6466-7650",
-  scholar: "https://scholar.google.com/citations?user=RZULQawAAAAJ&hl=en",
+  scholar: "https://scholar.google.com/citations?user=jjLiEoYAAAAJ&hl",
 };

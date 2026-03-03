@@ -7,7 +7,7 @@ import { IconArrowUpRight } from "../components/icons";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "A selection of projects by Dhruv Patel.",
+  description: "A selection of projects by Ridham Patel.",
 };
 
 export default function ProjectsPage() {
@@ -27,7 +27,7 @@ export default function ProjectsPage() {
                 src={project.image}
                 alt={`Screenshot of the ${project.title} project`}
                 fill
-                className="object-contain" 
+                className="object-contain"
               />
             </div>
 

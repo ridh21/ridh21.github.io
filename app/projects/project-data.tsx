@@ -3,83 +3,79 @@ export interface Project {
   title: string;
   year: number;
   description: string;
-  details: string; // <--- Added this field for markdown details
+  details: string;
   url: string;
   image: string;
-  tags?: string[]; // Optional new field for future enhancements
+  tags?: string[];
 }
 
 export const projects: Project[] = [
   {
-    title: "Mental Health Meme Classification",
-    year: 2025,
-    description: "A multimodal NLP course project to classify anxiety and depression symptoms from internet memes using Vision-Language Models.",
+    title: "Face-Swap-Based Deepfake Detection Platform",
+    year: 2024,
+    description: "Smart India Hackathon 2024 Finalist – End-to-end deepfake detection system integrating Python ML models with scalable web infrastructure.",
     details: `
-*   Addressed single-label (anxiety) and multi-label (depression) classification from memes as part of NLP coursework.
-*   Augmented dataset by extracting OCR text and semantic triplets (Cause-Effect, Figurative Reasoning, Mental State) using QWEN-2.5-VL-7B model.
-*   Enhanced M3H architecture with visual feature maps and fine-tuned MentalBART model for classification.
-*   Achieved 65% Macro F1 score for anxiety and 63% for depression classification tasks.
-*   Developed end-to-end inference pipeline with Streamlit UI for interactive visualization of results.
+*   Built an end-to-end deepfake detection system integrating Python ML models with scalable web infrastructure.
+*   Implemented EfficientNet, InceptionNetV3, attention models, and transformer architectures for detection.
+*   Designed preprocessing pipelines for face extraction, alignment, and temporal frame analysis.
+*   Achieved finalist position at Smart India Hackathon 2024 among thousands of competing teams.
     `,
-    url: "https://github.com/stack-dhruv/mental-health-meme-classification",
-    image: "/projects/mental-health-meme-classification/og.png",
-    tags: ["Python", "PyTorch", "Hugging Face", "Streamlit", "NLP", "Multimodal AI"],
+    url: "https://github.com/ridh21/deepfake-detection",
+    image: "/projects/deepfake-detection/og.png",
+    tags: ["Python", "PyTorch", "EfficientNet", "Transformers", "Computer Vision", "Deep Learning"],
   },
   {
-    title: "Microservices Benchmarking with Death Star",
-    year: 2025,
-    description: "Benchmarked and monitored a complex microservices application on Docker Swarm and GKE to evaluate performance and observability.",
-    details: `
-*   Deployed Death Star Social Network across local Docker Swarm and cloud-based Google Kubernetes Engine (GKE) environments.
-*   Benchmarked three configurations: single-node/single-replica, multi-node/single-replica, and single-node/multi-replica.
-*   Integrated two-tier observability stack using Pixie for real-time visualization and Prometheus for fine-grained metrics.
-*   Analyzed performance trade-offs in latency, resource utilization, and scalability across deployment strategies.
-    `,
-    url: "https://github.com/stack-dhruv/DeathStarBench",
-    image: "/projects/deathstar-benchmark/og.png",
-    tags: ["Docker", "Kubernetes", "GKE", "Prometheus", "Pixie", "Microservices", "Observability"],
-  },
-  {
-    title: "Advanced ANPR & Face Recognition",
+    title: "Student Dropout Analysis Platform",
     year: 2023,
-    description: "Runner-up project at the KAVACH-23 National Cybersecurity Hackathon, building an end-to-end ANPR and Face Recognition system.",
+    description: "Smart India Hackathon 2023 Finalist – Predictive analytics system using ML to identify at-risk students with interactive dashboards.",
     details: `
-*   Led a team of six and collaborated with Ahmedabad West traffic police for high-definition video data collection.
-*   Engineered decoupled API using YOLOv8 for detection, achieving 92% precision and 91% recall on number plates.
-*   Developed cross-platform React Native application for real-time monitoring on edge devices.
-*   Implemented face recognition using ResNet embeddings with Siamese-style few-shot learning for low-illumination conditions.
-*   Finished as national finalist (runner-up) among top 100 teams in KAVACH-2023 hackathon.
+*   Developed a predictive analytics system using Logistic Regression to identify at-risk students.
+*   Delivered insights via an interactive dashboard for educational stakeholders.
+*   Architected scalable Node.js backend for real-time prediction serving.
+*   Achieved finalist position at Smart India Hackathon 2023.
     `,
-    url: "https://github.com/coding-brigade/advanced-anpr-fr",
-    image: "/projects/anpr-fr-architecture/og.png",
-    tags: ["Python", "PyTorch", "React Native", "YOLOv8", "Computer Vision", "ANPR"],
-  },
-  {
-    title: "Student Dropout Analysis",
-    year: 2023,
-    description: "State-level hackathon winner and published research on predicting student dropouts using machine learning and data visualization.",
-    details: `
-*   Won the SSIP-22 State Level Hackathon by developing a dashboard and predictive analytics platform.
-*   Created data pipeline using official government data from UDISE+ to analyze dropout trends.
-*   Implemented Multiple Linear and Polynomial Regression achieving R² value of 0.9976 on custom EduDropX dataset.
-*   Extended project into research paper published in IEEE I2CT 2024 conference.
-    `,
-    url: "https://github.com/ssip-hack/student-dropout-analysis",
+    url: "https://github.com/ridh21/student-dropout-analysis",
     image: "/projects/student-dropout-analysis/og.png",
-    tags: ["Python", "Pandas", "Machine Learning", "Data Visualization", "Scikit-learn"],
-  }, 
+    tags: ["Python", "Machine Learning", "Node.js", "Data Visualization", "Scikit-learn"],
+  },
   {
-    title: "Drive Material LDRP",
-    year: 2022,
-    description: "A centralized portal for academic resources that attracted over 3,000 visits in its first week and now ranks top on Google.",
+    title: "OneFlow – Plan to Bill in One Place",
+    year: 2025,
+    description: "Odoo × IIT Gandhinagar Hackathon Finalist – Modular full-stack Project Management System with role-based dashboards and KPI analytics.",
     details: `
-*   Identified the need for unified platform and developed centralized website to host scattered academic materials.
-*   Organized resources into intuitive structure by subject and semester, simplifying access for students.
-*   Achieved 3,000+ visits and 1,000+ unique visitors within the first week of launch.
-*   Platform ranks at the top for relevant keywords on Google search, becoming a go-to resource.
+*   Built a modular full-stack Project Management System using Next.js and Django.
+*   Designed role-based dashboards (Admin, PM, Team Member, Finance).
+*   Implemented KPI analytics (revenue, cost, utilization, profit) using PostgreSQL-backed services.
+*   Achieved finalist position at Odoo × IIT Gandhinagar Hackathon (Nov 2025).
     `,
-    url: "https://drive-material-ldrp.weebly.com/",
-    image: "/projects/drive-material-ldrp/drive material ldrp.png",
-    tags: ["Web Development", "SEO", "Content Management", "Weebly"],
-  }
+    url: "https://github.com/ridh21/oneflow",
+    image: "/projects/oneflow/og.png",
+    tags: ["Next.js", "Django", "PostgreSQL", "TypeScript", "Python", "Full-Stack"],
+  },
+  {
+    title: "Customer Grievance Portal – One Nation One Challan",
+    year: 2023,
+    description: "SSIP 2023 State Winner – Full-stack grievance submission portal under Gujarat's Student Startup and Innovation Policy.",
+    details: `
+*   Delivered a full-stack grievance submission portal under Gujarat's Student Startup and Innovation Policy.
+*   Won first place at the SSIP 2023 State Level competition.
+*   Built end-to-end system for citizens to submit and track traffic challan grievances.
+    `,
+    url: "https://github.com/ridh21/grievance-portal",
+    image: "/projects/grievance-portal/og.png",
+    tags: ["Node.js", "React", "MongoDB", "Full-Stack", "Government Tech"],
+  },
+  {
+    title: "M. M. Patel Students Research Project Cell – KSV Website",
+    year: 2023,
+    description: "University research portal with strong unit & integration testing using Jest and Mocha.",
+    details: `
+*   Engineered university research portal with comprehensive testing infrastructure.
+*   Implemented strong unit & integration testing using Jest and Mocha.
+*   Built responsive, accessible web interface for research project management.
+    `,
+    url: "https://github.com/ridh21/ksv-research",
+    image: "/projects/ksv-research/og.png",
+    tags: ["JavaScript", "Jest", "Mocha", "Node.js", "Web Development"],
+  },
 ];

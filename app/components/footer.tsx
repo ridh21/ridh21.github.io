@@ -24,8 +24,8 @@ function SocialLink({ href, icon: Icon }) {
 
 function SocialLinks() {
   return (
-    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90 text-[var(--color-contrast-low)]">
-      <SocialLink href={socialLinks.github} icon={IconGitHub} />
+    <div className="flex text-lg mt-2 gap-3.5 float-right transition-opacity duration-300 hover:opacity-90 text-[var(--color-contrast-low)]">
+      <SocialLink href={socialLinks.github}  icon={IconGitHub} />
       <SocialLink href={socialLinks.linkedin} icon={IconLinkedIn} />
       <SocialLink href={socialLinks.twitter} icon={IconTwitterX} />
       <SocialLink href={socialLinks.instagram} icon={IconInstagram} />
@@ -41,8 +41,8 @@ function SocialLinks() {
 export default function Footer() {
   return (
     <small className="block lg:mt-12 mt-8 text-[var(--color-contrast-medium)]">
-      <a
-        className="btn btn-ghost text-xs gap-1.5 no-underline px-0"
+      {/* <a
+        className="btn btn-ghost text-xs gap-1.5 no-underline px-2"
         href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
@@ -57,7 +57,20 @@ export default function Footer() {
           }
         }
       `}</style>
-      <SocialLinks />
+      <SocialLinks /> */}
+      <div className=" border-b border-[var(--color-border)]"></div>
+        
+      <p className="mt-5 text-xs flex justify-center gap-1 text-[var(--color-contrast-low)]">
+        Portfolio inspired by{"  "}
+        <a
+          href="https://stack-dhruv.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--color-contrast-medium)] hover:text-[var(--color-accent)] transition-colors duration-200"
+        >
+          Dhruvkumar Patel
+        </a>
+      </p>
     </small>
   );
 }
