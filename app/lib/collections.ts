@@ -138,6 +138,19 @@ export async function getSiteConfigCollection(): Promise<Collection<SiteConfigDo
   return db.collection<SiteConfigDoc>("site_config");
 }
 
+export interface SystemPromptDoc {
+  _id?: ObjectId;
+  prompt_type: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export async function getSystemPromptsCollection(): Promise<Collection<SystemPromptDoc>> {
+  const db = await getDatabase();
+  return db.collection<SystemPromptDoc>("system_prompts");
+}
+
 // ============================================================
 // Helper: convert ObjectId to string for JSON serialization
 // ============================================================

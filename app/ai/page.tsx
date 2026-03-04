@@ -7,24 +7,14 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
-// Array of objects to hold prompts and their specific styles
 const suggestedPrompts = [
-  {
-    text: "Are you available for hiring?",
-    style: "bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-950/60 border border-red-200/30 dark:border-red-800/20"
-  },
-  {
-    text: "What are your design and development philosophies?",
-    style: "bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-950/60 border border-violet-200/30 dark:border-violet-800/20"
-  },
-  {
-    text: "What are your main technical skills?",
-    style: "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-950/60 border border-amber-200/30 dark:border-amber-800/20"
-  },
+  "Are you available for hiring?",
+  "What are your design and development philosophies?",
+  "What are your main technical skills?",
 ];
 
 export default function AiPage() {
-  const { messages, sendMessage } = useChat({
+  const { messages, sendMessage, error } = useChat({
     transport: new DefaultChatTransport({
       api: '/api/completion',
     }),
@@ -55,7 +45,7 @@ export default function AiPage() {
       {/* Header */}
       <div className="flex items-center justify-between gap-4 mb-2">
         <h1 className="font-serif text-3xl sm:text-4xl font-normal text-[var(--color-accent)]">
-          ध्रुव://ai
+          ऋतम://ai
         </h1>
         <span className="tag gap-1.5 px-3 py-1 text-xs font-medium bg-[var(--color-accent-light)] text-[var(--color-accent)] border-[rgba(137,108,254,0.2)] dark:border-[rgba(137,108,254,0.2)]">
           <IconSparkles size={12} />
@@ -107,6 +97,18 @@ export default function AiPage() {
             </div>
           </div>
         ))}
+
+        {/* Rate limit / error message */}
+        {error && (
+          <div className="flex justify-start">
+            <div className="px-3 py-2 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-300 border border-red-200/30 dark:border-red-800/20 max-w-[80%]">
+              <p className="text-sm">
+                ☕ Oops! Looks like I've been chatting too much and hit my limit.
+                Please give me a minute to catch my breath and try again shortly!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Input Form */}
@@ -129,15 +131,15 @@ export default function AiPage() {
         </div>
       </form>
 
-      {/* Styled Suggested Prompts */}
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+      {/* Suggested Prompts */}
+      <div className="mt-4 flex flex-wrap gap-2">
         {suggestedPrompts.map((prompt) => (
           <button
-            key={prompt.text}
-            onClick={() => setInput(prompt.text)}
-            className={`p-3 text-sm font-medium rounded-lg transition-all text-center cursor-pointer shadow-[var(--shadow-xs)] ${prompt.style}`}
+            key={prompt}
+            onClick={() => setInput(prompt)}
+            className="px-3 py-1.5 text-sm rounded-full border border-[var(--color-border)] text-[var(--color-contrast-medium)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] transition-colors cursor-pointer"
           >
-            {prompt.text}
+            {prompt}
           </button>
         ))}
       </div>

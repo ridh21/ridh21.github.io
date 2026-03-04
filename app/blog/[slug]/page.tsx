@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate } from "app/lib/posts";
 import { metaData } from "app/config";
@@ -7,6 +8,7 @@ import { getPostsCollection } from "app/lib/collections";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +21,7 @@ async function isValidMDX(source: string): Promise<boolean> {
       source,
       options: {
         mdxOptions: {
-          remarkPlugins: [remarkMath],
+          remarkPlugins: [remarkGfm, remarkMath],
           rehypePlugins: [rehypeKatex],
         },
       },
@@ -109,6 +111,22 @@ export default async function Blog({ params }) {
           {formatDate(post.publishedAt)}
         </p>
       </div>
+
+      {/* Hero cover image */}
+      {post.image && (
+        <div className="relative w-full aspect-[2/1] mb-10 rounded-lg overflow-hidden border border-[var(--color-border)]">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 720px"
+            className="object-cover"
+            unoptimized={!post.image.includes("res.cloudinary.com")}
+          />
+        </div>
+      )}
+
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">
         {(await isValidMDX(post.content)) ? (
           <CustomMDX source={post.content} />

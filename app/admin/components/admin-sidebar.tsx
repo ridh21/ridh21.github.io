@@ -12,6 +12,7 @@ import {
   Settings,
   LogOut,
   ChevronLeft,
+  Sparkles,
 } from "lucide-react";
 
 const sidebarLinks = [
@@ -21,6 +22,7 @@ const sidebarLinks = [
   { href: "/admin/experience", label: "Experience", icon: Briefcase },
   { href: "/admin/research", label: "Research", icon: BookOpen },
   { href: "/admin/photos", label: "Photos", icon: ImageIcon },
+  { href: "/admin/ai", label: "AI Prompt", icon: Sparkles },
   { href: "/admin/config", label: "Site Config", icon: Settings },
 ];
 

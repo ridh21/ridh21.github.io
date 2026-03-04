@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import AdminSidebar from "../components/admin-sidebar";
 import { Plus, Pencil, Trash2, Save, X, Loader2, GripVertical } from "lucide-react";
+import { useConfirm } from "../components/confirm-dialog";
 
 interface Research {
   _id: string;
@@ -50,14 +51,17 @@ export default function AdminResearchPage() {
     finally { setSaving(false); }
   }
 
+  const [confirmDelete, ConfirmDialog] = useConfirm();
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this research entry?")) return;
+    if (!(await confirmDelete("This will permanently remove the research entry."))) return;
     await fetch(`/api/admin/research/${id}`, { method: "DELETE" });
     await load();
   }
 
   return (
     <div className="admin-layout">
+      <ConfirmDialog />
       <AdminSidebar />
       <div className="admin-main">
         <div className="admin-header">

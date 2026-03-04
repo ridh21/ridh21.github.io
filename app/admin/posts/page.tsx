@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AdminSidebar from "../components/admin-sidebar";
+import { useConfirm } from "../components/confirm-dialog";
 import {
   Plus,
   Pencil,
@@ -115,8 +116,10 @@ export default function AdminPostsPage() {
     }
   }
 
+  const [confirmDelete, ConfirmDialog] = useConfirm();
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this post?")) return;
+    if (!(await confirmDelete("This will permanently remove the blog post."))) return;
     await fetch(`/api/admin/posts/${id}`, { method: "DELETE" });
     await loadPosts();
   }
@@ -130,6 +133,7 @@ export default function AdminPostsPage() {
 
   return (
     <div className="admin-layout">
+      <ConfirmDialog />
       <AdminSidebar />
       <div className="admin-main">
         <div className="admin-header">

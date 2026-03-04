@@ -183,7 +183,7 @@ export function CommandPalette() {
       },
       {
         id: "ai",
-        label: "ध्रुव://ai",
+        label: "ध्ऋतम://ai",
         description: "AI chat assistant",
         section: "Pages",
         icon: <SparkleIcon />,

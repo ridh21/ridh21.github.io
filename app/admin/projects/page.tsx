@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AdminSidebar from "../components/admin-sidebar";
+import { useConfirm } from "../components/confirm-dialog";
 import {
   Plus,
   Pencil,
@@ -108,14 +109,17 @@ export default function AdminProjectsPage() {
     }
   }
 
+  const [confirmDelete, ConfirmDialog] = useConfirm();
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this project?")) return;
+    if (!(await confirmDelete("This will permanently remove the project."))) return;
     await fetch(`/api/admin/projects/${id}`, { method: "DELETE" });
     await loadProjects();
   }
 
   return (
     <div className="admin-layout">
+      <ConfirmDialog />
       <AdminSidebar />
       <div className="admin-main">
         <div className="admin-header">

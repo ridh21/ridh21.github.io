@@ -8,7 +8,7 @@ const navItems = {
   "/proemio": {name: "Proemio"},
   "/blog": { name: "Blog" },
   "/projects": { name: "Projects" },
-  "/ai": { name: "ध्रुव://ai" },
+  "/ai": { name: "ऋतम://ai" },
 };
 
 export function Navbar() {

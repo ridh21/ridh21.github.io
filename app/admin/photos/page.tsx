@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import AdminSidebar from "../components/admin-sidebar";
+import { useConfirm } from "../components/confirm-dialog";
 import {
   Plus,
   Pencil,
@@ -239,14 +240,17 @@ export default function AdminPhotosPage() {
     }
   }
 
+  const [confirmDelete, ConfirmDialog] = useConfirm();
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this photo section?")) return;
+    if (!(await confirmDelete("This will permanently remove the photo section and all its images."))) return;
     await fetch(`/api/admin/photos/${id}`, { method: "DELETE" });
     await load();
   }
 
   return (
     <div className="admin-layout">
+      <ConfirmDialog />
       <AdminSidebar />
       <div className="admin-main">
         <div className="admin-header">

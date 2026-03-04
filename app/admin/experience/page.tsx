@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import AdminSidebar from "../components/admin-sidebar";
 import { Plus, Pencil, Trash2, Save, X, Loader2, GripVertical } from "lucide-react";
+import { useConfirm } from "../components/confirm-dialog";
 
 interface Experience {
   _id: string;
@@ -53,14 +54,17 @@ export default function AdminExperiencePage() {
     finally { setSaving(false); }
   }
 
+  const [confirmDelete, ConfirmDialog] = useConfirm();
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this experience entry?")) return;
+    if (!(await confirmDelete("This will permanently remove the experience entry."))) return;
     await fetch(`/api/admin/experience/${id}`, { method: "DELETE" });
     await load();
   }
 
   return (
     <div className="admin-layout">
+      <ConfirmDialog />
       <AdminSidebar />
       <div className="admin-main">
         <div className="admin-header">
