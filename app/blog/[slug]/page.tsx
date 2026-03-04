@@ -4,8 +4,31 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate } from "app/lib/posts";
 import { metaData } from "app/config";
 import { getPostsCollection } from "app/lib/collections";
+import { compileMDX } from "next-mdx-remote/rsc";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 export const dynamic = "force-dynamic";
+
+/**
+ * Pre-validate MDX content. If compilation fails, returns false.
+ */
+async function isValidMDX(source: string): Promise<boolean> {
+  try {
+    await compileMDX({
+      source,
+      options: {
+        mdxOptions: {
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
+        },
+      },
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export async function generateMetadata({
   params,
@@ -87,7 +110,19 @@ export default async function Blog({ params }) {
         </p>
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-        <CustomMDX source={post.content} />
+        {(await isValidMDX(post.content)) ? (
+          <CustomMDX source={post.content} />
+        ) : (
+          <div>
+            <div className="px-4 py-3 mb-6 rounded text-sm bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 border border-yellow-200 dark:border-yellow-800">
+              ⚠ MDX compilation failed — showing raw content. Fix syntax
+              errors in the admin panel.
+            </div>
+            <pre className="whitespace-pre-wrap text-sm leading-relaxed">
+              {post.content}
+            </pre>
+          </div>
+        )}
       </article>
     </section>
   );

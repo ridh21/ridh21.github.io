@@ -40,7 +40,7 @@ function RoundedImage(props) {
 }
 
 function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+  let codeHTML = highlight(children || "");
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
