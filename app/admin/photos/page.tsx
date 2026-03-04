@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import AdminSidebar from "../components/admin-sidebar";
 import { useConfirm } from "../components/confirm-dialog";
 import {
@@ -431,7 +432,7 @@ export default function AdminPhotosPage() {
                         </div>
                         {img.src && (
                           <div className="admin-photo-thumb">
-                            <img src={img.src} alt={img.alt || "Preview"} />
+                            <Image src={img.src} alt={img.alt || "Preview"} width={200} height={200} className="object-cover w-full h-full" />
                           </div>
                         )}
                       </div>
