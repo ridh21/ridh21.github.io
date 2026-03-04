@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { socialLinks } from "app/config";
 
 // ─── Types ───
@@ -87,6 +87,11 @@ export function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
+
+  // Don't render on admin pages — admin has its own command palette
+  if (isAdmin) return null;
 
   const close = useCallback(() => {
     setOpen(false);

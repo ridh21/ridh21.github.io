@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import {
+  getExperienceCollection,
+  getResearchCollection,
+} from "app/lib/collections";
 
 export const metadata: Metadata = {
   title: "CV",
   description: "The curriculum vitae of Ridham Patel.",
 };
+
+export const dynamic = "force-dynamic";
 
 interface CVEntryProps {
   title: string;
@@ -44,7 +50,17 @@ function Section({ title, children }) {
   );
 }
 
-export default function CVPage() {
+export default async function CVPage() {
+  const [expCol, researchCol] = await Promise.all([
+    getExperienceCollection(),
+    getResearchCollection(),
+  ]);
+
+  const [experiences, research] = await Promise.all([
+    expCol.find({}).sort({ order: 1 }).toArray(),
+    researchCol.find({}).sort({ order: 1 }).toArray(),
+  ]);
+
   return (
     <div>
       <h1 className="section-heading font-serif text-3xl mb-8">
@@ -64,38 +80,19 @@ export default function CVPage() {
         />
       </Section>
 
-      <Section title="Experience">
-        <CVEntry
-          title="Associate Software Engineer"
-          subtitle="OpenXcell Technolabs, Ahmedabad, Gujarat"
-          date="Aug 2025 - Present"
-          details={[
-            "Engineered and deployed a high-availability LLM security platform using FastAPI for scalable, secure inference.",
-            "Built end-to-end RAG pipelines using LangChain and Pinecone for prompt injection and data leakage detection.",
-            "Designed asynchronous AI processing architecture using Celery, RabbitMQ, and Redis for long-running ML tasks.",
-            "Integrated Nvidia Garak, ProtectAI Rebuff, and LLMGuard to create a robust AI security defense layer.",
-          ]}
-        />
-        <CVEntry
-          title="AI/ML Intern"
-          subtitle="IEEE EMBS Pune Chapter, Remote"
-          date="Jun 2025 – Jul 2025"
-          details={[
-            "Built an end-to-end deep learning pipeline for schizophrenia diagnosis using EEG data.",
-            "Benchmarked ResNet50, EfficientNetB2, and DenseNet121 for performance vs computational efficiency.",
-            "Achieved 96% accuracy using ensemble stacking for improved robustness.",
-          ]}
-        />
-        <CVEntry
-          title="Software Development Intern"
-          subtitle="Institute for Plasma Research, Gandhinagar"
-          date="Aug 2024 – Nov 2024"
-          details={[
-            "Developed a full-stack assessment and data collection platform for predictive student analytics.",
-            "Engineered a resilient Node.js + TypeScript backend with real-time processing capabilities.",
-          ]}
-        />
-      </Section>
+      {experiences.length > 0 && (
+        <Section title="Experience">
+          {experiences.map((exp) => (
+            <CVEntry
+              key={exp._id.toString()}
+              title={exp.role}
+              subtitle={`${exp.company}, ${exp.location}`}
+              date={exp.period}
+              details={exp.description.split("\n").filter(Boolean)}
+            />
+          ))}
+        </Section>
+      )}
 
       <Section title="Certifications">
         <div className="card p-4 mb-4">
@@ -113,26 +110,19 @@ export default function CVPage() {
         </div>
       </Section>
 
-      <Section title="Research Publications">
-        <CVEntry
-          title="FED-DETR: Privacy-Preserving Intelligent Traffic Enforcement"
-          subtitle="Research Paper – Under Review"
-          date="2025"
-          details={[
-            "Developed a real-time helmet detection system using Federated Learning + DETR.",
-            "Focused on privacy-preserving distributed model training.",
-          ]}
-        />
-        <CVEntry
-          title="Automated Waste Segregation Smart Dustbin"
-          subtitle="Paten - Under Review"
-          date="2025"
-          details={[
-            "Designed IoT-enabled smart dustbin integrating lightweight computer vision models for edge inference.",
-            "Filed patent covering novel embedded + ML system architecture.",
-          ]}
-        />
-      </Section>
+      {research.length > 0 && (
+        <Section title="Research Publications">
+          {research.map((r) => (
+            <CVEntry
+              key={r._id.toString()}
+              title={r.title}
+              subtitle={r.description}
+              date=""
+              details={[]}
+            />
+          ))}
+        </Section>
+      )}
 
       <Section title="Technical Skills">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

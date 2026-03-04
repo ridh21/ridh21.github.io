@@ -1,45 +1,35 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/lib/posts";
+import { formatDate } from "app/lib/posts";
 import { metaData } from "app/config";
+import { getPostsCollection } from "app/lib/collections";
 
-export async function generateStaticParams() {
-  let posts = getBlogPosts();
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  const col = await getPostsCollection();
+  const post = await col.findOne({ slug, published: true });
   if (!post) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata;
-  let ogImage = image
-    ? image
-    : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+  let ogImage = post.image
+    ? post.image
+    : `${metaData.baseUrl}/og?title=${encodeURIComponent(post.title)}`;
 
   return {
-    title,
-    description,
+    title: post.title,
+    description: post.summary,
     openGraph: {
-      title,
-      description,
+      title: post.title,
+      description: post.summary,
       type: "article",
-      publishedTime,
-      url: `${metaData.baseUrl}/blog/${post.slug}`,
+      publishedTime: post.publishedAt,
+      url: `${metaData.baseUrl}/blog/${slug}`,
       images: [
         {
           url: ogImage,
@@ -48,8 +38,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: post.title,
+      description: post.summary,
       images: [ogImage],
     },
   };
@@ -57,7 +47,8 @@ export async function generateMetadata({
 
 export default async function Blog({ params }) {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  const col = await getPostsCollection();
+  const post = await col.findOne({ slug, published: true });
 
   if (!post) {
     notFound();
@@ -72,14 +63,14 @@ export default async function Blog({ params }) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${metaData.baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${metaData.baseUrl}/blog/${post.slug}`,
+            headline: post.title,
+            datePublished: post.publishedAt,
+            dateModified: post.publishedAt,
+            description: post.summary,
+            image: post.image
+              ? `${metaData.baseUrl}${post.image}`
+              : `/og?title=${encodeURIComponent(post.title)}`,
+            url: `${metaData.baseUrl}/blog/${slug}`,
             author: {
               "@type": "Person",
               name: metaData.name,
@@ -88,11 +79,11 @@ export default async function Blog({ params }) {
         }}
       />
       <h1 className="title mb-3 font-medium text-3xl text-[var(--color-contrast-high)]">
-        {post.metadata.title}
+        {post.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-medium">
         <p className="text-sm text-[var(--color-contrast-low)]">
-          {formatDate(post.metadata.publishedAt)}
+          {formatDate(post.publishedAt)}
         </p>
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">

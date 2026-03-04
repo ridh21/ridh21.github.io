@@ -1,15 +1,9 @@
 import { Feed } from "feed";
-import { getBlogPosts } from "app/lib/posts";
+import { getPostsCollection } from "app/lib/collections";
 import { metaData } from "app/config";
 import { NextResponse } from "next/server";
 
-export async function generateStaticParams() {
-  return [
-    { format: "rss.xml" },
-    { format: "atom.xml" },
-    { format: "feed.json" },
-  ];
-}
+export const dynamic = "force-dynamic";
 
 export async function GET(
   _: Request,
@@ -45,37 +39,36 @@ export async function GET(
     },
   });
 
-  const allPosts = await getBlogPosts();
+  const col = await getPostsCollection();
+  const allPosts = await col.find({ published: true }).sort({ publishedAt: -1 }).toArray();
 
   allPosts.forEach((post) => {
     const postUrl = `${BaseUrl}blog/${post.slug}`;
-    const categories = post.metadata.tags
-      ? post.metadata.tags.split(",").map((tag) => tag.trim())
+    const categories = Array.isArray(post.tags)
+      ? post.tags
       : [];
 
     // Validate and parse the date
     let publishedDate: Date;
     try {
       // Attempt to create a Date object from publishedAt
-      const parsedDate = new Date(post.metadata.publishedAt);
-      // Check if the parsed date is valid
+      const parsedDate = new Date(post.publishedAt);
       if (isNaN(parsedDate.getTime())) {
-        console.warn(`Invalid date for post "${post.metadata.title}" (${post.slug}). Using current date.`);
-        publishedDate = new Date(); // Fallback to current date if invalid
+        console.warn(`Invalid date for post "${post.title}" (${post.slug}). Using current date.`);
+        publishedDate = new Date();
       } else {
         publishedDate = parsedDate;
       }
     } catch (e) {
-      // Catch any errors during date parsing (though new Date() usually handles this by returning an "Invalid Date")
-      console.error(`Error parsing date for post "${post.metadata.title}" (${post.slug}):`, e);
-      publishedDate = new Date(); // Fallback to current date on error
+      console.error(`Error parsing date for post "${post.title}" (${post.slug}):`, e);
+      publishedDate = new Date();
     }
 
     feed.addItem({
-      title: post.metadata.title,
+      title: post.title,
       id: postUrl,
       link: postUrl,
-      description: post.metadata.summary,
+      description: post.summary,
       category: categories.map((tag) => ({
         name: tag,
         term: tag,
