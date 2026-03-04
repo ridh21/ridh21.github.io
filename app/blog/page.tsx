@@ -51,6 +51,9 @@ export default function BlogPage() {
                     src={post.metadata.image}
                     alt={post.metadata.title}
                     fill
+                    sizes="(max-width: 640px) 96px, 128px"
+                    loading="lazy"
+                    quality={75}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>

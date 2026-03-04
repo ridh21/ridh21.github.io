@@ -172,7 +172,7 @@ export default function Page() {
               </span>
             </div>
             <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Engineered and deployed a high-availability LLM security platform using FastAPI. Built end-to-end RAG pipelines using LangChain and Pinecone for prompt injection and data leakage detection.
+                Developed scalable backend and AI-driven systems using FastAPI and microservices architecture, delivering robust APIs and intelligent data pipelines to power client-facing applications and production systems.
             </p>
           </div>
           <div className="card p-4">

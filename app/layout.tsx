@@ -8,6 +8,7 @@ import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 import { JumpToTopButton } from "./components/jump-to-top";
+import { CommandPalette } from "./components/command-palette";
 
 const matterFont = localFont({
   src: [
@@ -143,6 +144,7 @@ export default function RootLayout({
             <SpeedInsights />
           </main>
           <JumpToTopButton />
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

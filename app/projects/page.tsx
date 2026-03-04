@@ -27,6 +27,9 @@ export default function ProjectsPage() {
                 src={project.image}
                 alt={`Screenshot of the ${project.title} project`}
                 fill
+                sizes="(max-width: 640px) 100vw, 624px"
+                loading="lazy"
+                quality={75}
                 className="object-contain"
               />
             </div>
