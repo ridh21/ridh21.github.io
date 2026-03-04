@@ -90,9 +90,6 @@ export function CommandPalette() {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
 
-  // Don't render on admin pages — admin has its own command palette
-  if (isAdmin) return null;
-
   const close = useCallback(() => {
     setOpen(false);
     setQuery("");
@@ -378,7 +375,8 @@ export function CommandPalette() {
     [filtered, activeIndex]
   );
 
-  if (!open) return null;
+  // Don't render on admin pages — admin has its own command palette
+  if (isAdmin || !open) return null;
 
   let flatIndex = -1;
 

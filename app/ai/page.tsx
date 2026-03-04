@@ -65,8 +65,8 @@ export default function AiPage() {
         <div className="flex justify-start">
           <div className="px-3 py-2 rounded-lg bg-[var(--color-accent-light)] text-[var(--color-foreground)]">
             <p className="text-sm">
-              Hi! I'm Ridham's AI persona. Ask me anything about him or his
-              work. I'll be happy to assist you.
+              Hi! I&apos;m Ridham&apos;s AI persona. Ask me anything about him or his
+              work. I&apos;ll be happy to assist you.
             </p>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function AiPage() {
           <div className="flex justify-start">
             <div className="px-3 py-2 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-300 border border-red-200/30 dark:border-red-800/20 max-w-[80%]">
               <p className="text-sm">
-                ☕ Oops! Looks like I've been chatting too much and hit my limit.
+                ☕ Oops! Looks like I&apos;ve been chatting too much and hit my limit.
                 Please give me a minute to catch my breath and try again shortly!
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function AiPage() {
           rel="noopener noreferrer"
           className="font-bold no-underline text-[var(--color-contrast-medium)]"
         >
-          Google's Gemini
+          Google&apos;s Gemini
         </a>{' '}
         and{' '}
         <a

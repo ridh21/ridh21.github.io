@@ -254,7 +254,7 @@ export default function AdminProjectsPage() {
             </div>
           ) : projects.length === 0 ? (
             <div className="admin-empty">
-              No projects yet. Click "Add Project" to create one, or seed the
+              No projects yet. Click &ldquo;Add Project&rdquo; to create one, or seed the
               database from the Dashboard.
             </div>
           ) : (

@@ -271,7 +271,7 @@ export default function AdminPostsPage() {
             </div>
           ) : posts.length === 0 ? (
             <div className="admin-empty">
-              No posts yet. Click "New Post" to create one, or seed the database.
+              No posts yet. Click &ldquo;New Post&rdquo; to create one, or seed the database.
             </div>
           ) : (
             <div className="admin-list">
