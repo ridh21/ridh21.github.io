@@ -8,7 +8,7 @@ const google = createGoogleGenerativeAI({
 
 const model = google("gemini-2.5-flash-lite");
 
-const FALLBACK_PROMPT = "You are Ridham Patel's AI assistant. Answer questions about his work, skills, and experience. If you don't know something, suggest reaching out at ridhampatel21@gmail.com.";
+const FALLBACK_PROMPT = "You are Ridham Patel's AI assistant. Answer questions about his work, skills, and experience. If you don't know something, suggest reaching out at ridhampatel2k4@gmail.com.";
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
