@@ -210,18 +210,31 @@ export function AdminCommandPalette() {
   // Keyboard shortcut
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      const isTyping =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.isContentEditable;
+
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         e.stopPropagation();
         setOpen((prev) => !prev);
       }
+
+      if (!e.metaKey && !e.ctrlKey && !e.altKey && !isTyping && e.key.toLowerCase() === "d") {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTheme();
+      }
+
       if (e.key === "Escape") {
         close();
       }
     };
     document.addEventListener("keydown", handler, true);
     return () => document.removeEventListener("keydown", handler, true);
-  }, [close]);
+  }, [close, toggleTheme]);
 
   // Focus input when opened
   useEffect(() => {

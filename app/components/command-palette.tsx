@@ -319,10 +319,22 @@ export function CommandPalette() {
   // ─── Keyboard shortcut to open ───
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      const isTyping =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.isContentEditable;
+
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
+
+      if (!e.metaKey && !e.ctrlKey && !e.altKey && !isTyping && e.key.toLowerCase() === "d") {
+        e.preventDefault();
+        toggleTheme();
+      }
+
       if (e.key === "Escape") {
         close();
       }
@@ -334,7 +346,7 @@ export function CommandPalette() {
       document.removeEventListener("keydown", handler);
       document.removeEventListener("open-command-palette", customHandler);
     };
-  }, [close]);
+  }, [close, toggleTheme]);
 
   // ─── Focus input when opened ───
   useEffect(() => {

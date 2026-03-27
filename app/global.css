@@ -45,6 +45,9 @@
   --color-accent-hover: #7553fd;
   --color-accent-light: rgba(137, 108, 254, 0.1);
   --color-accent-subtle: rgba(137, 108, 254, 0.05);
+  --color-accent-shadow: rgba(137, 108, 254, 0.35);
+  --color-accent-border: rgba(137, 108, 254, 0.2);
+  --color-accent-link-underline: rgba(137, 108, 254, 0.3);
   --color-accent-fg: #ffffff;
 
   /* Borders — derived from contrast-high at 10% */
@@ -102,6 +105,9 @@
   --color-accent-hover: #7553fd;
   --color-accent-light: rgba(137, 108, 254, 0.12);
   --color-accent-subtle: rgba(137, 108, 254, 0.06);
+  --color-accent-shadow: rgba(137, 108, 254, 0.35);
+  --color-accent-border: rgba(137, 108, 254, 0.2);
+  --color-accent-link-underline: rgba(137, 108, 254, 0.3);
   --color-accent-fg: #ffffff;
 
   /* Borders — translucent white (exact Nucleo 10%) */
@@ -315,15 +321,15 @@ body {
   }
 
   .btn-primary {
-    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(137, 108, 254, 0.35), var(--shadow-sm), 0 0 0 0.5px var(--color-accent-hover);
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px var(--color-accent-shadow), var(--shadow-sm), 0 0 0 0.5px var(--color-accent-hover);
   }
 
   .dark .btn-primary {
-    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px rgba(137, 108, 254, 0.35), var(--shadow-sm);
+    box-shadow: inset 0 0.5px rgba(255, 255, 255, 0.25), inset 0 0 0 0.5px rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(10, 10, 11, 0.03), 0 2px 5px -2px var(--color-accent-shadow), var(--shadow-sm);
   }
 
   .btn-primary:hover::before {
-    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%), #896cfe;
+    background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%), var(--color-accent-hover);
   }
 
   /* ---- CONTRAST BUTTON ----
@@ -404,7 +410,7 @@ body {
   }
 
   .form-control::selection {
-    background-color: rgba(137, 108, 254, 0.2);
+    background-color: var(--color-accent-border);
   }
 
   /* ---- SIDEBAR / FILTER BUTTON ----
@@ -523,7 +529,7 @@ body {
 .prose a {
   @apply transition-all underline-offset-2 decoration-[0.1em] font-semibold;
   color: var(--color-accent);
-  text-decoration-color: rgba(137, 108, 254, 0.3);
+  text-decoration-color: var(--color-accent-link-underline);
 }
 
 .prose a:hover {
@@ -1949,6 +1955,56 @@ table {
   padding: 0.875rem 1.25rem;
   border-top: 1px solid var(--color-border);
   background: var(--color-background-subtle);
+}
+
+.admin-color-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  padding: 0.625rem 0.75rem;
+  background: var(--color-background-light);
+  border: 1px solid var(--color-border);
+  color: var(--color-contrast-high);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.15s var(--ease-in-out);
+}
+
+.admin-color-option:hover {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-xs);
+}
+
+.admin-color-option.active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent-border), var(--shadow-xs);
+}
+
+.dark .admin-color-option {
+  background: var(--color-background-subtle);
+}
+
+.admin-color-swatch {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 11, 0.08);
+  flex-shrink: 0;
+}
+
+.admin-color-label {
+  flex: 1;
+}
+
+.admin-color-check {
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 /* --- List --- */

@@ -204,6 +204,7 @@ export async function POST() {
           "The personal portfolio of Ridham Patel – Associate Software Engineer at OpenXcell Technolabs, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
         bio: "I design and deploy production-grade AI systems. Currently working as an Associate Software Engineer building secure, high-availability LLM systems. My work spans MLOps, scalable backend architectures, multimodal AI, and real-time ML inference.",
         subtitle: "Software Developer · Researcher · AI/ML Engineer",
+        primaryColor: "purple",
         socialLinks: {
           twitter: "https://x.com/ridhampatel2k4",
           github: "https://github.com/ridh21/",

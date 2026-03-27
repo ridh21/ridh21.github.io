@@ -79,6 +79,7 @@ export interface SiteConfigDoc {
   description: string;
   bio: string; // intro paragraph HTML/text
   subtitle: string; // e.g. "Software Developer · Researcher · AI/ML Engineer"
+  primaryColor: string;
   socialLinks: {
     twitter: string;
     github: string;

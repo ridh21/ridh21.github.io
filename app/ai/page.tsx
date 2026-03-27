@@ -47,7 +47,7 @@ export default function AiPage() {
         <h1 className="font-serif text-3xl sm:text-4xl font-normal text-[var(--color-accent)]">
           ऋतम://ai
         </h1>
-        <span className="tag gap-1.5 px-3 py-1 text-xs font-medium bg-[var(--color-accent-light)] text-[var(--color-accent)] border-[rgba(137,108,254,0.2)] dark:border-[rgba(137,108,254,0.2)]">
+        <span className="tag gap-1.5 px-3 py-1 text-xs font-medium bg-[var(--color-accent-light)] text-[var(--color-accent)] border-[var(--color-accent-border)] dark:border-[var(--color-accent-border)]">
           <IconSparkles size={12} />
           just for fun!
         </span>

@@ -9,6 +9,9 @@ import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
 import { JumpToTopButton } from "./components/jump-to-top";
 import { CommandPalette } from "./components/command-palette";
+import { getSiteConfigCollection } from "app/lib/collections";
+import { getPrimaryColorCssVariables } from "app/lib/primary-colors";
+import type { CSSProperties } from "react";
 
 const matterFont = localFont({
   src: [
@@ -99,13 +102,25 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let primaryColor = "purple";
+
+  try {
+    const configCol = await getSiteConfigCollection();
+    const config = await configCol.findOne({ key: "main" });
+    primaryColor = config?.primaryColor || "purple";
+  } catch {
+    primaryColor = "purple";
+  }
+
+  const primaryColorVars = getPrimaryColorCssVariables(primaryColor) as CSSProperties;
+
   return (
-    <html lang="en" className={`${seasonMixFont.variable} ${matterFont.variable}`}>
+    <html lang="en" className={`${seasonMixFont.variable} ${matterFont.variable}`} style={primaryColorVars}>
       <head>
         {/* RSS Feed links remain here */}
         <link

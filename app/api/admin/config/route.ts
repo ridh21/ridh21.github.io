@@ -4,6 +4,10 @@ import {
   serializeDoc,
   type SiteConfigDoc,
 } from "app/lib/collections";
+import {
+  DEFAULT_PRIMARY_COLOR_KEY,
+  isPrimaryColorKey,
+} from "app/lib/primary-colors";
 
 export async function GET() {
   try {
@@ -19,6 +23,7 @@ export async function GET() {
         description: "",
         bio: "",
         subtitle: "Software Developer · Researcher · AI/ML Engineer",
+        primaryColor: DEFAULT_PRIMARY_COLOR_KEY,
         socialLinks: {
           twitter: "",
           github: "",
@@ -42,12 +47,17 @@ export async function PUT(request: Request) {
     const body = await request.json();
     const col = await getSiteConfigCollection();
 
+    const primaryColor = isPrimaryColorKey(body.primaryColor)
+      ? body.primaryColor
+      : DEFAULT_PRIMARY_COLOR_KEY;
+
     const update: Partial<SiteConfigDoc> = {
       name: body.name,
       title: body.title,
       description: body.description,
       bio: body.bio,
       subtitle: body.subtitle,
+      primaryColor,
       socialLinks: body.socialLinks,
       updatedAt: new Date(),
     };

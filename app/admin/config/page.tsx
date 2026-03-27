@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import AdminSidebar from "../components/admin-sidebar";
 import { Save, Loader2 } from "lucide-react";
+import {
+  applyPrimaryColorVariables,
+  DEFAULT_PRIMARY_COLOR_KEY,
+  PRIMARY_COLORS,
+} from "app/lib/primary-colors";
 
 interface SiteConfig {
   _id: string;
@@ -11,6 +16,7 @@ interface SiteConfig {
   description: string;
   bio: string;
   subtitle: string;
+  primaryColor: string;
   socialLinks: {
     twitter: string;
     github: string;
@@ -36,9 +42,17 @@ export default function AdminConfigPage() {
     setLoading(true);
     const res = await fetch("/api/admin/config");
     const data = await res.json();
-    setConfig(data);
+    setConfig({
+      ...data,
+      primaryColor: data.primaryColor || DEFAULT_PRIMARY_COLOR_KEY,
+    });
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (!config?.primaryColor) return;
+    applyPrimaryColorVariables(document.documentElement, config.primaryColor);
+  }, [config?.primaryColor]);
 
   async function handleSave() {
     if (!config) return;
@@ -221,6 +235,38 @@ export default function AdminConfigPage() {
                       onChange={(e) => updateSocial("orcid", e.target.value)}
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="admin-editor-card">
+                <div className="admin-editor-header">
+                  <h3>Color Theme</h3>
+                </div>
+                <p className="text-xs text-[var(--color-contrast-low)] mb-3 p-4">
+                  Choose your primary accent color. This updates buttons, links, highlights, and admin UI accents.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {PRIMARY_COLORS.map((theme) => {
+                    const isActive = config.primaryColor === theme.key;
+                    return (
+                      <button
+                        key={theme.key}
+                        type="button"
+                        className={`admin-color-option ${isActive ? "active" : ""}`}
+                        onClick={() =>
+                          setConfig({ ...config, primaryColor: theme.key })
+                        }
+                      >
+                        <span
+                          className="admin-color-swatch"
+                          style={{ backgroundColor: theme.accent }}
+                          aria-hidden="true"
+                        />
+                        <span className="admin-color-label">{theme.label}</span>
+                        {isActive && <span className="admin-color-check" aria-hidden="true">•</span>}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </>
