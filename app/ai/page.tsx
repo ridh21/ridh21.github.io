@@ -148,12 +148,12 @@ export default function AiPage() {
       <p className="mt-6 text-xs text-center text-[var(--color-contrast-low)]">
         Everyone makes mistakes, including this AI powered by{' '}
         <a
-          href="https://gemini.google.com/"
+          href="https://build.nvidia.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="font-bold no-underline text-[var(--color-contrast-medium)]"
         >
-          Google&apos;s Gemini
+          NVIDIA NIM
         </a>{' '}
         and{' '}
         <a

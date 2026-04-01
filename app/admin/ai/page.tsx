@@ -128,7 +128,7 @@ export default function AdminAIPage() {
                 <div className="admin-ai-info-left">
                   <Sparkles size={14} />
                   <span>
-                    This prompt is sent as the system instruction to Gemini every
+                    This prompt is sent as the system instruction to your NVIDIA-hosted model every
                     time a user interacts with the AI chatbot.
                   </span>
                 </div>
