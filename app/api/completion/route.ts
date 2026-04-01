@@ -1,42 +1,55 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { convertToModelMessages, UIMessage, streamText } from "ai";
-import { getDatabase } from "../../lib/mongodb"; // Import the database function
+import { getSystemPromptsCollection } from "app/lib/collections";
 
-// IMPORTANT: Move your API key to a .env.local file
 const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_API_KEY,
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 const model = google("gemini-2.5-flash-lite");
 
+const FALLBACK_PROMPT = "You are Ridham Patel's AI assistant. Answer questions about his work, skills, and experience. If you don't know something, suggest reaching out at ridhampatel2k4@gmail.com.";
+
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
-  let systemPrompt = "";
 
   try {
-    // Get the database connection (uses cached connection if available)
-    const db = await getDatabase();
-    const collection = db.collection("system_prompts");
+    // Load system prompt from MongoDB
+    const promptCol = await getSystemPromptsCollection();
+    const promptDoc = await promptCol.findOne({ prompt_type: "Ridham_AI_Persona" });
+    const systemPrompt = promptDoc?.content || FALLBACK_PROMPT;
 
-    const document = await collection.findOne({ prompt_type: "Dhruv_AI_Persona" });
-
-    if (document && document.content) {
-      systemPrompt = document.content;
-    } else {
-      console.warn("System prompt document not found or content is empty in MongoDB. Using a fallback or default prompt might be necessary.");
-      systemPrompt = `You are an AI assistant.`; // Fallback prompt
-    }
-
-    const result = await streamText({
+    const result = streamText({
       model: model,
       system: systemPrompt,
       messages: convertToModelMessages(messages),
+      maxRetries: 0,
     });
 
     return result.toUIMessageStreamResponse();
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in /api/completion:", error);
-    // Return a proper HTTP error response to the client
-    return new Response(`Error processing request: ${error instanceof Error ? error.message : 'Unknown error'}`, { status: 500 });
+
+    // Detect rate limit errors from Gemini
+    const msg = error?.message?.toLowerCase?.() || "";
+    const status = error?.status || error?.statusCode || 500;
+    const isRateLimit =
+      status === 429 ||
+      msg.includes("rate limit") ||
+      msg.includes("quota") ||
+      msg.includes("resource exhausted") ||
+      msg.includes("too many requests");
+
+    if (isRateLimit) {
+      return new Response(
+        "Oops! Looks like I've been chatting too much and hit my limit. ☕ Please give me a minute to catch my breath and try again shortly!",
+        { status: 429 }
+      );
+    }
+
+    return new Response(
+      "Something went wrong on my end. Please try again in a moment!",
+      { status: 500 }
+    );
   }
 }

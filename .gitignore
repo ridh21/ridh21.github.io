@@ -38,3 +38,6 @@ next-env.d.ts
 content/mdx-boilerplate.mdx
 content/custom-mdx-example.mdx
 content/getting-started-blog.mdx
+
+# env
+.env

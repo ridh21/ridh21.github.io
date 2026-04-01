@@ -1,15 +1,19 @@
 import { MetadataRoute } from "next";
-import { getBlogPosts } from "./lib/posts";
+import { getPostsCollection } from "./lib/collections";
 import { metaData } from "./config";
+
+export const dynamic = "force-dynamic";
 
 const BaseUrl = metaData.baseUrl.endsWith("/")
   ? metaData.baseUrl
   : `${metaData.baseUrl}/`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let blogs = getBlogPosts().map((post) => ({
+  const col = await getPostsCollection();
+  const posts = await col.find({ published: true }).toArray();
+  let blogs = posts.map((post) => ({
     url: `${BaseUrl}blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+    lastModified: post.publishedAt,
   }));
 
   let routes = ["", "blog", "projects", "ai"].map((route) => ({ // Replaced 'education' and 'photos' with 'cv'

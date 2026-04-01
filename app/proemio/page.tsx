@@ -33,7 +33,7 @@ export default function ProemioPage() {
 
       <div className="mt-4 prose prose-neutral dark:prose-invert max-w-none">
         <p>
-          This portfolio is more than just a collection of projects; it's a preface to my approach as a developer and researcher. It serves as an introduction to how I think, solve problems, and translate complex ideas into clean, functional, and scalable solutions.
+          This portfolio is more than just a collection of projects; it&apos;s a preface to my approach as a developer and researcher. It serves as an introduction to how I think, solve problems, and translate complex ideas into clean, functional, and scalable solutions.
         </p>
         <p>
           Every element, from the typography to the page transitions, was deliberately chosen to create an experience that is fast, accessible, and hopefully, a pleasure to explore. This site is a living document–a snapshot of my ongoing journey in the world of technology.

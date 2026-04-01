@@ -8,22 +8,14 @@ import {
   IconGoogleScholar,
 } from "./components/icons";
 import { socialLinks } from "./config";
-import { projects } from "../app/projects/project-data";
+import {
+  getProjectsCollection,
+  getExperienceCollection,
+  getResearchCollection,
+  getSiteConfigCollection,
+} from "app/lib/collections";
 
-
-// --- Data for Research Publications ---
-const research = [
-  {
-    title: "FED-DETR: Privacy-Preserving Intelligent Traffic Enforcement",
-    description: "Research Paper – Under Review",
-    url: "#",
-  },
-  {
-    title: "Automated Waste Segregation Smart Dustbin",
-    description: "Patent – Under Review",
-    url: "#",
-  },
-];
+export const dynamic = "force-dynamic";
 
 // --- Reusable Entry Component for Projects & Publications ---
 function ListEntry({
@@ -106,8 +98,24 @@ function SocialLink({ href, icon: Icon, children }) {
   );
 }
 
-export default function Page() {
-  const featuredProjects = projects.slice(0, 4);
+export default async function Page() {
+  const [projectCol, expCol, researchCol, configCol] = await Promise.all([
+    getProjectsCollection(),
+    getExperienceCollection(),
+    getResearchCollection(),
+    getSiteConfigCollection(),
+  ]);
+
+  const [projects, experiences, research, siteConfig] = await Promise.all([
+    projectCol.find({}).sort({ order: 1 }).limit(4).toArray(),
+    expCol.find({}).sort({ order: 1 }).toArray(),
+    researchCol.find({}).sort({ order: 1 }).toArray(),
+    configCol.findOne({ key: "main" }),
+  ]);
+
+  const name = siteConfig?.name || "Ridham Patel";
+  const subtitle = siteConfig?.subtitle || "Software Developer · Researcher · AI/ML Engineer";
+  const bio = siteConfig?.bio || "I design and deploy production-grade AI systems. Currently working as an Associate Software Engineer building secure, high-availability LLM systems. My work spans MLOps, scalable backend architectures, multimodal AI, and real-time ML inference.";
 
   return (
     <section>
@@ -115,21 +123,16 @@ export default function Page() {
       <div className="flex justify-between items-start gap-8">
         <div>
           <h1 className="font-serif font-normal text-3xl md:text-4xl mb-2 text-[var(--color-accent)]">
-            Ridham Patel
+            {name}
           </h1>
           <h2 className="text-[var(--color-contrast-medium)] mb-4">
-            Software Developer · Researcher · AI/ML Engineer
+            {subtitle}
           </h2>
         </div>
       </div>
 
       <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          I design and deploy production-grade AI systems. Currently working as
-          an Associate Software Engineer building secure, high-availability LLM
-          systems. My work spans MLOps, scalable backend architectures,
-          multimodal AI, and real-time ML inference.
-        </p>
+        <p>{bio}</p>
       </div>
 
       {/* --- SOCIAL & RESUME LINKS --- */}
@@ -137,154 +140,93 @@ export default function Page() {
         <SocialLink href="/resume.pdf" icon={IconFileText}>
           Resume
         </SocialLink>
-        <SocialLink href={socialLinks.scholar} icon={IconGoogleScholar}>
+        <SocialLink href={siteConfig?.socialLinks?.scholar || socialLinks.scholar} icon={IconGoogleScholar}>
           Scholar
         </SocialLink>
-        <SocialLink href={socialLinks.github} icon={IconGitHub}>
+        <SocialLink href={siteConfig?.socialLinks?.github || socialLinks.github} icon={IconGitHub}>
           GitHub
         </SocialLink>
-        <SocialLink href={socialLinks.linkedin} icon={IconLinkedIn}>
+        <SocialLink href={siteConfig?.socialLinks?.linkedin || socialLinks.linkedin} icon={IconLinkedIn}>
           LinkedIn
         </SocialLink>
-        <SocialLink href={socialLinks.email} icon={IconMail}>
+        <SocialLink href={siteConfig?.socialLinks?.email || socialLinks.email} icon={IconMail}>
           Email
         </SocialLink>
       </div>
 
       {/* --- EXPERIENCE SECTION --- */}
-      <div className="mt-6">
-        <h2 className="section-heading font-serif text-xl">
-          Experience
-        </h2>
-        <div className="mt-4 space-y-4">
-          <div className="card p-4">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-semibold text-[var(--color-contrast-high)]">
-                  Associate Software Engineer
-                </h3>
-                <p className="text-sm text-[var(--color-contrast-medium)]">
-                  OpenXcell Technolabs · Ahmedabad
+      {experiences.length > 0 && (
+        <div className="mt-6">
+          <h2 className="section-heading font-serif text-xl">
+            Experience
+          </h2>
+          <div className="mt-4 space-y-4">
+            {experiences.map((exp) => (
+              <div key={exp._id.toString()} className="card p-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-semibold text-[var(--color-contrast-high)]">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm text-[var(--color-contrast-medium)]">
+                      {exp.company} · {exp.location}
+                    </p>
+                  </div>
+                  <span className="tag text-xs">
+                    {exp.period}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-[var(--color-foreground)]">
+                  {exp.description}
                 </p>
               </div>
-              <span className="tag text-xs">
-                Aug 2025 – Present
-              </span>
-            </div>
-            <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Engineered and deployed a high-availability LLM security platform using FastAPI. Built end-to-end RAG pipelines using LangChain and Pinecone for prompt injection and data leakage detection.
-            </p>
-          </div>
-          <div className="card p-4">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-semibold text-[var(--color-contrast-high)]">
-                  AI/ML Intern
-                </h3>
-                <p className="text-sm text-[var(--color-contrast-medium)]">
-                  IEEE EMBS Pune Chapter · Remote
-                </p>
-              </div>
-              <span className="tag text-xs">
-                Jun 2025 – Jul 2025
-              </span>
-            </div>
-            <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Built an end-to-end deep learning pipeline for schizophrenia diagnosis using EEG data. Achieved 96% accuracy using ensemble stacking with ResNet50, EfficientNetB2, and DenseNet121.
-            </p>
-          </div>
-          <div className="card p-4">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-semibold text-[var(--color-contrast-high)]">
-                  Software Development Intern
-                </h3>
-                <p className="text-sm text-[var(--color-contrast-medium)]">
-                  Institute for Plasma Research · Gandhinagar
-                </p>
-              </div>
-              <span className="tag text-xs">
-                Aug 2024 – Nov 2024
-              </span>
-            </div>
-            <p className="mt-2 text-sm text-[var(--color-foreground)]">
-              Developed a full-stack assessment and data collection platform for predictive student analytics. Engineered a resilient Node.js + TypeScript backend with real-time processing capabilities.
-            </p>
+            ))}
           </div>
         </div>
-      </div>
+      )}
 
       {/* --- PROJECTS SECTION --- */}
-      <div className="mt-6">
-        <h2 className="section-heading font-serif text-xl">
-          Projects
-        </h2>
-        <div className="space-y-0">
-          {featuredProjects.map((project) => (
-            <ProjectEntry
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              url={project.url}
-            />
-          ))}
+      {projects.length > 0 && (
+        <div className="mt-6">
+          <h2 className="section-heading font-serif text-xl">
+            Projects
+          </h2>
+          <div className="space-y-0">
+            {projects.map((project) => (
+              <ProjectEntry
+                key={project._id.toString()}
+                title={project.title}
+                description={project.description}
+                url={project.url}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* --- Research Publications SECTION --- */}
-      <div className="mt-6">
-        <h2 className="section-heading font-serif text-xl">
-          Research Publications
-        </h2>
-        <div className="space-y-1">
-          {research.map((item) => (
-            <ListEntry
-              key={item.title}
-              title={item.title}
-              description={item.description}
-              url={item.url}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* --- ACHIEVEMENTS --- */}
-      {/* <div className="mt-6">
-        <h2 className="section-heading font-serif text-xl">
-          Achievements
-        </h2>
-        <div className="mt-4 space-y-2">
-          <div className="flex items-start gap-3 p-3 rounded-lg">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              National Level Hackathon Finalist (4×) – SIH 2023, SIH 2024, Odoo Hackathon (March & Nov 2025)
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              State Level Winner – SSIP 2023
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              AWS Certified Cloud Practitioner (CLF-C02)
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              Webmaster, IEEE Student Branch – LDRP-ITR
-            </p>
+      {research.length > 0 && (
+        <div className="mt-6">
+          <h2 className="section-heading font-serif text-xl">
+            Research Publications
+          </h2>
+          <div className="space-y-1">
+            {research.map((item) => (
+              <ListEntry
+                key={item._id.toString()}
+                title={item.title}
+                description={item.description}
+                url={item.url}
+              />
+            ))}
           </div>
         </div>
-      </div> */}
+      )}
 
       <div className="mt-3 surface-subtle p-3 text-sm text-center text-[var(--color-contrast-medium)]">
         <span>Feel free to explore my </span>
         <a
-          href={socialLinks.github}
+          href={siteConfig?.socialLinks?.github || socialLinks.github}
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold text-[var(--color-accent)] hover:underline"

@@ -9,6 +9,7 @@ import { YouTubeComponent } from "./youtube";
 import { ImageGrid } from "./image-grid";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
 
 function CustomLink(props) {
@@ -27,11 +28,20 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+  return (
+    <Image
+      alt={props.alt}
+      className="rounded-lg"
+      loading="lazy"
+      quality={75}
+      sizes="(max-width: 640px) 100vw, 624px"
+      {...props}
+    />
+  );
 }
 
 function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+  let codeHTML = highlight(children || "");
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
@@ -126,7 +136,7 @@ export function CustomMDX(props) {
       components={{ ...components, ...(props.components || {}) }}
       options={{
         mdxOptions: {
-          remarkPlugins: [remarkMath],
+          remarkPlugins: [remarkGfm, remarkMath],
           rehypePlugins: [rehypeKatex],
         },
       }}

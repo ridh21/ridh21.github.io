@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { projects } from "./project-data";
+import { getProjectsCollection } from "app/lib/collections";
 import ReactMarkdown from 'react-markdown';
 import Image from "next/image";
 import { IconArrowUpRight } from "../components/icons";
@@ -10,23 +10,37 @@ export const metadata: Metadata = {
   description: "A selection of projects by Ridham Patel.",
 };
 
-export default function ProjectsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ProjectsPage() {
+  const col = await getProjectsCollection();
+  const projects = await col.find({}).sort({ order: 1 }).toArray();
+
   return (
     <section>
       <h1 className="section-heading font-serif text-3xl mb-4">
         Projects
       </h1>
 
+      {projects.length === 0 && (
+        <p className="text-sm text-[var(--color-contrast-low)]">
+          No projects yet. Add some from the admin panel.
+        </p>
+      )}
+
       {/* A container with a vertical separator between project items */}
       <div className="space-y-6">
         {projects.map((project) => (
-          <article key={project.title} className="card p-0 overflow-hidden">
+          <article key={project._id.toString()} className="card p-0 overflow-hidden">
             {/* Project Image Container */}
             <div className="relative aspect-video overflow-hidden bg-[var(--color-background-subtle)]">
               <Image
                 src={project.image}
                 alt={`Screenshot of the ${project.title} project`}
                 fill
+                sizes="(max-width: 640px) 100vw, 624px"
+                loading="lazy"
+                quality={75}
                 className="object-contain"
               />
             </div>
