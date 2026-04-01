@@ -14,7 +14,7 @@ const suggestedPrompts = [
 ];
 
 export default function AiPage() {
-  const { messages, sendMessage, error } = useChat({
+  const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
       api: '/api/completion',
     }),
@@ -28,7 +28,7 @@ export default function AiPage() {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, status]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -98,14 +98,14 @@ export default function AiPage() {
           </div>
         ))}
 
-        {/* Rate limit / error message */}
-        {error && (
+        {(status === "submitted" || status === "streaming") && (
           <div className="flex justify-start">
-            <div className="px-3 py-2 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-300 border border-red-200/30 dark:border-red-800/20 max-w-[80%]">
-              <p className="text-sm">
-                ☕ Oops! Looks like I&apos;ve been chatting too much and hit my limit.
-                Please give me a minute to catch my breath and try again shortly!
-              </p>
+            <div className="px-3 py-2 rounded-lg bg-[var(--color-accent-light)] text-[var(--color-foreground)] border border-[var(--color-accent-subtle)]">
+              <div className="flex items-center gap-1" aria-label="Assistant is typing" role="status">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] animate-bounce [animation-delay:0ms]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] animate-bounce [animation-delay:120ms]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] animate-bounce [animation-delay:240ms]" />
+              </div>
             </div>
           </div>
         )}
