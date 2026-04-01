@@ -1,5 +1,11 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { convertToModelMessages, UIMessage, streamText } from "ai";
+import {
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  UIMessage,
+  streamText,
+} from "ai";
 import { getSystemPromptsCollection } from "app/lib/collections";
 
 const nvidia = createOpenAI({
@@ -10,11 +16,67 @@ const nvidia = createOpenAI({
 const model = nvidia.chat("nvidia/llama-3.1-nemotron-nano-vl-8b-v1");
 
 const FALLBACK_PROMPT = "You are Ridham Patel's AI assistant. Answer questions about his work, skills, and experience. If you don't know something, suggest reaching out at ridhampatel2k4@gmail.com.";
+const HARD_GUARDRAIL =
+  "You must only answer questions that are directly about Ridham Patel (his profile, experience, skills, projects, career, availability, contact, education, achievements). If asked anything outside this scope, politely refuse and redirect to asking about Ridham.";
+
+const OUT_OF_SCOPE_REPLY =
+  "I can only help with questions about Ridham Patel's profile, work, skills, projects, and career. Please ask something about Ridham.";
+
+function getLastUserText(messages: UIMessage[]): string {
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const message = messages[i];
+    if (message.role !== "user") continue;
+
+    const text = (message.parts ?? [])
+      .filter((part) => part.type === "text")
+      .map((part) => part.text)
+      .join(" ")
+      .trim();
+
+    if (text) return text;
+  }
+
+  return "";
+}
+
+function isInScopeQuestion(input: string): boolean {
+  const text = input.toLowerCase().trim();
+  if (!text) return true;
+
+  const greetingOnly = /^(hi|hello|hey|yo|hola|namaste|good\s+(morning|afternoon|evening))[!.?\s]*$/.test(text);
+  if (greetingOnly) return true;
+
+  const identityOrProfileRegex =
+    /(ridham|who\s+are\s+you|about\s+you|your\s+(profile|portfolio|experience|skills|projects|background|work|career|cv|resume|contact|email|linkedin|github)|his\s+(profile|experience|skills|projects|background|work|career|cv|resume|contact)|hiring|availability|openxcell|aws certified|associate software engineer|anpr|deathstar|ldrp|student dropout|mental health meme)/;
+
+  return identityOrProfileRegex.test(text);
+}
+
+function refusalStream(messages: UIMessage[], text: string): Response {
+  const stream = createUIMessageStream({
+    originalMessages: messages,
+    execute: ({ writer }) => {
+      const id = `text-${crypto.randomUUID()}`;
+      writer.write({ type: "start" });
+      writer.write({ type: "text-start", id });
+      writer.write({ type: "text-delta", id, delta: text });
+      writer.write({ type: "text-end", id });
+      writer.write({ type: "finish" });
+    },
+  });
+
+  return createUIMessageStreamResponse({ stream });
+}
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   try {
+    const latestUserText = getLastUserText(messages);
+    if (!isInScopeQuestion(latestUserText)) {
+      return refusalStream(messages, OUT_OF_SCOPE_REPLY);
+    }
+
     // Load system prompt from MongoDB
     const promptCol = await getSystemPromptsCollection();
     const promptDoc = await promptCol.findOne({ prompt_type: "Ridham_AI_Persona" });
@@ -28,7 +90,7 @@ export async function POST(req: Request) {
     const nvidiaSafeMessages = [
       {
         role: "user" as const,
-        content: [{ type: "text" as const, text: `Follow these instructions for this entire conversation:\n${systemPrompt}` }],
+        content: [{ type: "text" as const, text: `Follow these instructions for this entire conversation:\n${systemPrompt}\n\n${HARD_GUARDRAIL}` }],
       },
       ...chatMessages,
     ];
