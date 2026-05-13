@@ -12,7 +12,7 @@ export const socialLinks = {
   github: "https://github.com/ridh21/",
   instagram: "https://www.instagram.com/curiousridham",
   linkedin: "https://www.linkedin.com/in/ridhampatel2k4",
-  email: "mailto:ridhampatel21@gmail.com",
+  email: "mailto:ridhampatel2k4@gmail.com",
   orcid: "https://orcid.org/0009-0005-6466-7650",
   scholar: "https://scholar.google.com/citations?user=jjLiEoYAAAAJ&hl",
 };

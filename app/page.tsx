@@ -141,11 +141,23 @@ function IntroSection() {
           <h2 className="text-[var(--color-contrast-medium)] mb-4">
             Software Developer · Researcher · AI/ML Engineer
           </h2>
+          <a
+            href={socialLinks.email}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full border border-transparent bg-[var(--color-background-subtle)] px-3 py-1.5 text-xs font-medium text-[var(--color-contrast-medium)] transition-all hover:border-[var(--color-border-strong)] active:scale-95"
+          >
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-green-500" />
+            </span>
+            AVAILABLE FOR FULLTIME AI/ML ENGINEER ROLES
+          </a>
         </div>
       </div>
 
       <div className="prose prose-neutral dark:prose-invert">
-        <p>I design and deploy production-grade AI systems. Currently working as an Associate Software Engineer building secure, high-availability LLM systems. My work spans MLOps, scalable backend architectures, multimodal AI, and real-time ML inference.</p>
+        <p>I design and deploy production-grade AI systems with experience building scalable backend architectures, MLOps pipelines, multimodal AI, and real-time ML inference. Currently actively contributing to open-source while seeking AI/ML and Backend Engineer roles.</p>
       </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">

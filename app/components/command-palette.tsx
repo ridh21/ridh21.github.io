@@ -265,7 +265,7 @@ export function CommandPalette() {
       {
         id: "email",
         label: "Send Email",
-        description: "ridhampatel21@gmail.com",
+        description: "ridhampatel2k4@gmail.com",
         section: "Social",
         icon: <MailIcon />,
         action: () => openExternal(socialLinks.email),

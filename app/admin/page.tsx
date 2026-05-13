@@ -65,7 +65,7 @@ export default function AdminLoginPage() {
           {error && <p className="admin-error">{error}</p>}
           <button
             type="submit"
-            disabled={loading || !email || !password}
+            disabled={loading}
             className="admin-btn-primary flex items-center justify-center"
           >
             {loading ? "Signing in..." : "Sign In"}
