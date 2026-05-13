@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   getExperienceCollection,
   getResearchCollection,
@@ -9,122 +10,40 @@ export const metadata: Metadata = {
   description: "The curriculum vitae of Ridham Patel.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
-interface CVEntryProps {
-  title: string;
-  subtitle: string;
-  date: string;
-  details: string[];
-}
-
-function CVEntry({ title, subtitle, date, details }: CVEntryProps) {
-  return (
-    <div className="card p-4 mb-4">
-      <div className="flex justify-between items-baseline">
-        <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
-          {title}
-        </h3>
-        <span className="tag text-xs">
-          {date}
-        </span>
-      </div>
-      <p className="text-[var(--color-contrast-medium)]">{subtitle}</p>
-      <ul className="mt-2 list-disc list-inside space-y-1 text-[var(--color-foreground)] text-sm">
-        {details.map((detail, index) => (
-          <li key={index}>{detail}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function Section({ title, children }) {
-  return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-accent)]">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
-
-export default async function CVPage() {
-  const [expCol, researchCol] = await Promise.all([
-    getExperienceCollection(),
-    getResearchCollection(),
-  ]);
-
-  const [experiences, research] = await Promise.all([
-    expCol.find({}).sort({ order: 1 }).toArray(),
-    researchCol.find({}).sort({ order: 1 }).toArray(),
-  ]);
-
+export default function CVPage() {
   return (
     <div>
       <h1 className="section-heading font-serif text-3xl mb-8">
         Curriculum Vitae
       </h1>
 
-      <Section title="Education">
-        <CVEntry
-          title="LDRP Institute of Technology and Research"
-          subtitle="B.E. Information Technology, CGPA: 7.70"
-          date="2022 - 2026"
-          details={[
-            "Relevant Coursework: AI, Machine Learning, NLP, Data Structures & Algorithms, DBMS, Operating Systems.",
-            "Multiple national hackathon finalist and state-level winner.",
-            "Webmaster at IEEE Student Branch – LDRP-ITR.",
-          ]}
-        />
-      </Section>
+      <StaticSections />
 
-      {experiences.length > 0 && (
-        <Section title="Experience">
-          {experiences.map((exp) => (
-            <CVEntry
-              key={exp._id.toString()}
-              title={exp.role}
-              subtitle={`${exp.company}, ${exp.location}`}
-              date={exp.period}
-              details={exp.description.split("\n").filter(Boolean)}
-            />
-          ))}
-        </Section>
-      )}
+      <Suspense fallback={<SectionSkeleton title="Experience" />}>
+        <ExperienceSection />
+      </Suspense>
 
-      <Section title="Certifications">
+      <StaticSection title="Certifications">
         <div className="card p-4 mb-4">
           <div className="flex justify-between items-baseline">
             <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
               AWS Certified Cloud Practitioner (CLF-C02)
             </h3>
-            <span className="tag text-xs">
-              Active
-            </span>
+            <span className="tag text-xs">Active</span>
           </div>
           <p className="text-[var(--color-contrast-medium)]">
             Amazon Web Services – Foundational Cloud Certification
           </p>
         </div>
-      </Section>
+      </StaticSection>
 
-      {research.length > 0 && (
-        <Section title="Research Publications">
-          {research.map((r) => (
-            <CVEntry
-              key={r._id.toString()}
-              title={r.title}
-              subtitle={r.description}
-              date=""
-              details={[]}
-            />
-          ))}
-        </Section>
-      )}
+      <Suspense fallback={<SectionSkeleton title="Research Publications" />}>
+        <ResearchSection />
+      </Suspense>
 
-      <Section title="Technical Skills">
+      <StaticSection title="Technical Skills">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="card p-4">
             <h4 className="font-semibold text-md text-[var(--color-contrast-high)]">Languages</h4>
@@ -143,36 +62,125 @@ export default async function CVPage() {
             <p className="text-sm text-[var(--color-contrast-medium)] mt-1">Git, Docker, AWS, Celery, RabbitMQ, Redis, PostgreSQL, Linux/Bash</p>
           </div>
         </div>
-      </Section>
+      </StaticSection>
 
-      <Section title="Achievements">
+      <StaticSection title="Achievements">
         <div className="space-y-3">
-          <div className="flex items-start gap-3 p-3 card">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              National Level Hackathon Finalist (4×) – SIH 2023, SIH 2024, Odoo Hackathon (March & Nov 2025)
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 card">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              State Level Winner – SSIP 2023
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 card">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              AWS Certified Cloud Practitioner (CLF-C02)
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 card">
-            <span className="text-[var(--color-accent)] mt-0.5">✦</span>
-            <p className="text-sm text-[var(--color-foreground)]">
-              Webmaster, IEEE Student Branch – LDRP-ITR
-            </p>
-          </div>
+          {[
+            "National Level Hackathon Finalist (4×) – SIH 2023, SIH 2024, Odoo Hackathon (March & Nov 2025)",
+            "State Level Winner – SSIP 2023",
+            "AWS Certified Cloud Practitioner (CLF-C02)",
+            "Webmaster, IEEE Student Branch – LDRP-ITR",
+          ].map((text, i) => (
+            <div key={i} className="flex items-start gap-3 p-3 card">
+              <span className="text-[var(--color-accent)] mt-0.5">✦</span>
+              <p className="text-sm text-[var(--color-foreground)]">{text}</p>
+            </div>
+          ))}
         </div>
-      </Section>
+      </StaticSection>
     </div>
+  );
+}
+
+function StaticSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="mb-12">
+      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-accent)]">
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+}
+
+function SectionSkeleton({ title }: { title: string }) {
+  return (
+    <section className="mb-12">
+      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-contrast-medium)]">
+        {title}
+      </h2>
+    </section>
+  );
+}
+
+function StaticSections() {
+  return (
+    <>
+      <StaticSection title="Education">
+        <div className="card p-4 mb-4">
+          <div className="flex justify-between items-baseline">
+            <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
+              LDRP Institute of Technology and Research
+            </h3>
+            <span className="tag text-xs">2022 - 2026</span>
+          </div>
+          <p className="text-[var(--color-contrast-medium)]">
+            B.E. Information Technology, CGPA: 7.70
+          </p>
+          <ul className="mt-2 list-disc list-inside space-y-1 text-[var(--color-foreground)] text-sm">
+            <li>Relevant Coursework: AI, Machine Learning, NLP, Data Structures & Algorithms, DBMS, Operating Systems.</li>
+            <li>Multiple national hackathon finalist and state-level winner.</li>
+            <li>Webmaster at IEEE Student Branch – LDRP-ITR.</li>
+          </ul>
+        </div>
+      </StaticSection>
+    </>
+  );
+}
+
+async function ExperienceSection() {
+  const col = await getExperienceCollection();
+  const experiences = await col.find({}).sort({ order: 1 }).toArray();
+
+  if (experiences.length === 0) return null;
+
+  return (
+    <section className="mb-12">
+      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-accent)]">
+        Experience
+      </h2>
+      {experiences.map((exp) => (
+        <div key={exp._id.toString()} className="card p-4 mb-4">
+          <div className="flex justify-between items-baseline">
+            <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
+              {exp.role}
+            </h3>
+            <span className="tag text-xs">{exp.period}</span>
+          </div>
+          <p className="text-[var(--color-contrast-medium)]">{exp.company}, {exp.location}</p>
+          <ul className="mt-2 list-disc list-inside space-y-1 text-[var(--color-foreground)] text-sm">
+            {exp.description.split("\n").filter(Boolean).map((detail: string, i: number) => (
+              <li key={i}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+async function ResearchSection() {
+  const col = await getResearchCollection();
+  const research = await col.find({}).sort({ order: 1 }).toArray();
+
+  if (research.length === 0) return null;
+
+  return (
+    <section className="mb-12">
+      <h2 className="text-2xl font-normal font-serif mb-6 text-[var(--color-accent)]">
+        Research Publications
+      </h2>
+      {research.map((r) => (
+        <div key={r._id.toString()} className="card p-4 mb-4">
+          <div className="flex justify-between items-baseline">
+            <h3 className="font-semibold text-lg text-[var(--color-contrast-high)]">
+              {r.title}
+            </h3>
+          </div>
+          <p className="text-[var(--color-contrast-medium)]">{r.description}</p>
+        </div>
+      ))}
+    </section>
   );
 }

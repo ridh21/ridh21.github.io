@@ -10,7 +10,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 /**
  * Pre-validate MDX content. If compilation fails, returns false.

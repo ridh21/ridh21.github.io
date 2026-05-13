@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { socialLinks } from "app/config";
+import { playKeypress } from "app/lib/use-sound";
 
 // ─── Types ───
 interface CommandItem {
@@ -370,6 +371,9 @@ export function CommandPalette() {
     active?.scrollIntoView({ block: "nearest" });
   }, [activeIndex]);
 
+  const prevLength = useRef(0);
+  const lastKeyTime = useRef(0);
+
   // ─── Keyboard navigation ───
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -382,10 +386,18 @@ export function CommandPalette() {
       } else if (e.key === "Enter") {
         e.preventDefault();
         filtered[activeIndex]?.action();
+      } else if (e.key.length === 1) {
+        const now = Date.now();
+        if (now - lastKeyTime.current > 20) {
+          playKeypress(e.code || e.key);
+          lastKeyTime.current = now;
+        }
       }
     },
     [filtered, activeIndex]
   );
+
+
 
   // Don't render on admin pages — admin has its own command palette
   if (isAdmin || !open) return null;

@@ -150,6 +150,7 @@
   h5,
   h6 {
     @apply font-serif;
+    text-wrap: balance;
   }
 
   /* Superellipse corners — progressive enhancement from reference */
@@ -195,6 +196,23 @@ html {
   scroll-behavior: smooth;
 }
 
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
 body {
   background-color: var(--color-background);
   transition: background-color 0.2s ease;
@@ -234,6 +252,10 @@ body {
     box-shadow: var(--card-shadow-hover), var(--card-inset);
   }
 
+  .card:active {
+    transform: scale(0.99);
+  }
+
   /* Card selected state — gradient bg from reference */
   .card-selected {
     background: linear-gradient(0deg, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0.075) 100%), var(--color-background-light);
@@ -262,6 +284,10 @@ body {
     cursor: default;
     position: relative;
     transition: all 0.15s var(--ease-in-out);
+  }
+
+  .btn:active {
+    transform: scale(0.97);
   }
 
   .btn:focus-visible {
@@ -499,11 +525,16 @@ body {
   /* ---- NAV LINK ---- */
   .nav-link {
     color: var(--color-contrast-low);
-    transition: color 0.15s var(--ease-in-out);
+    transition: color 0.15s var(--ease-in-out), transform 0.12s var(--ease-in-out);
   }
 
   .nav-link:hover {
     color: var(--color-contrast-high);
+  }
+
+  .nav-link:active,
+  .cmd-trigger:active {
+    transform: scale(0.97);
   }
 }
 
