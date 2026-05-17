@@ -11,6 +11,7 @@ import { metaData } from "./config";
 import { JumpToTopButton } from "./components/jump-to-top";
 import { CommandPalette } from "./components/command-palette";
 import { SoundProvider } from "app/lib/use-sound";
+import { WebMCPProvider } from "./components/webmcp";
 import {
   DEFAULT_PRIMARY_COLOR_KEY,
   getPrimaryColorCssVariables,
@@ -161,6 +162,7 @@ export default function RootLayout({
             </main>
             <JumpToTopButton />
             <CommandPalette />
+            <WebMCPProvider />
             <Suspense fallback={null}>
               <ConfigLoader />
             </Suspense>

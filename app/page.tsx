@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { headers } from "next/headers";
 import {
   IconArrowUpRight,
   IconGitHub,
@@ -16,6 +17,20 @@ import {
 } from "app/lib/collections";
 
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  const baseUrl = "https://ridhfolio.vercel.app";
+  return {
+    other: {
+      "Link": [
+        `<${baseUrl}/.well-known/api-catalog>; rel="api-catalog"`,
+        `<${baseUrl}/.well-known/mcp/server-card.json>; rel="mcp"`,
+        `<${baseUrl}/.well-known/agent-skills/index.json>; rel="service-doc"`,
+        `<${baseUrl}/sitemap.xml>; rel="sitemap"`,
+      ].join(", "),
+    },
+  };
+}
 
 // --- Reusable Entry Component for Projects & Publications ---
 function ListEntry({

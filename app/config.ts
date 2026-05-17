@@ -1,5 +1,5 @@
 export const metaData = {
-  baseUrl: "https://ridhampatel.tech",
+  baseUrl: "https://ridhfolio.vercel.app",
   title: "Ridham Patel",
   name: "Ridham Patel",
   ogImage: "/opengraph-image.png",

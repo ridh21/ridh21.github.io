@@ -9,5 +9,10 @@ export default function robots() {
       },
     ],
     sitemap: `${metaData.baseUrl}/sitemap.xml`,
+    contentSignals: {
+      aiTrain: "no",
+      search: "yes",
+      aiInput: "no",
+    },
   };
 }
