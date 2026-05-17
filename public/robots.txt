@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ridhfolio.vercel.app/sitemap.xml
+
+Content-Signal: ai-train=no, search=yes, ai-input=no

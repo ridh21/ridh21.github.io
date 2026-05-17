@@ -1,21 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
-import TurndownService from "turndown";
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.ADMIN_JWT_SECRET || "admin-secret-change-in-production-2024"
 );
 
 const COOKIE_NAME = "admin_token";
-
-const turndownService = new TurndownService({
-  headingStyle: "atx",
-  codeBlockStyle: "fenced",
-});
-
-function htmlToMarkdown(html: string): string {
-  return turndownService.turndown(html);
-}
 
 function buildLinkHeaders(baseUrl: string): string {
   return [
@@ -32,32 +22,15 @@ export async function middleware(request: NextRequest) {
   const acceptHeader = request.headers.get("accept") || "";
   const wantsMarkdown = acceptHeader.includes("text/markdown");
 
-  const response = NextResponse.next();
-
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://ridhfolio.vercel.app";
 
   if (wantsMarkdown && !pathname.startsWith("/api/") && !pathname.startsWith("/_next/") && !pathname.startsWith("/.")) {
-    const modifiedResponse = await fetch(request.url, {
-      headers: {
-        ...Object.fromEntries(request.headers.entries()),
-        accept: "text/html",
-      },
-    });
-
-    const html = await modifiedResponse.text();
-    const markdown = htmlToMarkdown(html);
-
-    const headers = new Headers(modifiedResponse.headers);
-    headers.set("Content-Type", "text/markdown; charset=utf-8");
-    headers.set("x-markdown-tokens", markdown.length.toString());
-    headers.delete("Content-Length");
-
-    return new NextResponse(markdown, {
-      status: modifiedResponse.status,
-      statusText: modifiedResponse.statusText,
-      headers,
-    });
+    const markdownUrl = new URL("/api/markdown", request.url);
+    markdownUrl.searchParams.set("path", pathname);
+    return NextResponse.redirect(markdownUrl);
   }
+
+  const response = NextResponse.next();
 
   if (!pathname.startsWith("/api/") && !pathname.startsWith("/_next/") && !pathname.startsWith("/.")) {
     response.headers.set("Link", buildLinkHeaders(baseUrl));
