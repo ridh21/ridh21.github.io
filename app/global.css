@@ -2522,10 +2522,16 @@ table {
    Spring is approximated with a gentle-overshoot cubic-bezier.
    Driven by app/template.tsx, which re-mounts per navigation, so the
    stagger replays top→bottom on every route change.
+
+   NOTE: fill-mode is `backwards` (not `both`) and there is intentionally no
+   persistent `will-change`. A lingering transform/filter/will-change on these
+   blocks would make them the containing block for any `position: fixed`
+   descendant (e.g. the photo lightbox), trapping it at the block's width.
+   With `backwards`, the final transform/filter are dropped once the animation
+   ends, so fixed children escape to the viewport as expected.
    ============================================================ */
 .page-transition > * > * {
-  animation: framer-appear 0.5s cubic-bezier(0.34, 1.12, 0.64, 1) both;
-  will-change: opacity, transform, filter;
+  animation: framer-appear 0.5s cubic-bezier(0.34, 1.12, 0.64, 1) backwards;
 }
 
 @keyframes framer-appear {
