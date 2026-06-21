@@ -16,7 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: post.publishedAt,
   }));
 
-  let routes = ["", "blog", "projects", "ai"].map((route) => ({ // Replaced 'education' and 'photos' with 'cv'
+  // 'ai' route is temporarily disabled — kept out of the sitemap while the chatbot is shelved.
+  let routes = ["", "proemio", "now", "blog", "projects", "gallery", "photos"].map((route) => ({
     url: `${BaseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));

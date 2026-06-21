@@ -43,15 +43,7 @@ export default function Footer() {
     <footer className="block lg:mt-12 mt-8 text-[var(--color-contrast-medium)]">
       <div className="border-b border-[var(--color-border)]" />
       <p className="mt-5 text-xs flex justify-center gap-1 text-[var(--color-contrast-low)]">
-        Portfolio inspired by{" "}
-        <a
-          href="https://stack-dhruv.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--color-contrast-medium)] hover:text-[var(--color-accent)] transition-colors duration-200"
-        >
-          Dhruvkumar Patel
-        </a>
+        © {YEAR} Ridham Patel
       </p>
     </footer>
   );

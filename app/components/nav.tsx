@@ -5,10 +5,13 @@ import { ThemeSwitch } from "./theme-switch";
 import { Logo } from "./logo";
 
 const navItems = {
-  "/proemio": {name: "Proemio"},
+  "/proemio": { name: "Proemio" },
+  "/now": { name: "Now" },
   "/blog": { name: "Blog" },
   "/projects": { name: "Projects" },
-  "/ai": { name: "ऋतम://ai" },
+  "/gallery": { name: "Gallery" },
+  // AI chatbot — temporarily disabled, kept for future use.
+  // "/ai": { name: "ऋतम://ai" },
 };
 
 export function Navbar() {

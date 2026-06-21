@@ -2513,3 +2513,92 @@ table {
     background: rgba(255, 255, 255, 0.06);
   }
 }
+
+/* ============================================================
+   PAGE TRANSITIONS — Framer-style "Appear Effect", matching tanvir.io.
+   The exact recipe pulled from tanvir.io's Framer bundle:
+     opacity 0 → 1, translateY(5px) → 0, filter: blur(5px) → 0,
+     spring (bounce ~0.2, ~0.4s), staggered across content blocks.
+   Spring is approximated with a gentle-overshoot cubic-bezier.
+   Driven by app/template.tsx, which re-mounts per navigation, so the
+   stagger replays top→bottom on every route change.
+   ============================================================ */
+.page-transition > * > * {
+  animation: framer-appear 0.5s cubic-bezier(0.34, 1.12, 0.64, 1) both;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes framer-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Stagger the reveal down the page for that top→bottom cascade. */
+.page-transition > * > *:nth-child(1) { animation-delay: 0ms; }
+.page-transition > * > *:nth-child(2) { animation-delay: 60ms; }
+.page-transition > * > *:nth-child(3) { animation-delay: 120ms; }
+.page-transition > * > *:nth-child(4) { animation-delay: 180ms; }
+.page-transition > * > *:nth-child(5) { animation-delay: 240ms; }
+.page-transition > * > *:nth-child(6) { animation-delay: 300ms; }
+.page-transition > * > *:nth-child(n + 7) { animation-delay: 360ms; }
+
+/* ============================================================
+   DESIGN GALLERY — swatches & inspiration cards.
+   ============================================================ */
+.swatch-row {
+  display: flex;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  height: 2.75rem;
+}
+
+.swatch-row > span {
+  flex: 1 1 0%;
+  position: relative;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2.25rem, 1fr));
+  gap: 0.5rem;
+}
+
+.swatch-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  color: var(--color-contrast-low);
+}
+
+.swatch-chip > span:first-child {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+/* Respect users who prefer reduced motion — disable enter animations. */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition > * > * {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
