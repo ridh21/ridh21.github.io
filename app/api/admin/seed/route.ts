@@ -201,7 +201,7 @@ export async function POST() {
         name: "Ridham Patel",
         title: "Ridham Patel",
         description:
-          "The personal portfolio of Ridham Patel – Associate Software Engineer at OpenXcell Technolabs, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
+          "The personal portfolio of Ridham Patel – AI/ML Researcher actively working on computer vision, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
         bio: "I design and deploy production-grade AI systems with experience building scalable backend architectures, MLOps pipelines, multimodal AI, and real-time ML inference. Currently actively contributing to open-source while seeking AI/ML and Backend Engineer roles.",
         subtitle: "Software Developer · Researcher · AI/ML Engineer",
         primaryColor: "purple",

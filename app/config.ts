@@ -2,9 +2,9 @@ export const metaData = {
   baseUrl: "https://ridhfolio.vercel.app",
   title: "Ridham Patel",
   name: "Ridham Patel",
-  ogImage: "/opengraph-image.png",
+  ogImage: "/og",
   description:
-    "The personal portfolio of Ridham Patel – Associate Software Engineer at OpenXcell Technolabs, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
+    "The personal portfolio of Ridham Patel – AI/ML Researcher actively working on computer vision, with expertise in AI/ML, LLM systems, scalable backend architectures, and full-stack development. AWS Certified Cloud Practitioner.",
 };
 
 export const socialLinks = {
