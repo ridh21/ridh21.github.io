@@ -100,6 +100,13 @@ const fonts: {
     fontFamily: "var(--font-matter)",
   },
   {
+    name: "Graphik",
+    classification: "Geometric sans",
+    use: "Swiss-modern workhorse — crisp, versatile, and reads beautifully at all sizes.",
+    url: "https://commercialtype.com/catalog/graphik",
+    sample: "The quick brown fox",
+  },
+  {
     name: "DM Sans",
     classification: "Low-contrast geometric sans",
     use: "Friendly product UI with a touch of personality.",
