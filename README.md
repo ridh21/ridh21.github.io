@@ -59,3 +59,11 @@ Contributions are welcome! To get involved, just push your code to the repo. Whe
 ## Licence
 
 Nextfolio is open-source and released under the MIT License.
+
+<!-- deploy-portal:log:start -->
+
+### 🚀 Deploy log
+
+- `2026-08-10T16:48:50.598Z` — auto test
+
+<!-- deploy-portal:log:end -->
