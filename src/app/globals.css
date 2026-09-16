@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "../styles/0s7i10jin_pkl.css";
+@import "../styles/0-6tech~kc9wz.css";
+@import "../styles/0msz9a9-z8h1a.css";
+@import "../styles/0klfwd7adfbp0.css";
+/* Behavior states and accessibility, retaining the original visual tokens. */
+.replica-notice { position:fixed;left:50%;bottom:80px;transform:translate(-50%,8px);padding:8px 14px;border-radius:8px;background:var(--button-bg);color:var(--button-text);font-size:12px;opacity:0;pointer-events:none;z-index:10000;transition:opacity .2s,transform .2s; }
+.replica-notice.is-visible{opacity:1;transform:translate(-50%,0)}
+[data-copied=true]{color:#22c55e!important}
+:focus-visible{outline:2px solid var(--text-muted);outline-offset:4px}
+.source-image-dialog{padding:20px;border:0;border-radius:12px;background:var(--bg-surface);color:var(--text);max-width:min(720px,90vw)}
+.source-image-dialog::backdrop{background:#0008}.source-image-dialog img{max-width:100%;max-height:75vh;object-fit:contain}.source-image-dialog button{display:block;margin:12px auto 0;cursor:pointer}
+.replica-expanded [class*="__panelReveal"]{grid-template-rows:1fr!important;opacity:1!important;pointer-events:auto!important;visibility:visible!important;transform:none!important;max-height:600px!important;height:auto!important}
+[role=slider]{touch-action:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.home-page { padding-top: 72px; }
+.home-page .avatar-swap { overflow: hidden; border-radius: 6px; }
+.home-page .avatar {
+  object-fit: cover;
+  object-position: center 46%;
+  transform: scale(1.42);
+  transform-origin: 52% 47%;
+}
+
+@media (max-width: 720px) { .home-page { padding-top: 40px; } }
+
+/* The portfolio now uses spacing—not rules—to separate sections and links. */
+.link-divider,
+.link-divider::before,
+.link-label::before,
+.link-label::after,
+.article-footnotes::before { display: none !important; }
