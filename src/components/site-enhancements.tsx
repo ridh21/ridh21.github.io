@@ -17,10 +17,20 @@ export default function SiteEnhancements({route}:{route:string}) {
   theme();
   const themeObserver=new MutationObserver(theme);themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   const copy=async(text:string,b?:HTMLElement)=>{try{await navigator.clipboard.writeText(text);setNotice('Copied to clipboard'); if(b){b.dataset.copied='true';later(()=>delete b.dataset.copied,1600);}later(()=>setNotice(''),1800);}catch{setNotice('Copy unavailable. Please select and copy the text.');}};
-  const clock=()=>{ $$('.footer-time').forEach(e=>e.textContent=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true}).format(new Date()).toLowerCase()); };
-  clock(); const interval=setInterval(clock,1000);
-  const greet=['good evening,','शुभ संध्या,','શુભ સાંજ'];
-  $$('.greetings > span').forEach((e,i)=>e.textContent=greet[i]);
+  const updateTimeSensitiveContent=()=>{
+   const now=new Date();
+   $$('.footer-time').forEach(e=>e.textContent=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true}).format(now).toLowerCase());
+   const hour=now.getHours();
+   const greetings=hour>=5&&hour<12
+    ? ['good morning,','सुप्रभात,','સુપ્રભાત']
+    : hour>=12&&hour<17
+     ? ['good afternoon,','शुभ दोपहर,','શુભ બપોર']
+     : hour>=17&&hour<21
+      ? ['good evening,','शुभ संध्या,','શુભ સાંજ']
+      : ['good night,','शुभ रात्रि,','શુભ રાત્રી'];
+   $$('.greetings > span').forEach((element,index)=>{element.textContent=greetings[index]??'';});
+  };
+  updateTimeSensitiveContent(); const interval=setInterval(updateTimeSensitiveContent,1000);
   const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');if(e.target instanceof HTMLVideoElement)void e.target.play().catch(()=>{});}else if(e.target instanceof HTMLVideoElement)e.target.pause();}),{rootMargin:'150px'});
   $$('video').forEach(e=>observer.observe(e));
   const videos:Record<string,string>={telegram:'trimmed89.mp4',realgirl:'realgirl_noaudio_trimmed.mp4'};
