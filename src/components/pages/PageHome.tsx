@@ -14,7 +14,28 @@ export default function PageHome() { return <>
 </div>
 </div>
 <div className={"link-groups"}>
-<section className={"link-section appear"} aria-labelledby={"Projects-title"} style={{"--appear-delay": "235ms"} as CSSProperties}><h2 id={"Projects-title"}>{"Projects"}</h2>
+<section className={"link-section appear"} aria-labelledby={"Research-title"} style={{"--appear-delay": "235ms"} as CSSProperties}><h2 id={"Research-title"}>{"Research & Publications"}</h2>
+<div className={"link-row publication-row"}><div className={"names"}><a href={"https://arxiv.org/abs/2609.22750"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Towards Robust Classroom Attendance: A Comprehensive Evaluation of Face Detection and Recognition Models"}</span>
+</span>
+</a>
+<span className={"publication-venue"}>{"IEEE CICON 2026, Karnavati University, India"}</span>
+</div>
+<div className={"dates"}><span>{"Accepted"}</span>
+</div>
+<div className={"names"}><span>{"Ecosmart Dustbin for Educational Institution, An IoT-Based Waste Segregation System and Method Thereof"}</span>
+<span className={"publication-venue"}>{"Indian Patent, Application No. 202521111515"}</span>
+</div>
+<div className={"dates"}><span>{"Accepted"}</span>
+</div>
+<div className={"names"}><span>{"FedDETR for Privacy Preserving K-Means Based Helmet Detection of Two-Wheeler Riders"}</span>
+<span className={"publication-venue"}>{"Springer Nature, Discover Applied Sciences"}</span>
+</div>
+<div className={"dates"}><span>{"Under review"}</span>
+</div>
+</div>
+<p className={"publication-note"}>{"Two more papers in draft, on face recognition and machine unlearning in diffusion models."}</p>
+</section>
+<section className={"link-section appear"} aria-labelledby={"Projects-title"} style={{"--appear-delay": "265ms"} as CSSProperties}><h2 id={"Projects-title"}>{"Projects"}</h2>
 <div className={"link-row"}><div className={"names"}><a href={"https://github.com/ridh21/qubits-dealflow"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Qubits-Dealflow"}</span>
 </span>
 </a>

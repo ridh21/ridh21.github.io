@@ -31,3 +31,9 @@
 .link-label::before,
 .link-label::after,
 .article-footnotes::before { display: none !important; }
+
+/* Publication titles run long, so each gets a muted venue line beneath it. */
+.publication-row .names { display: flex; flex-direction: column; align-items: flex-start; }
+.publication-row .names a { display: inline; }
+.publication-venue { color: var(--text-muted); font-size: 13px; line-height: 20px; margin-top: 2px; }
+.publication-note { color: var(--text-muted); font-family: var(--font-sf); font-size: 13px; line-height: 20px; margin-top: 4px; }
