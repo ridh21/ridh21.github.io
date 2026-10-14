@@ -1,0 +1,11 @@
+/* Self-hosted Warnock Pro (serif body font, same family as sophielwang.com/blog/paper-writing).
+   Files are Typekit web subsets (woff2). Full commercial license via Adobe Fonts. */
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-light-300-normal.woff2")format("woff2");font-style:normal;font-weight:300;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-light-300-italic.woff2")format("woff2");font-style:italic;font-weight:300;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-regular-400-normal.woff2")format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-italic-400.woff2")format("woff2");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-semibold-600-normal.woff2")format("woff2");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-semibold-600-italic.woff2")format("woff2");font-style:italic;font-weight:600;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-bold-700-normal.woff2")format("woff2");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Warnock Pro";src:url("/fonts/warnock-pro/warnock-pro-bold-700-italic.woff2")format("woff2");font-style:italic;font-weight:700;font-display:swap}
+:root{--font-sf:"Warnock Pro","warnock-pro",Georgia,"Times New Roman",serif}
