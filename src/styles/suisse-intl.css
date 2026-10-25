@@ -1,0 +1,5 @@
+/* Self-hosted Suisse Intl (sans-serif body font).
+   Files are licensed web subsets (woff2). */
+@font-face{font-family:"Suisse Intl";src:url("/fonts/suisse-intl/suisse-intl-regular-400.woff2")format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Suisse Intl";src:url("/fonts/suisse-intl/suisse-intl-semibold-600.woff2")format("woff2");font-style:normal;font-weight:600;font-display:swap}
+:root{--font-sf:"Suisse Intl","Site Inter",Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}

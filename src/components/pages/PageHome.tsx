@@ -1,8 +1,9 @@
 /* Reference markup transcribed to editable React components. */
 import type { CSSProperties } from "react";
+import AvatarStack from "@/components/AvatarStack";
 export default function PageHome() { return <>
 
-<main className={"site"}><section className={"intro-section home-page"} aria-label={"Introduction"}><div className={"content"}><div className={"avatar-wrap appear"} style={{"--appear-delay": "0ms"} as CSSProperties}><span className={"avatar-swap"} aria-hidden={"true"}><img className={"avatar avatar-still"} src={"/assets/ridham.jpg"} alt={""} draggable={false} /></span>
+<main className={"site"}><section className={"intro-section home-page"} aria-label={"Introduction"}><div className={"content"}><div className={"profile-deck-wrap appear"} style={{"--appear-delay": "0ms"} as CSSProperties}><AvatarStack />
 </div>
 <div className={"stack"}><div className={"body-copy"}><div className={"greetings appear"} aria-label={"Greetings"} style={{"--appear-delay": "40ms"} as CSSProperties}><span>{"good evening"}{","}</span>
 <span lang={"hi"}>{"शुभ संध्या"}<span className={"greetings-comma"}>{","}</span>
