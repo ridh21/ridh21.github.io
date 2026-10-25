@@ -42,7 +42,7 @@ export default function SiteEnhancements({route}:{route:string}) {
    const t=e.target instanceof Element?e.target:null; if(!t)return;const b=t.closest<HTMLElement>('button, [role="button"]');if(!b)return;
    if(b.matches('[class*="modeSwitcher"]')) {toggleTheme();return;}
    if(b.matches('.copy-button'))void copy('ridhampatel2k4@gmail.com',b);
-   if(b.matches('.code-copy')) void copy($('code',b.closest('.code-block')!)?.innerText||'',b);
+   if(b.matches('.code-copy')) {const block=b.closest('.code-block'); void copy(block?.getAttribute('data-copy') ?? $('code',block!)?.innerText ?? '',b);}
    if(b.matches('[aria-label="Copy quote"]'))void copy(window.getSelection()?.toString()||'',b);
    if(b.matches('[aria-label="Back to top"]'))window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
    if(b.matches('[class*="__share"]') && !b.matches('[class*="__toTop"]'))void copy(location.href,b);
