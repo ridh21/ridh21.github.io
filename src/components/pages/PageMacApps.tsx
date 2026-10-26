@@ -98,12 +98,19 @@ const apps: MacApp[] = [
       { label: "CLI", text: "brew install opencode" },
     ],
   },
+  {
+    name: "Helium",
+    tagline: "Browser",
+    icon: "/apps/helium.png",
+    commands: [{ label: "Install", text: "brew install --cask helium-browser" }],
+    note: "Not the Helium on Homebrew's first match — that one is an Android backup tool. The browser is helium-browser.",
+  },
 ];
 
 export default function PageMacApps() { return <>
 
 <main className={"site"}><section className={"intro-section apps-page"} aria-label={"Mac apps"}><div className={"content"}><div className={"apps-intro appear"} style={{"--appear-delay": "0ms"} as CSSProperties}><h1 className={"apps-title"}>{"Mac apps"}</h1>
-<p className={"apps-lede"}>{"The eleven things I install on a new Mac, in the order I install them. Each command is the brew cask where one exists; Homebrew and Finder Menu take an extra step instead."}</p>
+<p className={"apps-lede"}>{"The twelve things I install on a new Mac, in the order I install them. Each command is the brew cask where one exists; Homebrew and Finder Menu take an extra step instead."}</p>
 </div>
 <ol className={"apps-list"}>{apps.map((app, index) => <li key={app.name} className={"app-item appear"} style={{"--appear-delay": `${60 + index * 35}ms`} as CSSProperties}><img alt={""} width={"36"} height={"36"} loading={"lazy"} decoding={"async"} className={app.glyph ? "app-icon app-icon-glyph" : "app-icon"} src={app.icon} /><div className={"app-main"}><div className={"app-head"}><span className={"app-name"}>{app.name}</span>
 <span className={"app-tag"}>{app.tagline}</span>
