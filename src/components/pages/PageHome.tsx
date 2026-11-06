@@ -53,7 +53,7 @@ export default function PageHome() { return <>
 <div className={"names"}><span>{"Ecosmart Dustbin for Educational Institution, An IoT-Based Waste Segregation System and Method Thereof"}</span>
 <span className={"publication-venue"}>{"Indian Patent, Application No. 202521111515"}</span>
 </div>
-<div className={"dates"}><span>{"Accepted"}</span>
+<div className={"dates"}><span>{"Under examination"}</span>
 </div>
 </div>
 </section>
