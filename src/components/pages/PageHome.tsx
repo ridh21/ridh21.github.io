@@ -126,7 +126,7 @@ export default function PageHome() { return <>
 {", follow me on"}{" "}<a href={"https://x.com/ridhampatel2k4"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"X (Twitter)"}</span>
 </span>
 </a>
-{", or read my"}{" "}<a href={"/cv"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"CV"}</span>
+{", or read my"}{" "}<a href={"/Ridham_Patel_CV.pdf"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"CV"}</span>
 </span>
 </a>
 {"."}</p>
