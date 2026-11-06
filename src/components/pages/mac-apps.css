@@ -1,0 +1,39 @@
+/* Mac apps page, on the academic layout. */
+.mac-lede { margin-top: 12px; color: var(--acad-muted); font-size: 16px; line-height: 1.65; }
+
+.mac-list { list-style: none; margin-top: 8px; }
+.mac-item { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 16px; padding: 22px 0; border-top: 1px solid var(--acad-rule); }
+.mac-item:last-child { border-bottom: 1px solid var(--acad-rule); }
+.mac-icon { width: 32px; height: 32px; border-radius: 8px; object-fit: contain; margin-top: 1px; }
+.mac-icon-glyph { padding: 6px; background: var(--acad-code-bg); border: 1px solid var(--acad-rule); }
+:root[data-theme="dark"] .mac-icon-glyph { filter: invert(1); }
+
+.mac-head { display: flex; align-items: baseline; gap: 10px; min-height: 34px; }
+.mac-name { font-weight: 600; font-size: 16px; }
+.mac-tag { color: var(--acad-muted); font-size: 15px; }
+.mac-index { margin-left: auto; color: var(--acad-faint); font-size: 13px; font-variant-numeric: tabular-nums; }
+.mac-cmds { display: grid; gap: 8px; margin-top: 8px; }
+.mac-note { margin-top: 10px; font-size: 14.5px; line-height: 1.6; color: var(--acad-muted); }
+
+/* Command box */
+.cmd { border: 1px solid var(--acad-rule); border-radius: 8px; background: var(--acad-code-bg); overflow: hidden; }
+.cmd-head { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; border-bottom: 1px solid var(--acad-rule); }
+.cmd-label { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; font-weight: 600; color: var(--acad-faint); }
+.cmd-copy {
+  font: inherit; font-size: 13px; cursor: pointer; padding: 0; border: 0; background: none;
+  color: var(--acad-muted); text-decoration: underline; text-decoration-color: var(--acad-underline); text-underline-offset: 3px;
+}
+.cmd-copy:hover { color: var(--acad-text); text-decoration-color: currentColor; }
+.cmd pre { margin: 0; padding: 10px 12px; overflow-x: auto; }
+.cmd code { font: 13.5px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acad-muted); }
+.cmd-line { display: block; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cmd .tok-command { color: var(--acad-text); font-weight: 600; }
+.cmd .tok-subcommand { color: var(--acad-text); }
+.cmd .tok-flag { color: var(--c-blue); }
+.cmd .tok-string, .cmd .tok-url { color: var(--c-green); }
+.cmd .tok-substitution, .cmd .tok-variable { color: var(--c-violet); }
+
+@media (max-width: 560px) {
+  .mac-item { grid-template-columns: 1fr; row-gap: 10px; }
+  .mac-index { display: none; }
+}

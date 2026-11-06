@@ -132,22 +132,32 @@ export const PROJECTS: { name: string; href: string; context: string; detail: st
   },
 ];
 
-export type Writing = { slug: string; title: string; date: string; readTime: string; summary: string };
+export type Writing = { slug: string; topic: string; title: string; date: string; readTime: string; summary: string };
 
 export const WRITINGS: Writing[] = [
   {
-    slug: "machine-unlearning-101",
-    title: "Machine Unlearning 101",
-    date: "16 September 2026",
-    readTime: "9 min read",
-    summary: "Deleting a record from storage does not delete what a model learned from it. What it takes to make a trained model forget, and how to check that it did.",
+    slug: "federated-learning",
+    topic: "Federated learning",
+    title: "Training on Data You Can’t See",
+    date: "6 November 2026",
+    readTime: "8 min read",
+    summary: "How hospitals, banks and phones can train one shared model without ever pooling their data, explained with pictures.",
   },
   {
-    slug: "diffusion-models-101",
-    title: "Diffusion Models 101",
+    slug: "machine-unlearning",
+    topic: "Machine unlearning",
+    title: "Teaching a Model to Forget",
     date: "16 September 2026",
-    readTime: "8 min read",
-    summary: "How diffusion models learn to create images by reversing noise: the forward process, the training objective, sampling, and guidance.",
+    readTime: "9 min read",
+    summary: "Deleting your data from a database does not remove it from a trained model. What it takes to make a model truly forget, and how to check.",
+  },
+  {
+    slug: "diffusion-models",
+    topic: "Diffusion models",
+    title: "From Noise to Pictures",
+    date: "16 September 2026",
+    readTime: "9 min read",
+    summary: "How image generators like Stable Diffusion turn random static into a picture, one small clean-up step at a time.",
   },
 ];
 

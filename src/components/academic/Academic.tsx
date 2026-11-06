@@ -154,7 +154,7 @@ export default function Academic() {
             {WRITINGS.map((w) => (
               <article key={w.slug} className="acad-post">
                 <h3 className="acad-post-title"><a href={`/writing/${w.slug}`}>{w.title}</a></h3>
-                <p className="acad-post-meta">{w.date} · {w.readTime}</p>
+                <p className="acad-post-meta">{w.topic} · {w.date} · {w.readTime}</p>
                 <p className="acad-post-summary">{w.summary}</p>
               </article>
             ))}

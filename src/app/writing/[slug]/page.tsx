@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleDiffusion from "@/components/pages/ArticleDiffusion";
 import ArticleUnlearning from "@/components/pages/ArticleUnlearning";
+import ArticleFederated from "@/components/pages/ArticleFederated";
 import { WRITINGS } from "@/components/academic/data";
 
 export const dynamicParams = false;
 
 const articles: Record<string, () => React.JSX.Element> = {
-  "diffusion-models-101": ArticleDiffusion,
-  "machine-unlearning-101": ArticleUnlearning,
+  "federated-learning": ArticleFederated,
+  "diffusion-models": ArticleDiffusion,
+  "machine-unlearning": ArticleUnlearning,
 };
 
 export function generateStaticParams() {

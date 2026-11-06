@@ -62,7 +62,7 @@ export default function ResearchArticleShell({
           </div>
 
           <header className="art-header">
-            <p className="art-kicker">Writing</p>
+            <p className="art-kicker">{post.topic}</p>
             <h1 className="art-title">{post.title}</h1>
             <p className="art-meta">{post.date} · {post.readTime}</p>
           </header>

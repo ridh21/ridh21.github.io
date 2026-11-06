@@ -1,6 +1,8 @@
+"use client";
+
 /* A small bash highlighter: enough of a lexer for install commands, no dependencies.
    Output is plain spans, so the existing `.code-copy` handler still copies the raw command. */
-import { Fragment, type ReactNode } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 
 type TokenKind =
   | "plain"
@@ -173,14 +175,20 @@ export default function CodeBlock({
   lang?: string;
   copyLabel?: string;
 }) {
-  return <div className={"code-block app-cmd"} data-lang={lang} data-copy={code}>
-    <div className={"code-head"}>{label && <span className={"code-lang"}>{label}</span>}
-      <button type={"button"} className={"code-copy"} aria-label={copyLabel ? `Copy ${copyLabel}` : "Copy command"} title={"Copy command"}><svg viewBox={"0 0 24 24"} width={"13"} height={"13"} fill={"none"} stroke={"currentColor"} strokeWidth={"2"} strokeLinecap={"round"} strokeLinejoin={"round"} aria-hidden={"true"}><rect x={"9"} y={"9"} width={"12"} height={"12"} rx={"2"}></rect>
-        <path d={"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"}></path>
-      </svg>
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard?.writeText(code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  };
+  return <div className="cmd" data-lang={lang}>
+    <div className="cmd-head">
+      {label && <span className="cmd-label">{label}</span>}
+      <button type="button" className="cmd-copy" onClick={copy} aria-label={copyLabel ? `Copy ${copyLabel}` : "Copy command"}>
+        {copied ? "Copied" : "Copy"}
       </button>
     </div>
-    <pre><code>{code.split("\n").map((line, index) => <span key={index} className={"code-line"}><span className={"code-line-text"}>{lang === "bash" ? renderTokens(tokenizeShell(line)) : line}</span>
-    </span>)}</code></pre>
+    <pre><code>{code.split("\n").map((line, index) => <span key={index} className="cmd-line">{lang === "bash" ? renderTokens(tokenizeShell(line)) : line}</span>)}</code></pre>
   </div>;
 }

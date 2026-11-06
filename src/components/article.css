@@ -31,7 +31,7 @@
 /* Body */
 .art-body { font-size: 17px; line-height: 1.75; }
 .article-prose { display: grid; gap: 16px; }
-.article-prose + .article-prose { margin-top: 16px; }
+.article-prose + .article-prose, .article-tips + .article-prose, .article-prose + .article-tips { margin-top: 16px; }
 .art-section { margin-top: 44px; scroll-margin-top: 24px; }
 .art-section h2 { font-size: 22px; line-height: 1.3; font-weight: 600; margin-bottom: 14px; letter-spacing: -0.01em; }
 
@@ -65,3 +65,103 @@
 .art-body .article-tips li { font: inherit; color: inherit; line-height: inherit; margin: 0; text-wrap: wrap; }
 .art-body .article-tips strong { font-weight: 600; color: var(--acad-text); }
 .art-body .article-tips li::before { line-height: 22px; font-size: 12.5px; color: var(--acad-kind-text); }
+
+/* Diagrams (inline SVG, theme-aware) */
+.fig { margin: 32px 0; }
+.fig-art { display: flex; justify-content: center; }
+.fig-art > svg { width: 100%; max-width: 520px; height: auto; overflow: visible; }
+.fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; width: 100%; }
+.fig-pair svg { width: 100%; height: auto; }
+.fig figcaption { margin-top: 14px; font-size: 14px; line-height: 1.55; color: var(--acad-muted); text-align: center; text-wrap: pretty; max-width: 560px; margin-left: auto; margin-right: auto; }
+@media (max-width: 640px) { .fig-pair { grid-template-columns: 1fr; gap: 32px; } }
+
+.fig svg text { font-family: var(--acad-font); }
+.fig .fig-title { fill: var(--acad-text); font-size: 15px; font-weight: 600; }
+.fig .fig-title-sm { fill: var(--acad-text); font-size: 13px; font-weight: 600; }
+.fig .fig-sub { fill: var(--acad-muted); font-size: 12.5px; }
+.fig .fig-label { fill: var(--acad-text); font-size: 13.5px; }
+.fig .fig-note { fill: var(--acad-muted); font-size: 12.5px; }
+.fig .fig-tick { fill: var(--acad-muted); font-size: 12px; }
+.fig .fig-badge { fill: var(--acad-bg); font-size: 11px; font-weight: 600; }
+.fig .fig-on-dark { fill: var(--acad-bg); font-size: 12.5px; font-weight: 600; }
+.fig .fig-on-light { fill: var(--acad-text); font-size: 12.5px; font-weight: 600; }
+.fig .fig-box { fill: var(--acad-bg); stroke: var(--acad-faint); stroke-width: 1; }
+.fig .fig-soft { fill: var(--acad-code-bg); stroke: var(--acad-faint); stroke-width: 1; }
+.fig .fig-outline { fill: none; stroke: var(--acad-faint); stroke-width: 1; }
+.fig .fig-ink { fill: var(--acad-text); }
+.fig .fig-wire line { stroke: var(--acad-faint); stroke-width: 1.2; }
+.fig .fig-wire-inv line { stroke: var(--acad-bg); stroke-width: 1.2; opacity: .6; }
+.fig .fig-dot { fill: var(--acad-text); }
+.fig .fig-dot-inv { fill: var(--acad-bg); }
+.fig .fig-line { stroke: var(--acad-muted); stroke-width: 1.4; fill: none; }
+.fig .fig-line-dash { stroke-dasharray: 5 4; }
+.fig .fig-head { fill: var(--acad-muted); }
+.fig .fig-axis { stroke: var(--acad-faint); stroke-width: 1; }
+.fig .fig-bar-1 { fill: var(--acad-text); }
+.fig .fig-bar-2 { fill: var(--acad-muted); }
+.fig .fig-bar-3 { fill: var(--acad-faint); }
+
+/* Diagram colour tones: each colour keeps one meaning across all articles.
+   blue = model, amber = data, green = learning/updates, violet = noise/privacy, rose = deleted/error. */
+.acad {
+  --c-blue: #3466d0;
+  --c-blue-soft: #e4ecfb;
+  --c-green: #2c8f57;
+  --c-green-soft: #ddf2e5;
+  --c-amber: #b9741a;
+  --c-amber-soft: #fbefd8;
+  --c-violet: #7255cf;
+  --c-violet-soft: #ece7fb;
+  --c-rose: #c84459;
+  --c-rose-soft: #fbe4e8;
+}
+:root[data-theme="dark"] .acad {
+  --c-blue: #7ea6f5;
+  --c-blue-soft: #1c2a45;
+  --c-green: #62c48f;
+  --c-green-soft: #163225;
+  --c-amber: #e3a956;
+  --c-amber-soft: #392b15;
+  --c-violet: #a993f2;
+  --c-violet-soft: #272140;
+  --c-rose: #ee8392;
+  --c-rose-soft: #3b1c22;
+}
+.fig .t-blue-line { stroke: var(--c-blue); }
+.fig .t-blue-fill { fill: var(--c-blue); }
+.fig .t-blue-soft { fill: var(--c-blue-soft); stroke: var(--c-blue); stroke-width: 1; }
+.fig .t-blue-text { fill: var(--c-blue); }
+.fig .t-green-line { stroke: var(--c-green); }
+.fig .t-green-fill { fill: var(--c-green); }
+.fig .t-green-soft { fill: var(--c-green-soft); stroke: var(--c-green); stroke-width: 1; }
+.fig .t-green-text { fill: var(--c-green); }
+.fig .t-amber-line { stroke: var(--c-amber); }
+.fig .t-amber-fill { fill: var(--c-amber); }
+.fig .t-amber-soft { fill: var(--c-amber-soft); stroke: var(--c-amber); stroke-width: 1; }
+.fig .t-amber-text { fill: var(--c-amber); }
+.fig .t-violet-line { stroke: var(--c-violet); }
+.fig .t-violet-fill { fill: var(--c-violet); }
+.fig .t-violet-soft { fill: var(--c-violet-soft); stroke: var(--c-violet); stroke-width: 1; }
+.fig .t-violet-text { fill: var(--c-violet); }
+.fig .t-rose-line { stroke: var(--c-rose); }
+.fig .t-rose-fill { fill: var(--c-rose); }
+.fig .t-rose-soft { fill: var(--c-rose-soft); stroke: var(--c-rose); stroke-width: 1; }
+.fig .t-rose-text { fill: var(--c-rose); }
+.fig .t-on-color { fill: #ffffff; font-size: 12.5px; font-weight: 600; }
+:root[data-theme="dark"] .fig .t-on-color { fill: #121212; }
+.fig .fig-legend text { font-size: 12px; fill: var(--acad-muted); }
+.fig .bg-sky { fill: var(--c-blue-soft); }
+.fig .nz-0 { fill: var(--acad-text); }
+.fig .nz-1 { fill: var(--acad-muted); }
+.fig .nz-2 { fill: var(--acad-faint); }
+.fig .nz-3 { fill: var(--acad-bg); }
+.fig .nz-4 { fill: var(--c-violet); }
+
+/* Contents list: quiet links, underline only on hover. */
+.art-toc-list a { text-decoration: none; color: var(--acad-muted); }
+.art-toc-list a:hover { color: var(--acad-text); text-decoration: underline; text-decoration-color: currentColor; }
+.fig .cat-fur { fill: var(--c-amber); }
+.fig .cat-ear { fill: var(--c-rose-soft); }
+.fig .cat-eye { fill: #1f1f1f; }
+.fig .cat-nose { fill: var(--c-rose); }
+.fig .cat-whisker line { stroke: #1f1f1f; opacity: .7; }

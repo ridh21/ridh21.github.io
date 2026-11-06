@@ -1,6 +1,10 @@
 /* The Mac setup: every app I install on a fresh machine, with the command that installs it. */
-import type { CSSProperties } from "react";
+import Link from "next/link";
 import CodeBlock from "@/components/CodeBlock";
+import ThemeToggle from "@/components/academic/ThemeToggle";
+import "@/components/academic/academic.css";
+import "@/components/article.css";
+import "./mac-apps.css";
 
 type Command = { label: string; text: string };
 
@@ -107,25 +111,47 @@ const apps: MacApp[] = [
   },
 ];
 
-export default function PageMacApps() { return <>
+export default function PageMacApps() {
+  return (
+    <div className="acad">
+      <main className="acad-main mac-main">
+        <div className="art-topbar">
+          <Link href="/" className="art-back">← Ridham Patel</Link>
+          <ThemeToggle />
+        </div>
 
-<main className={"site"}><section className={"intro-section apps-page"} aria-label={"Mac apps"}><div className={"content"}><div className={"apps-intro appear"} style={{"--appear-delay": "0ms"} as CSSProperties}><h1 className={"apps-title"}>{"Mac apps"}</h1>
-<p className={"apps-lede"}>{"The twelve things I install on a new Mac, in the order I install them. Each command is the brew cask where one exists; Homebrew and Finder Menu take an extra step instead."}</p>
-</div>
-<ol className={"apps-list"}>{apps.map((app, index) => <li key={app.name} className={"app-item appear"} style={{"--appear-delay": `${60 + index * 35}ms`} as CSSProperties}><img alt={""} width={"36"} height={"36"} loading={"lazy"} decoding={"async"} className={app.glyph ? "app-icon app-icon-glyph" : "app-icon"} src={app.icon} /><div className={"app-main"}><div className={"app-head"}><span className={"app-name"}>{app.name}</span>
-<span className={"app-tag"}>{app.tagline}</span>
-<span className={"app-index"} aria-hidden={"true"}>{String(index + 1).padStart(2, "0")}</span>
-</div>
-<div className={"app-cmds"}>{app.commands.map(command => <CodeBlock key={command.label} label={command.label} code={command.text} copyLabel={`the ${app.name} ${command.label.toLowerCase()} command`} />)}</div>
-{app.note && <p className={"app-note"}>{app.note}</p>}
-</div>
-</li>)}</ol>
-</div>
-</section>
-<footer className={"footer"}><div className={"footer-row"}><span className={"footer-meta"}><span className={"footer-locale"}>{"India, GMT+5:30"}</span>
-<span className={"footer-time"}>{" "}</span>
-</span>
-</div>
-</footer>
-</main>
-</>; }
+        <header className="art-header">
+          <p className="art-kicker">Setup</p>
+          <h1 className="art-title">Mac apps</h1>
+          <p className="mac-lede">The {apps.length} things I install on a new Mac, in the order I install them. Each command is the Homebrew cask where one exists; Homebrew and Finder Menu take an extra step instead.</p>
+        </header>
+
+        <ol className="mac-list">
+          {apps.map((app, index) => (
+            <li key={app.name} className="mac-item">
+              <img alt="" width={32} height={32} loading="lazy" decoding="async" className={app.glyph ? "mac-icon mac-icon-glyph" : "mac-icon"} src={app.icon} />
+              <div className="mac-body">
+                <div className="mac-head">
+                  <span className="mac-name">{app.name}</span>
+                  <span className="mac-tag">{app.tagline}</span>
+                  <span className="mac-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <div className="mac-cmds">
+                  {app.commands.map((command) => (
+                    <CodeBlock key={command.label} label={command.label} code={command.text} copyLabel={`the ${app.name} ${command.label.toLowerCase()} command`} />
+                  ))}
+                </div>
+                {app.note && <p className="mac-note">{app.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <footer className="acad-footer art-footer">
+          <Link href="/">← Back to home</Link>
+          <span>Ridham Patel</span>
+        </footer>
+      </main>
+    </div>
+  );
+}
