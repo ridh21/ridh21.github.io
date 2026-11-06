@@ -23,21 +23,54 @@ export default function PageHome() { return <>
 </div>
 <div className={"dates"}><span>{"Accepted"}</span>
 </div>
+<div className={"names"}><span>{"FedRevoke: Client-Level Unlearning of Malicious Districts in Lightweight Federated Automatic Number Plate Recognition"}</span>
+<span className={"publication-venue"}>{"IEEE Open Journal of Intelligent Transportation Systems"}</span>
+</div>
+<div className={"dates"}><span>{"Under review"}</span>
+</div>
+<div className={"names"}><span>{"FedDETR for Privacy Preserving K Means Based Helmet Detection of Two Wheeler Riders"}</span>
+<span className={"publication-venue"}>{"Springer Nature"}</span>
+</div>
+<div className={"dates"}><span>{"Under review"}</span>
+</div>
+<div className={"names"}><span>{"Limited-Sample Face Recognition through Projection-Efficient Inter-Patch Interaction and Dynamic Patch Reweighting under Real-World Occlusions for Classroom Attendance"}</span>
+<span className={"publication-venue"}>{"Elsevier, Expert Systems with Applications"}</span>
+</div>
+<div className={"dates"}><span>{"Under review"}</span>
+</div>
+<div className={"names"}><span>{"Aggregate-Constrained Parcel-Level Yield Estimation from Sparse Single-Polarization X-Band SAR Time Series with Statistical Yield Anchors"}</span>
+<span className={"publication-venue"}>{"Springer Nature"}</span>
+</div>
+<div className={"dates"}><span>{"Under review"}</span>
+</div>
+<div className={"names"}><a href={"https://data.mendeley.com/datasets/j82bnw7gsr/1"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"EdgeVision Dataset"}</span>
+</span>
+</a>
+<span className={"publication-venue"}>{"Mendeley Data, helmet detection in motorcycle traffic scenes"}</span>
+</div>
+<div className={"dates"}><span>{"Published"}</span>
+</div>
 <div className={"names"}><span>{"Ecosmart Dustbin for Educational Institution, An IoT-Based Waste Segregation System and Method Thereof"}</span>
 <span className={"publication-venue"}>{"Indian Patent, Application No. 202521111515"}</span>
 </div>
 <div className={"dates"}><span>{"Accepted"}</span>
 </div>
-<div className={"names"}><span>{"FedDETR for Privacy Preserving K-Means Based Helmet Detection of Two-Wheeler Riders"}</span>
-<span className={"publication-venue"}>{"Springer Nature, Discover Applied Sciences"}</span>
 </div>
-<div className={"dates"}><span>{"Under review"}</span>
-</div>
-</div>
-<p className={"publication-note"}>{"Two more papers in draft, on face recognition and machine unlearning in diffusion models."}</p>
 </section>
 <section className={"link-section appear"} aria-labelledby={"Projects-title"} style={{"--appear-delay": "265ms"} as CSSProperties}><h2 id={"Projects-title"}>{"Projects"}</h2>
-<div className={"link-row"}><div className={"names"}><a href={"https://github.com/ridh21/qubits-dealflow"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Qubits-Dealflow"}</span>
+<div className={"link-row"}><div className={"names"}><a href={"https://github.com/ridh21/incident-response-commander"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Incident Response Commander"}</span>
+</span>
+</a>
+</div>
+<div className={"dates"}><span>{"2026"}</span>
+</div>
+<div className={"names"}><a href={"https://github.com/slantie/Drishtiksha"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Face-Swap Deepfake Detection"}</span>
+</span>
+</a>
+</div>
+<div className={"dates"}><span>{"2024"}</span>
+</div>
+<div className={"names"}><a href={"https://github.com/ridh21/qubits-dealflow"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"Qubits-Dealflow"}</span>
 </span>
 </a>
 </div>
@@ -90,7 +123,10 @@ export default function PageHome() { return <>
 </svg>
 </button>
 </span>
-{" or follow me on"}{" "}<a href={"https://x.com/ridhampatel2k4"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"X (Twitter)"}</span>
+{", follow me on"}{" "}<a href={"https://x.com/ridhampatel2k4"} target={"_blank"} rel={"noopener noreferrer"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"X (Twitter)"}</span>
+</span>
+</a>
+{", or read my"}{" "}<a href={"/cv"}><span className={"scramble-text link-label"}><span className={"scramble-original"}>{"CV"}</span>
 </span>
 </a>
 {"."}</p>
@@ -133,7 +169,7 @@ export default function PageHome() { return <>
 </div>
 </div>
 */}
-<footer className={"footer"}><div className={"footer-row"}><span className={"footer-meta"}><span className={"footer-locale"}>{"GMT+5:30"}</span>
+<footer className={"footer"}><div className={"footer-row"}><span className={"footer-meta"}><span className={"footer-locale"}>{"India, GMT+5:30"}</span>
 <span className={"footer-time"}>{" "}</span>
 </span>
 </div>

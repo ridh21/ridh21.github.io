@@ -122,7 +122,7 @@ export default function PageMacApps() { return <>
 </li>)}</ol>
 </div>
 </section>
-<footer className={"footer"}><div className={"footer-row"}><span className={"footer-meta"}><span className={"footer-locale"}>{"GMT+5:30"}</span>
+<footer className={"footer"}><div className={"footer-row"}><span className={"footer-meta"}><span className={"footer-locale"}>{"India, GMT+5:30"}</span>
 <span className={"footer-time"}>{" "}</span>
 </span>
 </div>
