@@ -1,3 +1,4 @@
+import { M } from "../Math";
 import ResearchArticleShell, { ArticleProse, ArticleTips, type ArticleSection } from "../ResearchArticleShell";
 
 const sections: ArticleSection[] = [
@@ -6,8 +7,8 @@ const sections: ArticleSection[] = [
     label: "The deletion problem",
     title: "The deletion problem",
     content: <ArticleProse>
-      <p>Suppose a model was trained on dataset <code className="inline-code">D</code>, and a user asks us to remove subset <code className="inline-code">Dᶠ</code>. The retained data is <code className="inline-code">Dʳ = D \ Dᶠ</code>.</p>
-      <p>An unlearning algorithm receives the trained model and the deletion request, then returns a new model. The desired result is not merely worse performance on forgotten examples. It should resemble the model we would have obtained had <code className="inline-code">Dᶠ</code> never participated in training.</p>
+      <p>Suppose a model was trained on dataset <M tex={String.raw`\mathcal{D}`} />, and a user asks us to remove subset <M tex={String.raw`\mathcal{D}_f`} />. The retained data is <M tex={String.raw`\mathcal{D}_r = \mathcal{D} \setminus \mathcal{D}_f`} />.</p>
+      <p>An unlearning algorithm receives the trained model and the deletion request, then returns a new model. The desired result is not merely worse performance on forgotten examples. It should resemble the model we would have obtained had <M tex={String.raw`\mathcal{D}_f`} /> never participated in training.</p>
     </ArticleProse>,
   },
   {
@@ -15,7 +16,7 @@ const sections: ArticleSection[] = [
     label: "The gold standard",
     title: "Retraining is the gold standard",
     content: <ArticleProse>
-      <p>The cleanest solution is to discard the old model and train again from scratch on <code className="inline-code">Dʳ</code>. This produces a reference model with no training path through the removed data.</p>
+      <p>The cleanest solution is to discard the old model and train again from scratch on <M tex={String.raw`\mathcal{D}_r`} />. This produces a reference model with no training path through the removed data.</p>
       <p>It is also expensive. Large models may take days, specialized hardware, and a reproducible copy of the entire training pipeline. If deletion requests arrive continuously, complete retraining after every request is usually unrealistic.</p>
       <p>Unlearning therefore optimizes a triangle: forgetting quality, retained utility, and computational cost. Improving one corner often puts pressure on another.</p>
     </ArticleProse>,
@@ -92,11 +93,9 @@ const sections: ArticleSection[] = [
   },
 ];
 
-export default function PageOverconsumption() {
+export default function ArticleUnlearning() {
   return <ResearchArticleShell
-    number="002"
-    title="Machine Unlearning 101"
-    meta="Published 16 September 2026, 9 min read"
+    slug="machine-unlearning-101"
     introduction={<>
       <p>Deleting a training record from storage does not delete what a model learned from it. The record may already have influenced parameters, checkpoints, embeddings, caches, and downstream models.</p>
       <p>Machine unlearning asks a harder question: can we efficiently update a trained system so selected data no longer influences its behavior, while preserving everything the system should retain?</p>

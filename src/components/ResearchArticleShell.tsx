@@ -1,5 +1,9 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
+import ThemeToggle from "@/components/academic/ThemeToggle";
+import { WRITINGS } from "@/components/academic/data";
+import "@/components/academic/academic.css";
+import "./article.css";
 
 export type ArticleSection = {
   id: string;
@@ -21,69 +25,83 @@ export function ArticleTips({ children }: { children: ReactNode }) {
   return <ol className="article-tips">{children}</ol>;
 }
 
-function LinkLabel({ children }: { children: ReactNode }) {
-  return <span className="scramble-text link-label"><span className="scramble-original">{children}</span></span>;
-}
-
+/** Article page in the academic style. Title, date and reading time come from WRITINGS in academic/data.ts. */
 export default function ResearchArticleShell({
-  number,
-  title,
-  meta,
+  slug,
   introduction,
   sections,
   references,
 }: {
-  number: string;
-  title: string;
-  meta: string;
+  slug: string;
   introduction: ReactNode;
   sections: ArticleSection[];
   references: ArticleReference[];
 }) {
-  return <main className="site">
-    <section className="intro-section article-page" aria-label="Article">
-      <div className="content">
-        <nav className="article-index appear" aria-label="Contents" style={{ "--appear-delay": "0ms" } as CSSProperties}>
-          <h2 className="article-index-title">
-            <Link className="article-index-back" aria-label="Back to home" href="/">
-              <svg viewBox="-1 -1 12.5 12.224" width="10" height="10" fill="none" aria-hidden="true" overflow="visible">
-                <path d="M 3.592 0 L 6.77 0 C 8.83 0 10.5 1.67 10.5 3.73 C 10.5 5.79 8.83 7.461 6.77 7.461 L 0 7.461" stroke="currentColor" strokeWidth="0.88" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M 2.763 10.224 L 0 7.461 L 2.763 4.697" stroke="currentColor" strokeWidth="0.88" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-            {number}
-          </h2>
-          <ol className="article-index-list">
-            {sections.map(section => <li key={section.id}><a href={`#${section.id}`}><LinkLabel>{section.label}</LinkLabel></a></li>)}
-          </ol>
-        </nav>
+  const post = WRITINGS.find((w) => w.slug === slug);
+  if (!post) throw new Error(`No WRITINGS entry for slug "${slug}"`);
 
-        <header className="article-header appear" style={{ "--appear-delay": "0ms" } as CSSProperties}>
-          <h1 className="article-title">{title}</h1>
-          <p className="article-meta">{meta}</p>
-        </header>
+  const contents = (
+    <ol className="art-toc-list">
+      {sections.map((s) => <li key={s.id}><a href={`#${s.id}`}>{s.label}</a></li>)}
+      {references.length > 0 && <li><a href="#references">References</a></li>}
+    </ol>
+  );
 
-        <div className="link-divider" aria-hidden="true" />
-        <article className="article-body appear" style={{ "--appear-delay": "80ms" } as CSSProperties}>
-          <ArticleProse>{introduction}</ArticleProse>
-          {sections.map(section => (
-            <section id={section.id} className="article-section" aria-labelledby={`${section.id}-title`} key={section.id}>
-              <h2 id={`${section.id}-title`} className="article-subhead">{section.title}</h2>
-              {section.content}
+  return (
+    <div className="acad">
+      <div className="art-layout">
+        <aside className="art-toc art-toc-side" aria-label="Contents">
+          <p className="art-toc-title">Contents</p>
+          {contents}
+        </aside>
+
+        <main className="acad-main art-main">
+          <div className="art-topbar">
+            <Link href="/" className="art-back">← Ridham Patel</Link>
+            <ThemeToggle />
+          </div>
+
+          <header className="art-header">
+            <p className="art-kicker">Writing</p>
+            <h1 className="art-title">{post.title}</h1>
+            <p className="art-meta">{post.date} · {post.readTime}</p>
+          </header>
+
+          <nav className="art-toc art-toc-inline" aria-label="Contents">
+            <p className="art-toc-title">Contents</p>
+            {contents}
+          </nav>
+
+          <article className="art-body">
+            <ArticleProse>{introduction}</ArticleProse>
+            {sections.map((section) => (
+              <section id={section.id} className="art-section" aria-labelledby={`${section.id}-title`} key={section.id}>
+                <h2 id={`${section.id}-title`}>{section.title}</h2>
+                {section.content}
+              </section>
+            ))}
+          </article>
+
+          {references.length > 0 && (
+            <section id="references" className="art-section art-refs" aria-labelledby="references-title">
+              <h2 id="references-title">References</h2>
+              <ol>
+                {references.map((r) => (
+                  <li key={r.href}>
+                    {r.text}{" "}
+                    <a href={r.href} target="_blank" rel="noopener noreferrer">Paper</a>
+                  </li>
+                ))}
+              </ol>
             </section>
-          ))}
-        </article>
+          )}
 
-        <section className="article-footnotes appear" aria-label="References" style={{ "--appear-delay": "160ms" } as CSSProperties}>
-          <ol>{references.map((reference, index) => (
-            <li key={reference.href}>
-              <span className="article-fn-num">{index + 1}</span>
-              <span className="article-fn-text">{reference.text}{" "}<a href={reference.href} target="_blank" rel="noopener noreferrer"><LinkLabel>Read the paper</LinkLabel></a></span>
-            </li>
-          ))}</ol>
-        </section>
+          <footer className="acad-footer art-footer">
+            <Link href="/">← Back to home</Link>
+            <span>Ridham Patel</span>
+          </footer>
+        </main>
       </div>
-    </section>
-    <footer className="footer"><div className="footer-row"><span className="footer-meta"><span className="footer-locale">India, GMT+5:30</span><span className="footer-time"> </span></span></div></footer>
-  </main>;
+    </div>
+  );
 }

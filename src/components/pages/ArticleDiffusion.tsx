@@ -1,3 +1,4 @@
+import { M, MathBlock } from "../Math";
 import ResearchArticleShell, { ArticleProse, ArticleTips, type ArticleSection } from "../ResearchArticleShell";
 
 const sections: ArticleSection[] = [
@@ -16,12 +17,12 @@ const sections: ArticleSection[] = [
     title: "The forward process",
     content: <>
       <ArticleProse>
-        <p>Start with a clean sample <code className="inline-code">x₀</code>. At every timestep, add a small amount of Gaussian noise according to a variance schedule. After enough steps, the result <code className="inline-code">xₜ</code> becomes almost indistinguishable from standard normal noise.</p>
+        <p>Start with a clean sample <M tex={String.raw`x_0`} />. At every timestep, add a small amount of Gaussian noise according to a variance schedule. After enough steps, the result <M tex={String.raw`x_t`} /> becomes almost indistinguishable from standard normal noise.</p>
         <p>During training, we can skip simulating every earlier step and directly mix the clean sample with fresh noise:</p>
       </ArticleProse>
-      <div className="code-block" aria-label="Forward diffusion equation"><div className="code-head"><span className="code-lang">MATH</span></div><pre><code><span className="code-line"><span className="code-line-text">xₜ = √ᾱₜ · x₀ + √(1 − ᾱₜ) · ε</span></span></code></pre></div>
+      <MathBlock label="Forward diffusion equation" tex={String.raw`x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1 - \bar{\alpha}_t}\, \epsilon`} />
       <ArticleProse>
-        <p>Here, <code className="inline-code">ε</code> is sampled noise and <code className="inline-code">ᾱₜ</code> tells us how much signal survives at timestep <code className="inline-code">t</code>. Early steps retain the scene; late steps retain almost none of it.</p>
+        <p>Here, <M tex={String.raw`\epsilon`} /> is sampled noise and <M tex={String.raw`\bar{\alpha}_t`} /> tells us how much signal survives at timestep <M tex={String.raw`t`} />. Early steps retain the scene; late steps retain almost none of it.</p>
       </ArticleProse>
     </>,
   },
@@ -34,8 +35,8 @@ const sections: ArticleSection[] = [
         <p>A neural network—commonly a U-Net or diffusion transformer—receives the noisy sample and its timestep. In the standard DDPM formulation, it is trained to predict the noise that was added.</p>
         <p>The objective is surprisingly plain: compare the true noise with the predicted noise using mean squared error. Repeating this across images and noise levels teaches the network what structure looks like at every stage of corruption.</p>
       </ArticleProse>
-      <div className="code-block" aria-label="Diffusion training objective"><div className="code-head"><span className="code-lang">OBJECTIVE</span></div><pre><code><span className="code-line"><span className="code-line-text">L = E[‖ε − εθ(xₜ, t, c)‖²]</span></span></code></pre></div>
-      <ArticleProse><p>The optional <code className="inline-code">c</code> is conditioning information such as text, a class label, depth, pose, or another image.</p></ArticleProse>
+      <MathBlock label="Diffusion training objective" tex={String.raw`\mathcal{L} = \mathbb{E}_{x_0,\, \epsilon,\, t}\left[\, \lVert \epsilon - \epsilon_\theta(x_t, t, c) \rVert^2 \,\right]`} />
+      <ArticleProse><p>The optional <M tex={String.raw`c`} /> is conditioning information such as text, a class label, depth, pose, or another image.</p></ArticleProse>
     </>,
   },
   {
@@ -43,7 +44,7 @@ const sections: ArticleSection[] = [
     label: "Sampling",
     title: "Sampling is iterative refinement",
     content: <ArticleProse>
-      <p>Generation starts at <code className="inline-code">xₜ ∼ N(0, I)</code>. A sampler asks the network for a denoising direction, takes one step, and repeats. Early steps determine broad composition; later steps resolve edges, texture, and local detail.</p>
+      <p>Generation starts at <M tex={String.raw`x_T \sim \mathcal{N}(0, \mathbf{I})`} />. A sampler asks the network for a denoising direction, takes one step, and repeats. Early steps determine broad composition; later steps resolve edges, texture, and local detail.</p>
       <p>DDPM sampling is stochastic and historically required many sequential steps. DDIM showed that the same training objective could support a non-Markovian, often deterministic path with far fewer evaluations. Modern schedulers continue the same trade-off: fewer steps improve speed, while more careful trajectories can improve fidelity or diversity.</p>
     </ArticleProse>,
   },
@@ -87,11 +88,9 @@ const sections: ArticleSection[] = [
   },
 ];
 
-export default function PageRadius() {
+export default function ArticleDiffusion() {
   return <ResearchArticleShell
-    number="001"
-    title="Diffusion Models 101"
-    meta="Published 16 September 2026, 8 min read"
+    slug="diffusion-models-101"
     introduction={<>
       <p>Diffusion models learn to create structure by reversing destruction. During training, we gradually corrupt real data with noise. The model studies that corruption and learns the small correction required to move in the opposite direction.</p>
       <p>At generation time there is no source image to restore. We begin with random noise and repeatedly apply those learned corrections until a coherent sample appears.</p>

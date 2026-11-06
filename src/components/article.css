@@ -1,0 +1,67 @@
+/* Article pages, built on the academic homepage tokens in academic/academic.css. */
+
+.art-layout { position: relative; }
+.art-main { padding-top: 32px; }
+
+.art-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.art-topbar .acad-theme { position: static; }
+.art-back { font-size: 15px; }
+
+.art-header { margin-bottom: 32px; }
+.art-kicker { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--acad-faint); font-weight: 600; }
+.art-title { font-size: 34px; line-height: 1.2; font-weight: 600; letter-spacing: -0.015em; margin-top: 8px; text-wrap: balance; }
+.art-meta { margin-top: 10px; color: var(--acad-muted); font-size: 15px; font-variant-numeric: tabular-nums; }
+
+/* Contents: inline box on narrow screens, sticky margin column on wide screens */
+.art-toc-title { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--acad-faint); font-weight: 600; margin-bottom: 8px; }
+.art-toc-list { list-style: none; display: grid; gap: 6px; font-size: 14.5px; line-height: 1.4; counter-reset: toc; }
+.art-toc-list li { counter-increment: toc; display: flex; gap: 8px; }
+.art-toc-list li::before { content: counter(toc) "."; color: var(--acad-faint); font-variant-numeric: tabular-nums; min-width: 1.4em; }
+.art-toc-inline { padding: 16px 18px; border: 1px solid var(--acad-rule); border-radius: 8px; margin-bottom: 36px; }
+.art-toc-side { display: none; }
+
+@media (min-width: 1180px) {
+  .art-toc-inline { display: none; }
+  .art-toc-side {
+    display: block; position: fixed; top: 140px;
+    left: calc(50% - 340px - 240px); width: 200px;
+  }
+}
+
+/* Body */
+.art-body { font-size: 17px; line-height: 1.75; }
+.article-prose { display: grid; gap: 16px; }
+.article-prose + .article-prose { margin-top: 16px; }
+.art-section { margin-top: 44px; scroll-margin-top: 24px; }
+.art-section h2 { font-size: 22px; line-height: 1.3; font-weight: 600; margin-bottom: 14px; letter-spacing: -0.01em; }
+
+/* LaTeX (KaTeX) */
+.math-block { margin: 20px 0; padding: 4px 0; overflow-x: auto; overflow-y: hidden; }
+.math-block .katex-display { margin: 0; }
+.art-body .katex { font-size: 1.08em; }
+.article-prose + .math-block, .math-block + .article-prose { margin-top: 20px; }
+
+.article-tips { list-style: none; counter-reset: tip; display: grid; gap: 12px; }
+.article-tips li { counter-increment: tip; position: relative; padding-left: 34px; }
+.article-tips li::before {
+  content: counter(tip); position: absolute; left: 0; top: .2em;
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12.5px; font-weight: 600; background: var(--acad-kind-bg); color: var(--acad-kind-text);
+}
+
+/* References */
+.art-refs ol { padding-left: 1.4em; display: grid; gap: 8px; font-size: 15px; color: var(--acad-muted); }
+.art-refs li::marker { color: var(--acad-faint); }
+
+.art-footer { display: flex; justify-content: space-between; gap: 16px; }
+
+@media (max-width: 560px) {
+  .art-title { font-size: 28px; }
+  .art-body { font-size: 16px; }
+}
+
+/* Override leftover template rules for these class names. */
+.art-body .article-prose p,
+.art-body .article-tips li { font: inherit; color: inherit; line-height: inherit; margin: 0; text-wrap: wrap; }
+.art-body .article-tips strong { font-weight: 600; color: var(--acad-text); }
+.art-body .article-tips li::before { line-height: 22px; font-size: 12.5px; color: var(--acad-kind-text); }
