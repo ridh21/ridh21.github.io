@@ -73,7 +73,7 @@ export const PUBS: { year: string; items: Pub[] }[] = [
       {
         type: "journal",
         title: "Limited-Sample Face Recognition through Projection-Efficient Inter-Patch Interaction and Dynamic Patch Reweighting under Real-World Occlusions for Classroom Attendance",
-        authors: ["Himani Trivedi", "Hiren Patel", "Dhruvkumar Patel", "Kovil Savaj", "Prince Malani", "Jay Patel", "Ridham Patel", "Krutika Patel", "Nancy Patel"],
+        authors: ["Himani Trivedi", "Hiren Patel", "Ridham Patel", "Krutika Patel", "Nancy Patel", "Dhruvkumar Patel", "Kovil Savaj", "Prince Malani", "Jay Patel"],
         venue: "Under review at Elsevier, Expert Systems with Applications",
       },
       {
