@@ -3,7 +3,7 @@
 import { Fragment, useMemo, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import {
-  ME, LINKS, INTERESTS, PUBS, PUB_TYPES, PROJECTS, WRITINGS, LAST_UPDATED, type Pub, type PubType,
+  ME, LINKS, INTERESTS, PUBS, PUB_TYPES, PROJECTS, EXPERIENCE, WRITINGS, LAST_UPDATED, type Pub, type PubType,
 } from "./data";
 import "./academic.css";
 
@@ -132,6 +132,21 @@ export default function Academic() {
         </section>
 
         <Publications />
+
+        <section className="acad-section">
+          <h2>Research and Industry Experience</h2>
+          {EXPERIENCE.map((e) => (
+            <article key={e.role + e.org} className="acad-pub acad-exp">
+              <div className="acad-exp-head">
+                <h3 className="acad-pub-title">{e.role}, {e.org}</h3>
+                <span className="acad-exp-dates">{e.dates}</span>
+              </div>
+              <ul className="acad-exp-points">
+                {e.points.map((pt) => <li key={pt}>{pt}</li>)}
+              </ul>
+            </article>
+          ))}
+        </section>
 
         <section className="acad-section">
           <h2>Projects</h2>

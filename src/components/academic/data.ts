@@ -117,6 +117,36 @@ export const PUBS: { year: string; items: Pub[] }[] = [
   },
 ];
 
+export const EXPERIENCE: { role: string; org: string; dates: string; points: string[] }[] = [
+  {
+    role: "Associate Software Engineer",
+    org: "OpenXcell Technolabs",
+    dates: "Aug 2025 – May 2026",
+    points: [
+      "Red-teamed client LLM applications with NVIDIA Garak, probing for jailbreaks, prompt injection and PII leakage.",
+      "Built Guardrails AI defences targeting the failure modes found, and checked that they blocked them before deployment.",
+      "Built retrieval-augmented generation pipelines that ground model outputs in client document collections.",
+    ],
+  },
+  {
+    role: "Research Intern",
+    org: "IEEE EMBS Pune Chapter",
+    dates: "Jun 2025 – Jul 2025",
+    points: [
+      "Compared 10 deep learning architectures (including ResNet50, EfficientNetB2 and DenseNet121) for EEG-based schizophrenia detection, measuring accuracy and latency.",
+      "Reached 96% accuracy with ensemble stacking; used Grad-CAM to check which signal regions drove predictions against known diagnostic markers.",
+    ],
+  },
+  {
+    role: "Software Development Intern",
+    org: "Institute for Plasma Research, Gandhinagar",
+    dates: "Aug 2024 – Nov 2024",
+    points: [
+      "Migrated legacy systems to a web platform (Node.js, TypeScript, SQL) and built data pipelines (Pandas, NumPy) for monitoring experimental data.",
+    ],
+  },
+];
+
 export const PROJECTS: { name: string; href: string; context: string; detail: string }[] = [
   {
     name: "Incident Response Commander",

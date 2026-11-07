@@ -137,3 +137,10 @@
   .acad-section-head { flex-direction: column; gap: 4px; }
   .acad-legend { white-space: normal; }
 }
+
+/* Experience */
+.acad-exp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 16px; row-gap: 2px; }
+.acad-exp-dates { font-size: 14px; color: var(--acad-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.acad .acad-exp-points { list-style: none; margin-top: 8px; display: grid; gap: 6px; font-size: 15px; line-height: 1.55; color: var(--acad-muted); }
+.acad-exp-points li { position: relative; padding-left: 18px; }
+.acad-exp-points li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: var(--acad-faint); }
