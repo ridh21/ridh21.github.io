@@ -60,7 +60,7 @@ export const PUBS: { year: string; items: Pub[] }[] = [
       {
         type: "journal",
         title: "FedRevoke: Client-Level Unlearning of Malicious Districts in Lightweight Federated Automatic Number Plate Recognition",
-        authors: ["Ridham Patel", "Himani Trivedi", "Chrisha Dabhi", "Shivangi Surati", "Bela Shrimali"],
+        authors: ["Ridham Patel", "Himani Trivedi", "Chrish Dabhi", "Shivangi Surati", "Bela Shrimali"],
         venue: "Under review at IEEE Open Journal of Intelligent Transportation Systems",
       },
       {
