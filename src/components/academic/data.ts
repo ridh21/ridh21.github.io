@@ -12,9 +12,11 @@ export const LINKS = [
 ];
 
 export const INTERESTS: { topic: string; detail: string }[] = [
-  { topic: "Federated learning and unlearning", detail: "training models across clients without sharing data, and removing the influence of malicious clients after training." },
-  { topic: "Robust face recognition", detail: "detection and recognition under occlusion, pose and lighting changes, with few samples per identity." },
-  { topic: "AI security, safety and alignment", detail: "making ML systems robust to attacks such as jailbreaks and prompt injection, and keeping model behaviour safe and aligned with human intent." },
+  { topic: "Robot learning and embodied AI", detail: "learning manipulation policies and vision-language-action models, and closing the sim-to-real gap, with closed-loop evaluation in physically realistic simulators such as MuJoCo and OGBench." },
+  { topic: "Embodied safety and robot evaluation", detail: "how LLM planners behave once their actions act on the physical world: whether they do what they say, whether a person's identity changes how much clearance a robot keeps, and whether behaviour shifts when the model believes it is being watched." },
+  { topic: "AI safety, alignment and security", detail: "evaluations for jailbreaks, prompt injection and evaluation awareness; red-teaming and guardrails for LLM applications; and whether alignment learned in language space survives the move to embodied agents." },
+  { topic: "Federated learning and unlearning", detail: "training models across clients without sharing data, and removing the influence of malicious or withdrawn clients after training." },
+  { topic: "Robust and efficient computer vision", detail: "face recognition under occlusion, pose and lighting changes with few samples per identity, and edge deployment of detection and recognition models." },
 ];
 
 export type PubType = "conference" | "journal" | "dataset" | "patent";
@@ -84,6 +86,23 @@ export const PUBS: { year: string; items: Pub[] }[] = [
       },
       {
         type: "dataset",
+        title: "Say-Do-Watched: A Benchmark for the Embodied Safety and Moral Behaviour of LLM Robot Planners",
+        authors: ["Ridham Patel"],
+        venue: "Open benchmark",
+        note: "Preprint in preparation",
+        tldr: "An LLM drives a simulated UR5e arm in closed loop in a workspace shared with people; each scenario varies one factor (who the person is, the instruction given, or whether the model is told it is being evaluated). It measures whether a model does what it says, treats people equally, refuses harmful instructions, and behaves the same when unobserved.",
+        links: [{ label: "Code", href: "https://github.com/ridh21/embodied-llm-safety-bench" }],
+        bibtex: `@software{patel2026saydowatched,
+  author  = {Patel, Ridham},
+  title   = {Say-Do-Watched: Benchmarking the Embodied Safety and Moral Behaviour of LLM Robot Planners},
+  year    = {2026},
+  version = {0.1.0-pilot},
+  url     = {https://github.com/ridh21/embodied-llm-safety-bench},
+  note    = {Preprint in preparation}
+}`,
+      },
+      {
+        type: "dataset",
         title: "EdgeVision Dataset",
         authors: ["Kandarp Gajjar", "Nancy Patel", "Ridham Patel", "Krutika Patel", "Chrisha Dabhi", "Himani Trivedi", "Mahesh Goyani", "Chintan Bhatt"],
         venue: "Mendeley Data",
@@ -148,6 +167,12 @@ export const EXPERIENCE: { role: string; org: string; dates: string; points: str
 ];
 
 export const PROJECTS: { name: string; href: string; context: string; detail: string }[] = [
+  {
+    name: "Say-Do-Watched",
+    href: "https://github.com/ridh21/embodied-llm-safety-bench",
+    context: "Open benchmark · preprint in preparation",
+    detail: "An embodied safety benchmark where an LLM drives a simulated UR5e arm (MuJoCo) in closed loop in a workspace shared with people. In a 405-episode pilot sweep, Claude Opus 5.5 and Sonnet 5, GPT-5.6 and Gemini 3.8 reveal a say–do gap: frontier chat models describe a safer plan than they execute (say–do agreement 35–36% for Sonnet 5 / GPT-5.6 vs 78% for Opus 5.5), and persona descriptions alone shift the robot's physical clearance by up to 14.8 cm — evidence that text-only evaluation overstates embodied safety.",
+  },
   {
     name: "Incident Response Commander",
     href: "https://github.com/ridh21/incident-response-commander",

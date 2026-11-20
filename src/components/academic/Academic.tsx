@@ -120,7 +120,7 @@ export default function Academic() {
         </header>
 
         <section className="acad-bio">
-          <p>I am an M.E. Information Technology student at L.D. College of Engineering, Ahmedabad, India. My research is in machine learning, with work on federated learning and unlearning, robust computer vision, and the security of ML systems.</p>
+          <p>I am an M.E. Information Technology student at L.D. College of Engineering, Ahmedabad, India. My research is in machine learning for robots and AI safety. I build open benchmarks for embodied agents — most recently Say-Do-Watched, which tests whether LLM robot planners do what they say, treat people equally, and behave the same when they think no one is watching — alongside work on federated learning and unlearning, robust computer vision, and the security of ML systems.</p>
           <p>Previously, I was an Associate Software Engineer at OpenXcell Technolabs, where I red-teamed and built guardrails for LLM applications and built retrieval-augmented generation pipelines.</p>
         </section>
 
