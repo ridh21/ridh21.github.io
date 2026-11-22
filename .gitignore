@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# commercial SPAR fonts (Displaay): local demo only, not licensed for this domain
+/public/fonts/spar/

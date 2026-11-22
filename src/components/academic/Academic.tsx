@@ -37,7 +37,7 @@ function Publication({ pub, tag }: { pub: Pub; tag: string }) {
   return (
     <article className="acad-pub acad-pub-tagged">
       <span className="acad-tag" title={PUB_TYPES.find((t) => t.type === pub.type)?.label}>
-        <span className="sr-only">{PUB_TYPES.find((t) => t.type === pub.type)?.label} </span>[{tag}]
+        <span className="sr-only">{PUB_TYPES.find((t) => t.type === pub.type)?.label} </span>{tag}
       </span>
       <div className="acad-pub-body">
       <h3 className="acad-pub-title">{pub.title}</h3>
@@ -120,8 +120,8 @@ export default function Academic() {
         </header>
 
         <section className="acad-bio">
-          <p>I am an M.E. Information Technology student at L.D. College of Engineering, Ahmedabad, India. My research is in machine learning for robots and AI safety. I build open benchmarks for embodied agents — most recently Say-Do-Watched, which tests whether LLM robot planners do what they say, treat people equally, and behave the same when they think no one is watching — alongside work on federated learning and unlearning, robust computer vision, and the security of ML systems.</p>
-          <p>Previously, I was an Associate Software Engineer at OpenXcell Technolabs, where I red-teamed and built guardrails for LLM applications and built retrieval-augmented generation pipelines.</p>
+          <p>I&rsquo;m an M.E. Information Technology student at L.D. College of Engineering, Ahmedabad. I work on robot learning and AI safety, mainly building benchmarks that test how LLM-driven robots behave around people.</p>
+          <p>Before this, I was an Associate Software Engineer at OpenXcell Technolabs, red-teaming LLM applications and building guardrails for them.</p>
         </section>
 
         <section className="acad-section">

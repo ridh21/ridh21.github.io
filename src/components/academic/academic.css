@@ -1,146 +1,172 @@
-/* Plain academic homepage (Eric Wallace / Edoardo Debenedetti style). Scoped to .acad. */
+/* Academic homepage in the SPAR colour theme (spar-labs/spar-ui). Scoped to .acad. */
+
+/* Reckless Standard + Saans are local-only (gitignored); Newsreader + Hanken Grotesk stand in. */
+@font-face { font-family: "Reckless Standard"; src: url("/fonts/spar/reckless-400.woff2") format("woff2"); font-weight: 300 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Saans"; src: url("/fonts/spar/saans-var.woff2") format("woff2"); font-weight: 360 440; font-style: normal; font-display: swap; }
+@font-face { font-family: "Saans"; src: url("/fonts/spar/saans-500.woff2") format("woff2"); font-weight: 500 600; font-style: normal; font-display: swap; }
 
 :root:has(.acad) {
-  --acad-bg: #ffffff;
-  --acad-text: #1f1f1f;
-  --acad-muted: #5f5f5f;
-  --acad-faint: #8a8a8a;
-  --acad-rule: #e6e6e6;
-  --acad-link: #1f1f1f;
-  --acad-link-hover: #000000;
-  --acad-underline: #c9c9c9;
-  --acad-note: #5f5f5f;
-  --acad-code-bg: #f5f5f4;
-  --acad-kind-bg: #eef0f6;
-  --acad-kind-text: #3b4256;
+  --acad-bg: #fffcf9;        /* paper */
+  --acad-text: #10222d;      /* ink */
+  --acad-muted: #4b5a63;     /* ink-soft */
+  --acad-faint: #6f7d85;
+  --acad-rule: #e5dcd0;      /* line */
+  --acad-link: #0067b5;      /* deep */
+  --acad-link-hover: #004f8c;
+  --acad-underline: #b2d5f8; /* celeste */
+  --acad-accent: #008ee7;    /* blue */
+  --acad-mark: #b2d5f8;      /* celeste */
+  --acad-soft: #dfeaf9;      /* soft */
+  --acad-warm: #fef6ed;      /* warm */
+  --acad-code-bg: var(--acad-soft);
+  --acad-kind-bg: var(--acad-soft);
+  --acad-kind-text: var(--acad-text);
+  --acad-serif: "Reckless Standard", "Newsreader", Georgia, "Times New Roman", serif;
+  --acad-font: var(--acad-sans);
+  --acad-sans: "Saans", "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
 }
 :root[data-theme="dark"]:has(.acad) {
-  --acad-bg: #121212;
-  --acad-text: #e8e6e3;
-  --acad-muted: #a8a6a3;
-  --acad-faint: #7d7b78;
-  --acad-rule: #2a2a2a;
-  --acad-link: #e8e6e3;
-  --acad-link-hover: #ffffff;
-  --acad-underline: #4a4a4a;
-  --acad-note: #a8a6a3;
-  --acad-code-bg: #1c1c1c;
-  --acad-kind-bg: #23262f;
-  --acad-kind-text: #c2c8d8;
+  --acad-bg: #0c1a23;
+  --acad-text: #efe8de;
+  --acad-muted: #a9b6bd;
+  --acad-faint: #7f8f98;
+  --acad-rule: #213440;
+  --acad-link: #8cc4f5;
+  --acad-link-hover: #c4e1fb;
+  --acad-underline: #2f5a7c;
+  --acad-accent: #3aa7f0;
+  --acad-mark: #2f5a7c;
+  --acad-soft: #15293a;
+  --acad-warm: #13222d;
+  color-scheme: dark;
 }
-:root:has(.acad), :root:has(.acad) body {
-  background: var(--acad-bg);
-  color: var(--acad-text);
-}
+:root:has(.acad), :root:has(.acad) body { background: var(--acad-bg); color: var(--acad-text); }
 
 .acad {
-  --acad-font: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  font-family: var(--acad-font);
+  font: 400 15px/1.6 var(--acad-sans);
   color: var(--acad-text);
   background: var(--acad-bg);
-  font-size: 16px;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 .acad *, .acad *::before, .acad *::after { box-sizing: border-box; }
 /* Zero-specificity reset so component spacing below always wins. */
 :where(.acad) :where(p, h1, h2, h3, ul, ol) { margin: 0; padding: 0; }
+.acad h1, .acad h2 { font-family: var(--acad-serif); font-weight: 400; text-wrap: balance; }
+.acad p { text-wrap: pretty; }
+.acad ::selection { background: var(--acad-mark); color: var(--acad-text); }
 .acad a {
   color: var(--acad-link); text-decoration: underline; text-decoration-color: var(--acad-underline);
-  text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color .15s;
+  text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .15s, text-decoration-color .15s;
 }
 .acad a:hover { color: var(--acad-link-hover); text-decoration-color: currentColor; }
-.acad a:focus-visible, .acad button:focus-visible { outline: 2px solid var(--acad-link); outline-offset: 2px; border-radius: 2px; }
+.acad a:focus-visible, .acad button:focus-visible { outline: 2px solid var(--acad-text); outline-offset: 3px; border-radius: 2px; }
 
 .acad-main { max-width: 680px; margin: 0 auto; padding: 56px 20px 72px; }
 
 /* Header */
-.acad-header { display: flex; align-items: center; gap: 24px; position: relative; }
-.acad-photo { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; flex: none; }
-.acad-name { font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; }
-.acad-tagline { color: var(--acad-muted); margin-top: 4px; }
-.acad-links { display: flex; flex-wrap: wrap; column-gap: 16px; row-gap: 4px; margin-top: 10px; font-size: 15px; }
+.acad-header { display: flex; align-items: center; gap: 22px; position: relative; }
+.acad-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; flex: none; background: var(--acad-soft); }
+.acad-name { font-size: 30px; line-height: 1.15; letter-spacing: -0.005em; }
+.acad-tagline { color: var(--acad-muted); margin-top: 4px; font-size: 15px; }
+.acad-links { display: flex; flex-wrap: wrap; column-gap: 16px; row-gap: 4px; margin-top: 10px; font-size: 14.5px; }
+/* Theme toggle: a quiet icon button. Both icons are always rendered; the root theme picks one, so there is no flash on load. */
 .acad-theme {
-  position: absolute; top: 0; right: 0;
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid var(--acad-rule); background: transparent; color: var(--acad-muted);
-  cursor: pointer; transition: color .15s, border-color .15s;
+  position: absolute; top: 2px; right: 0;
+  display: grid; place-items: center;
+  width: 32px; height: 32px; padding: 0; border: 0; border-radius: 4px;
+  background: transparent; color: var(--acad-muted);
+  cursor: pointer; transition: background-color .15s ease, color .15s ease, transform .16s ease-out;
 }
-.acad-theme:hover { color: var(--acad-text); border-color: var(--acad-faint); }
+.acad-theme:hover { background: var(--acad-soft); color: var(--acad-text); }
+.acad-theme:active { transform: scale(.94); }
+.acad-theme svg { grid-area: 1 / 1; transition: opacity .2s ease, transform .3s cubic-bezier(.22, 1, .36, 1); }
+.acad-theme-sun { opacity: 0; transform: rotate(-60deg) scale(.7); }
+:root[data-theme="dark"] .acad-theme-sun { opacity: 1; transform: none; }
+:root[data-theme="dark"] .acad-theme-moon { opacity: 0; transform: rotate(60deg) scale(.7); }
+@media (prefers-reduced-motion: reduce) { .acad-theme svg { transition: opacity .15s ease; transform: none !important; } }
 
 /* Bio */
-.acad-bio { margin-top: 36px; display: grid; gap: 12px; }
+.acad-bio { margin-top: 32px; display: grid; gap: 12px; font-size: 15.5px; line-height: 1.65; }
 
 /* Sections */
-.acad-section { margin-top: 48px; }
+.acad-section { margin-top: 52px; }
 .acad-section h2 {
-  font-size: 20px; font-weight: 600; line-height: 1.3;
+  font-size: 22px; line-height: 1.25;
   padding-bottom: 10px; margin-bottom: 20px;
   border-bottom: 1px solid var(--acad-rule);
 }
 .acad-interests { list-style: none; display: grid; gap: 10px; }
 .acad-interests li { position: relative; padding-left: 18px; }
-.acad-interests li::before { content: ""; position: absolute; left: 4px; top: .66em; width: 5px; height: 5px; border-radius: 50%; background: var(--acad-faint); }
+.acad-interests li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 6px; height: 6px; background: var(--acad-mark); }
+.acad-interests strong { font-weight: 500; }
 
 /* Publications */
 .acad-year + .acad-year { margin-top: 28px; }
-.acad-year-label { color: var(--acad-faint); font-size: 14px; font-weight: 600; letter-spacing: .02em; margin-bottom: 16px; font-variant-numeric: tabular-nums; }
-.acad-pub { padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid var(--acad-rule); }
+.acad-year-label { font: 400 18px/1 var(--acad-serif); color: var(--acad-text); margin-bottom: 16px; font-variant-numeric: lining-nums; }
+.acad-pub { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--acad-rule); }
 .acad-pub:last-child { margin-bottom: 0; }
-.acad-pub-title { font-size: 16px; line-height: 1.45; font-weight: 600; color: var(--acad-text); text-wrap: pretty; }
-.acad-authors { margin-top: 6px; line-height: 1.55; font-size: 15px; color: var(--acad-muted); }
+.acad-pub-title { font-size: 15px; line-height: 22px; font-weight: 500; color: var(--acad-text); text-wrap: pretty; }
+.acad-pub-title a { color: var(--acad-text); text-decoration-color: var(--acad-underline); }
+.acad-pub-title a:hover { color: var(--acad-link); }
+.acad-authors { margin-top: 4px; line-height: 1.55; font-size: 14px; color: var(--acad-muted); }
 .acad-authors strong { color: var(--acad-text); font-weight: 600; }
 .acad-authors sup { font-size: .7em; }
-.acad-venue { margin-top: 4px; font-size: 15px; font-style: italic; color: var(--acad-muted); }
-.acad-note { font-size: 15px; color: var(--acad-note); margin-top: 2px; }
-.acad-actions { margin-top: 12px; font-size: 14.5px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.acad-sep { color: var(--acad-faint); }
+.acad-venue { margin-top: 2px; font-size: 14px; font-style: italic; color: var(--acad-muted); }
+.acad-note { font-size: 13.5px; color: var(--acad-link); margin-top: 2px; font-weight: 500; }
+.acad-actions { margin-top: 10px; font-size: 13.5px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.acad-sep { color: var(--acad-rule); }
 .acad-linkbtn {
   font: inherit; color: var(--acad-link); background: none; border: 0; padding: 0; cursor: pointer;
-  text-decoration: underline; text-decoration-color: var(--acad-underline); text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration: underline; text-decoration-color: var(--acad-underline); text-decoration-thickness: 1px; text-underline-offset: 4px;
 }
 .acad-linkbtn:hover, .acad-linkbtn[aria-expanded="true"] { color: var(--acad-link-hover); text-decoration-color: currentColor; }
-.acad-tldr { margin-top: 14px; padding: 2px 0 2px 14px; font-size: 15px; line-height: 1.6; color: var(--acad-muted); border-left: 1px solid var(--acad-underline); }
-.acad-bib { position: relative; margin-top: 14px; background: var(--acad-code-bg); border-radius: 6px; }
+.acad-tldr { margin-top: 12px; padding: 12px 16px; font-size: 14px; line-height: 1.6; color: var(--acad-text); background: var(--acad-warm); border-radius: 4px; }
+.acad-bib { position: relative; margin-top: 14px; background: var(--acad-soft); border-radius: 4px; }
 .acad-bib pre {
-  margin: 0; padding: 12px 14px; overflow-x: auto;
-  font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acad-text);
+  margin: 0; padding: 14px 16px; overflow-x: auto;
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acad-text);
 }
-.acad-copy { position: absolute; top: 8px; right: 10px; font-size: 13px; }
-.acad-footnote { margin-top: 16px; font-size: 13.5px; color: var(--acad-muted); }
-.acad-more { margin-top: 14px; }
+.acad-copy { position: absolute; top: 10px; right: 12px; font-size: 12.5px; }
+.acad-footnote { margin-top: 14px; font-size: 13px; color: var(--acad-muted); }
+.acad-more { margin-top: 12px; font-size: 14.5px; }
 
-.acad-other { font-size: 15px; color: var(--acad-muted); }
-.acad-writing { display: grid; gap: 22px; }
-.acad-post-title { font-size: 16.5px; line-height: 1.45; font-weight: 600; }
-.acad-post-meta { font-size: 14px; color: var(--acad-faint); margin-top: 2px; font-variant-numeric: tabular-nums; }
-.acad-post-summary { font-size: 15px; color: var(--acad-muted); margin-top: 4px; }
-.acad-footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--acad-rule); font-size: 13.5px; color: var(--acad-faint); }
+.acad-other { font-size: 14px; color: var(--acad-muted); }
+.acad-writing { display: grid; gap: 20px; }
+.acad-post-title { font-size: 15px; line-height: 1.45; font-weight: 500; }
+.acad-post-meta { font-size: 13px; color: var(--acad-faint); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.acad-post-summary { font-size: 14px; color: var(--acad-muted); margin-top: 4px; }
+.acad-footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--acad-rule); font-size: 13px; color: var(--acad-faint); }
 
-/* Publication type tags, as in the CV: [C1], [J1], ... */
-.acad-pub-tagged { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 10px; }
-.acad-tag { align-self: start; font-size: 14px; line-height: 23px; color: var(--acad-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* Publication type tags, as in the CV: [C1], [J1], ... set as soft-blue squares. */
+.acad-pub-tagged { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 12px; align-items: start; }
+.acad-tag {
+  align-self: start; display: grid; place-items: center; height: 22px; margin: 0;
+  background: var(--acad-soft); color: var(--acad-text);
+  font-size: 11.5px; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
 .acad-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--acad-rule); padding-bottom: 10px; margin-bottom: 20px; }
 .acad-section-head h2 { border: 0; padding: 0; margin: 0; }
-.acad-legend { font-size: 13px; color: var(--acad-faint); white-space: nowrap; }
+.acad-legend { font-size: 12.5px; color: var(--acad-faint); white-space: nowrap; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Experience */
+.acad-exp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 16px; row-gap: 2px; }
+.acad-exp-dates { font-size: 13px; color: var(--acad-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.acad .acad-exp-points { list-style: none; margin-top: 8px; display: grid; gap: 5px; font-size: 14px; line-height: 1.55; color: var(--acad-muted); }
+.acad-exp-points li { position: relative; padding-left: 16px; }
+.acad-exp-points li::before { content: ""; position: absolute; left: 2px; top: .64em; width: 5px; height: 5px; background: var(--acad-mark); }
 
 /* Mobile */
 @media (max-width: 560px) {
   .acad-main { padding: 32px 16px 56px; }
   .acad-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .acad-photo { width: 96px; height: 96px; }
-  .acad-name { font-size: 24px; }
+  .acad-photo { width: 84px; height: 84px; }
+  .acad-name { font-size: 26px; }
+  .acad-section { margin-top: 44px; }
+  .acad-section h2 { font-size: 20px; }
   .acad-section-head { flex-direction: column; gap: 4px; }
   .acad-legend { white-space: normal; }
 }
-
-/* Experience */
-.acad-exp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 16px; row-gap: 2px; }
-.acad-exp-dates { font-size: 14px; color: var(--acad-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.acad .acad-exp-points { list-style: none; margin-top: 8px; display: grid; gap: 6px; font-size: 15px; line-height: 1.55; color: var(--acad-muted); }
-.acad-exp-points li { position: relative; padding-left: 18px; }
-.acad-exp-points li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: var(--acad-faint); }

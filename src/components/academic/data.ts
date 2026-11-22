@@ -12,11 +12,11 @@ export const LINKS = [
 ];
 
 export const INTERESTS: { topic: string; detail: string }[] = [
-  { topic: "Robot learning and embodied AI", detail: "learning manipulation policies and vision-language-action models, and closing the sim-to-real gap, with closed-loop evaluation in physically realistic simulators such as MuJoCo and OGBench." },
-  { topic: "Embodied safety and robot evaluation", detail: "how LLM planners behave once their actions act on the physical world: whether they do what they say, whether a person's identity changes how much clearance a robot keeps, and whether behaviour shifts when the model believes it is being watched." },
-  { topic: "AI safety, alignment and security", detail: "evaluations for jailbreaks, prompt injection and evaluation awareness; red-teaming and guardrails for LLM applications; and whether alignment learned in language space survives the move to embodied agents." },
-  { topic: "Federated learning and unlearning", detail: "training models across clients without sharing data, and removing the influence of malicious or withdrawn clients after training." },
-  { topic: "Robust and efficient computer vision", detail: "face recognition under occlusion, pose and lighting changes with few samples per identity, and edge deployment of detection and recognition models." },
+  { topic: "Robot learning", detail: "manipulation policies, vision-language-action models and sim-to-real transfer." },
+  { topic: "Embodied safety", detail: "whether LLM robot planners do what they say, treat people equally, and act the same when unobserved." },
+  { topic: "AI security", detail: "jailbreaks, prompt injection, red-teaming and guardrails for LLM applications." },
+  { topic: "Federated learning and unlearning", detail: "training without pooling data, and removing a client’s influence afterwards." },
+  { topic: "Robust computer vision", detail: "face recognition with occlusion and few samples, deployed on edge devices." },
 ];
 
 export type PubType = "conference" | "journal" | "dataset" | "patent";
